@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>300</y>
+      <w>210</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Plateau
+--
+- largeur : int
+- longueur : int
+- grille : Element**
+--
++ affichage()
++ explose()
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>10</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Position
+--
+int x
+int y</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>310</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Joueur
+--
+- _bombes : int
+- _vies : int 
+- _rapidite : int
+- _esthetique : int
+- _typebombe : Bombe
+- _position : Position
+--
++ deplace()
++ posebombe()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>60</y>
+      <w>210</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Jeu
+--
+- j1 : Joueur
+- j2 : Joueur
+- grid : Plateau
+
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>380</y>
+      <w>210</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>/Bombe/
+--
+# _rayon : int
+# _puissance : int
+--
++ affichage()
++ explose()
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>140</y>
+      <w>210</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>/Element/
+--
+# _pos : Position
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
