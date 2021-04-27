@@ -11,6 +11,8 @@ class Jeu{
     sf::RenderWindow* _window;
     sf::VideoMode _videoMode;
     sf::Event _ev;
+    int _spaceuse;
+    sf::Color _couleurFond;
     // Fonctions privées (que pour l'initialisation)
     void initVariables();
     void initFenetre();

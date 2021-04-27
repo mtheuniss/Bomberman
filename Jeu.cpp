@@ -18,6 +18,8 @@ void Jeu::initVariables(){
   this-> _window = nullptr;
   this->_videoMode.height = 600;
   this->_videoMode.width = 800;
+  this->_spaceuse = 0;
+  this->_couleurFond = sf::Color(255,255,255,255); //blanc
 }
 void Jeu::initFenetre(){
   this-> _window = new sf::RenderWindow(this->_videoMode, "Bomberman", sf::Style::Close | sf::Style::Titlebar);
@@ -25,16 +27,29 @@ void Jeu::initFenetre(){
 //Fonctions Public
 //mise à jour du jeu (logique du jeu)
 void Jeu::updateEvents(){
-  while(this->_window->pollEvent(this->_ev))
-  {
+  while(this->_window->pollEvent(this->_ev)) {
     switch (this->_ev.type) {
       case sf::Event::Closed:
         this->_window->close();
         break;
       case sf::Event::KeyPressed:
-        if(_ev.key.code == sf::Keyboard::Escape)
-          this->_window->close();
-        break;
+        switch (_ev.key.code){
+          case sf::Keyboard::Space:
+          this->_spaceuse = (this->_spaceuse+1)%3;
+          std::cout<<this->_spaceuse<<std::endl;
+          switch(this->_spaceuse){
+            case 0:
+              this->_couleurFond = sf::Color(0,0,255,255);
+              break;
+            case 1:
+              this->_couleurFond = sf::Color(255,0,0,255);
+              break;
+            case 2:
+              this->_couleurFond = sf::Color(0,255,0,255);
+             break;
+            }  
+      break;
+      }
     }
   }
 }
@@ -43,7 +58,7 @@ void Jeu::update(){
 }
 //visualisation du jeu (interface)
 void Jeu::render(){
-  this->_window->clear(sf::Color(255,255,255,255));//RGB+transparence
+  this->_window->clear(this->_couleurFond);//RGB+transparence
   //dessin des objets
 
   //affichage de la fenetre
