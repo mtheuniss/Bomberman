@@ -28,8 +28,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>894</x>
-      <y>318</y>
+      <x>696</x>
+      <y>204</y>
       <w>126</w>
       <h>120</h>
     </coordinates>
@@ -39,8 +39,11 @@
 - longueur : int
 - grille : Element**
 --
-+ affichage()
-+ explose()
++ getElement(x:int, y:int)
++ suppElement(e: Element)
++ addElement(x:int, y:int, e: Element)
++ isElement (x:int, y:int)
+
 
 
 </panel_attributes>
@@ -49,8 +52,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>282</x>
-      <y>186</y>
+      <x>342</x>
+      <y>354</y>
       <w>126</w>
       <h>66</h>
     </coordinates>
@@ -63,55 +66,58 @@ int y</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>198</y>
+      <x>414</x>
+      <y>162</y>
       <w>126</w>
-      <h>126</h>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Joueur
 --
 - _nbBombes : int
 - _vies : int 
 - _rapidite : int
-- _esthetique : int
+- _perso : Personnage
 - _typebombe : Bombe
-- _position : Position
 --
++ramassePowerUp(pu : PowerUp)
 +getNbBombe() : int
 +setNbBombe(int b)
 
-
-+getVies()
++ getVies()
++ setVies()
 + deplace()
 + posebombe()
 
-</panel_attributes>
++ mourir () ; int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>564</x>
+      <y>24</y>
+      <w>126</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Jeu
+--
+- _j1 : Joueur
+- _j2 : Joueur
+- _grid : Plateau
+
+- _window : sf::Window*
+- _ev : sf::Event
+
+--
++ update() : void
++ render() : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>798</x>
-      <y>18</y>
-      <w>126</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>Jeu
---
-- j1 : Joueur
-- j2 : Joueur
-- grid : Plateau
-
---
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>978</x>
-      <y>588</y>
+      <y>708</y>
       <w>126</w>
       <h>120</h>
     </coordinates>
@@ -129,33 +135,34 @@ int y</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>276</x>
-      <y>408</y>
+      <x>624</x>
+      <y>564</y>
       <w>126</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>Powerup
 --
-- type : int
-- updown : bool
+# type : int
+# updown : bool
 --
 + affichage()
-
++ getType() : int
++ setType() : int
 // attention powerdown marche pas sur le nb de vie </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>444</x>
-      <y>150</y>
+      <x>546</x>
+      <y>360</y>
       <w>126</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>/Element/
 --
 # _pos : Position
-# _esthetique : int
+# _esthetique : Image
 --
 /+ affichage()/
 
@@ -165,8 +172,8 @@ int y</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>552</y>
+      <x>798</x>
+      <y>564</y>
       <w>126</w>
       <h>120</h>
     </coordinates>
@@ -183,28 +190,17 @@ int y</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>564</x>
-      <y>192</y>
-      <w>222</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;50.0;350.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>438</x>
-      <y>6</y>
+      <x>294</x>
+      <y>564</y>
       <w>126</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>Mur
 --
-- cassable : bool
-- powerup : Powerup //generer aléa dans le constructeur 
+# cassable : bool
+# powerup : Powerup //generer aléa dans le constructeur 
 --
 
 + affichage()
@@ -215,89 +211,186 @@ int y</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>564</x>
-      <y>150</y>
-      <w>342</w>
-      <h>192</h>
+      <x>636</x>
+      <y>252</y>
+      <w>72</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>550.0;300.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;180.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>132</y>
-      <w>60</w>
-      <h>198</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;310.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>810</x>
-      <y>132</y>
-      <w>36</w>
+      <x>648</x>
+      <y>138</y>
+      <w>96</w>
       <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>40.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>402</x>
-      <y>168</y>
-      <w>54</w>
+      <x>504</x>
+      <y>138</y>
+      <w>108</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>70.0;10.0;40.0;40.0;10.0;40.0</additional_attributes>
+    <additional_attributes>160.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>522</x>
-      <y>264</y>
-      <w>252</w>
-      <h>300</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;400.0;480.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>396</x>
-      <y>264</y>
-      <w>84</w>
-      <h>162</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;250.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
       <x>456</x>
-      <y>120</y>
-      <w>18</w>
-      <h>42</h>
+      <y>564</y>
+      <w>126</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <panel_attributes>Personnage
+--
+
+--
++ affichage()
++ deplacement(x:int, y:int)
+</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>816</x>
-      <y>558</y>
-      <w>174</w>
+      <x>462</x>
+      <y>378</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>474</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>348</x>
+      <y>510</y>
+      <w>522</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;850.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>348</x>
+      <y>516</y>
+      <w>18</w>
       <h>54</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>270.0;70.0;10.0;10.0</additional_attributes>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>516</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>678</x>
+      <y>516</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>852</x>
+      <y>516</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>852</x>
+      <y>672</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>534</x>
+      <y>210</y>
+      <w>72</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>762</x>
+      <y>360</y>
+      <w>138</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Image
+--
+# _sizeX : int
+# _sizeY : int
+# _fileName : int
+--
++ getSizeX() : int
++ getSizeY() : int
++ getFileName() : char*
++ setSizeX(int) : void
++ setSizeY(int) : void
++ setfileName(name : char*) : void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>378</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
   </element>
 </diagram>
