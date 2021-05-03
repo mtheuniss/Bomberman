@@ -21,15 +21,15 @@ const bool Jeu::getIsRunning() const{
 
 void Jeu::initEntity(){
 
-  this->ent1.setSize(sf::Vector2f(100.f,100.f)); //.f -> float sans être float 
+  this->ent1.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float
   this->ent1.setFillColor(sf::Color::Cyan); //On peut direct mettre la couleur c'est pas mal
 
 }
 // Fonctions private
 void Jeu::initVariables(){
   this-> _window = nullptr;
-  this->_videoMode.height = 600;
-  this->_videoMode.width = 800;
+  this->_videoMode.height =720 ;
+  this->_videoMode.width = 1280;
 
 
   this->_spaceuse = 0;
@@ -59,27 +59,29 @@ void Jeu::updateEvents(){
         break;
 
 
-      case sf::Event::KeyPressed: //Si c'est une pression clavier, on regarde la quelle 
+      case sf::Event::KeyPressed: //Si c'est une pression clavier, on regarde la quelle
         switch (_ev.key.code){//On verif le code /!\ qu'un touche à la fois pas ouf mais ok pour jeux 2d
 
           case sf::Keyboard::Space: // Si espace :
           this->_spaceuse = (this->_spaceuse+1)%3; // On tourne parmis les 3 couleurs
-          switch(this->_spaceuse){ 
+          switch(this->_spaceuse){
             case 0:
               this->_couleurFond = sf::Color::Blue;
               break;
             case 1:
+
               this->_couleurFond = sf::Color::Green;
               break;
             case 2:
+
               this->_couleurFond = sf::Color::Red;
              break;
-          } 
+          }
           break;
 
 
-          // On init les fleches pour déplacer 
-         case sf::Keyboard::Left: 
+          // On init les fleches pour déplacer
+         case sf::Keyboard::Left:
             this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(- this->_vitEnt,0));  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
          case sf::Keyboard::Right:
@@ -97,7 +99,7 @@ void Jeu::updateEvents(){
         }
       break;
 
-      
+
     }
   }
 }
