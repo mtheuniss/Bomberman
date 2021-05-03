@@ -7,14 +7,12 @@
 
 //Constructeur
 Plateau::Plateau(){
+  _MAP = 0;
   _MAX_X = 1080; //HD = 1280 taille cube = 72*72 -> 10*15 -> 200 pixels pour l'affichage des scores
   _MAX_Y = 720;
   _TailleElementStandard = 72;
 
-  _grid = sf::RectangleShape[10];
-  for (int i = 0 ; i < 10 ; i++){
-    _grid[i] = sf::RectangleShape();
-  }
+  initPlateau();
 
 }
 
@@ -36,3 +34,10 @@ void setMaxX(sf::RectangleShape**){ this->_grid = g;}
 
 
 //Fonction private
+
+initPlateau(){
+
+
+
+
+}

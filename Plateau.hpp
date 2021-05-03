@@ -8,11 +8,12 @@
 class Plateau{
   private :
     //Variables
-    int _MAX_X;
-    int _MAX_Y;
-    int _TailleElementStandard;
+    int _MAP; //Variable pour changer de generation de map
+    int _MAX_X; //Variable de taille max en pixel en colonnes
+    int _MAX_Y; //Variable de taille max en pixel en lignes
+    int _TailleElementStandard; //Variable standrard pour un element
 
-    sf::RectangleShape** _grid;
+    std::array< std::array<sf::RectangleShape,15>,10> _grid; //Grid pour stocker les elements
 
   public :
     //Constructeur, Destructeur
@@ -23,8 +24,8 @@ class Plateau{
     void setGrid(sf::RectangleShape**);
 
     int getMaxX();
-    getMaxY();
-    getGrid();
+    int getMaxY();
+    sf::RectangleShape** getGrid();
 };
 
 #endif
