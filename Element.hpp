@@ -7,7 +7,7 @@
 
 class Element{
   public :
-    virtual void affichage ();
+    virtual void affichage ()=0;
     virtual ~Element()=0;
     sf::RectangleShape getEsthetique(){return this->_esthetique;}
   protected:
