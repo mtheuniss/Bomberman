@@ -26,10 +26,18 @@ void Plateau::setMaxX(int mx){ this->_MAX_X = mx;}
 void Plateau::setMaxY(int my){ this->_MAX_Y = my;}
 void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
+void Plateau::setElement(int x , int y , sf::RectangleShape RectShape){
+  this->_grid[x][y] = RectShape;
+}
 
 //Fonction private
-
 void Plateau::initPlateau(){
-
+  switch (this->_MAP) {
+    case 0:
+      std::cout<<"Testing map"<<std::endl;
+      break;
+    default:
+      throw std::runtime_error("_MAP mal définie :(");
+  }
 
 }

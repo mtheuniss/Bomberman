@@ -28,6 +28,8 @@ class Plateau{
     void setMaxY(int my);
     void setMapType(int mt); // /!\ changer la maptype avant l'init
 
+    void setElement(int x , int y , sf::RectangleShape RectShape);
+
     int getMaxX() const;
     int getMaxY() const;
     int getMap()  const;
