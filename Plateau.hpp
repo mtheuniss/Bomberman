@@ -15,17 +15,24 @@ class Plateau{
 
     std::array< std::array<sf::RectangleShape,15>,10> _grid; //Grid pour stocker les elements
 
+
+    //Fonction private
+
+    void initPlateau();
+
   public :
     //Constructeur, Destructeur
     Plateau();
 
-    void setMaxX(int x);
-    void setMaxY(int y);
-    void setGrid(sf::RectangleShape**);
+    void setMaxX(int mx);
+    void setMaxY(int my);
+    void setMapType(int mt); // /!\ changer la maptype avant l'init
 
-    int getMaxX();
-    int getMaxY();
-    sf::RectangleShape** getGrid();
+    void setElement(int x , int y , sf::RectangleShape RectShape);
+
+    int getMaxX() const;
+    int getMaxY() const;
+    int getMap()  const;
 };
 
 #endif

@@ -1,8 +1,4 @@
 # include <iostream>
-#include<SFML/System.hpp>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-
 #include "Plateau.hpp"
 
 //Constructeur
@@ -10,34 +6,38 @@ Plateau::Plateau(){
   _MAP = 0;
   _MAX_X = 1080; //HD = 1280 taille cube = 72*72 -> 10*15 -> 200 pixels pour l'affichage des scores
   _MAX_Y = 720;
-  _TailleElementStandard = 72;
 
   initPlateau();
 
 }
 
 //Accesseurs
-const int Plateau::getMaxX() const{
+int Plateau::getMaxX() const{
   return this->_MAX_X;
 }
-const int Plateau::getMaxY() const{
+int Plateau::getMaxY() const{
   return this->_MAX_Y;
 }
-const int Plateau::getMaxX() const{
-  return this->_grid;
+int Plateau::getMap() const{
+  return this->_MAP;
 }
 
-void setMaxX(int mx){ this->_MAX_X = mx;}
-void setMaxY(int my){ this->_MAX_Y = my;}
-void setMaxX(sf::RectangleShape**){ this->_grid = g;}
+void Plateau::setMaxX(int mx){ this->_MAX_X = mx;}
+void Plateau::setMaxY(int my){ this->_MAX_Y = my;}
+void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
-
+void Plateau::setElement(int x , int y , sf::RectangleShape RectShape){
+  this->_grid[x][y] = RectShape;
+}
 
 //Fonction private
-
-initPlateau(){
-
-
-
+void Plateau::initPlateau(){
+  switch (this->_MAP) {
+    case 0:
+      std::cout<<"Testing map"<<std::endl;
+      break;
+    default:
+      throw std::runtime_error("_MAP mal définie :(");
+  }
 
 }
