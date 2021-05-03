@@ -8,9 +8,12 @@
 class Element{
   public :
     virtual void affichage ();
+    virtual ~Element()=0;
+    sf::RectangleShape getEsthetique(){return this->_esthetique;}
   protected:
     sf::Vector2i _pos;
     sf::RectangleShape _esthetique;
+
 
 };
 #endif

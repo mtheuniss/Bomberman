@@ -5,6 +5,8 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 
+#include "Element.hpp"
+
 class MurCassable : public Element {
   public :
     //Constructeur, destructeur
@@ -12,11 +14,11 @@ class MurCassable : public Element {
     //virtual ~MurCassable();
 
     //Accesseurs
-    PowerUp getPowerUp ();
+    //PowerUp getPowerUp ();
 
     void affichage();
   protected :
-    PowerUp _powerup;
+    //PowerUp _powerup;
 
 };
 #endif

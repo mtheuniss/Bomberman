@@ -4,6 +4,8 @@
 #include<SFML/Window.hpp>
 
 #include "Jeu.hpp"
+#include "Element.hpp"
+#include "MurCassable.hpp"
 
 //Constructeur
 Jeu::Jeu(){
@@ -18,13 +20,13 @@ const bool Jeu::getIsRunning() const{
 }
 
 //Fonction private
-
 void Jeu::initEntity(){
 
-  this->ent1.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float
-  this->ent1.setFillColor(sf::Color::Cyan); //On peut direct mettre la couleur c'est pas mal
-
+  //this->ent1.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float
+  //this->ent1.setFillColor(sf::Color::Cyan); //On peut direct mettre la couleur c'est pas mal
+  this->ent1.affichage();
 }
+
 // Fonctions private
 void Jeu::initVariables(){
   this-> _window = nullptr;
@@ -81,6 +83,7 @@ void Jeu::updateEvents(){
 
 
           // On init les fleches pour déplacer
+          /*
          case sf::Keyboard::Left:
             this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(- this->_vitEnt,0));  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
@@ -93,7 +96,7 @@ void Jeu::updateEvents(){
           case sf::Keyboard::Down:
             this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(0, this->_vitEnt));
              break;
-
+             */
 
           break;
         }
@@ -110,7 +113,7 @@ void Jeu::update(){
 void Jeu::render(){
   this->_window->clear(this->_couleurFond);//RGB+transparence
   //dessin des objets
-  this->_window->draw(this->ent1); // On place l'element sur le plateau
+  this->_window->draw(this->ent1.getEsthetique()); // On place l'element sur le plateau
 
 
 

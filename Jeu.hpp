@@ -5,17 +5,18 @@
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
 
+#include "Element.hpp"
+#include "MurCassable.hpp"
+
 class Jeu{
   private :
-    //Variables (pas besoin protected car pas classe dérivéé)
+    //Variables (pas besoin protected car pas classe dérivée)
     sf::RenderWindow* _window;
     sf::VideoMode _videoMode;
     sf::Event _ev;
 
-
-
-    sf::RectangleShape ent1;
-
+    //sf::RectangleShape ent1;
+    MurCassable ent1;
 
 
     // Variable pour gestion d'event
