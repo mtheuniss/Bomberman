@@ -9,7 +9,7 @@ class MurCassable : public Element {
   public :
     //Constructeur, destructeur
     MurCassable();
-    virtual ~MurCassable();
+    //virtual ~MurCassable();
 
     //Accesseurs
     PowerUp getPowerUp ();
