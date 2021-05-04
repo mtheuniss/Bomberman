@@ -26,8 +26,8 @@ void Plateau::setMaxX(int mx){ this->_MAX_X = mx;}
 void Plateau::setMaxY(int my){ this->_MAX_Y = my;}
 void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
-void Plateau::setElement(int x , int y , sf::RectangleShape RectShape){
-  this->_grid[x][y] = RectShape;
+void Plateau::setElement(Element ent){
+  this->_grid[ent._pos.x][ent._pos.y] = ent;
 }
 
 //Fonction private
