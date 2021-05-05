@@ -1,12 +1,6 @@
 #ifndef JEU_HPP
 #define JEU_HPP
 
-#include<SFML/System.hpp>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-
-#include "Element.hpp"
-#include "MurCassable.hpp"
 #include "Plateau.hpp"
 
 class Jeu{

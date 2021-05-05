@@ -1,10 +1,10 @@
-#include "MurCassable.hpp"
+#include "MurVoid.hpp"
 
 //Constructeur
-MurCassable::MurCassable(){
+MurVoid::MurVoid(){
   //this->_powerup = PowerUp();
 }
-MurCassable::MurCassable(int x , int y){
+MurVoid::MurVoid(int x , int y){
   this->affichage();
   this->setPosX(x);
   this->setPosY(y);
@@ -14,7 +14,7 @@ MurCassable::PowerUp getPowerUp (){
   return this->_powerup;
 }
 */
-void MurCassable::affichage(){
+void MurVoid::affichage(){
   this->_esthetique.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float (carrés 72*72)
-  this->_esthetique.setFillColor(sf::Color(205, 133, 63,255)); //On peut direct mettre la couleur c'est pas mal
+  this->_esthetique.setFillColor(sf::Color(0, 0, 0, 0)); //On peut direct mettre la couleur c'est pas mal
 }

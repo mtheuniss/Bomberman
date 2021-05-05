@@ -1,4 +1,3 @@
-# include <iostream>
 #include "Jeu.hpp"
 
 //Constructeur
@@ -34,7 +33,10 @@ void Jeu::initVariables(){
   this->_posEnt = sf::Vector2f(0,0); // On init en haut a gauche
   this-> _vitEnt = 5; // Vitesse
 
-  this->_grille.setElement(&(this->ent1));
+  // initialisation du plateau en fonction de la carte ici 1
+  this->_grille.setMapType(1); //modif du type de carte
+  this->_grille.initPlateau(); // generation de la carte
+
 }
 void Jeu::initFenetre(){
   this-> _window = new sf::RenderWindow(this->_videoMode, "Bomberman", sf::Style::Close | sf::Style::Titlebar);
@@ -108,9 +110,7 @@ void Jeu::update(){
 void Jeu::render(){
   this->_window->clear(this->_couleurFond);//RGB+transparence
   //dessin des objets
-  this->_window->draw(this->_grille.getElement(0,0)->getEsthetique()); // On place l'element sur le plateau
-
-
+  this->_grille.renderPlateau(this-> _window);
 
   //affichage de la fenetre
   this->_window->display();

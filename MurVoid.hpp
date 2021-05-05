@@ -1,13 +1,13 @@
-#ifndef MURCASSABLE_HPP
-#define MURCASSABLE_HPP
+#ifndef MURVOID_HPP
+#define MURVOID_HPP
 
 #include "Element.hpp"
 
-class MurCassable : public Element {
+class MurVoid : public Element {
   public :
     //Constructeur, destructeur
-    MurCassable();
-    MurCassable(int x, int y);
+    MurVoid();
+    MurVoid(int x, int y);
     //virtual ~MurCassable();
 
     //Accesseurs

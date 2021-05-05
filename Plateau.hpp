@@ -1,11 +1,8 @@
 #ifndef PLATEAU_HPP
 #define PLATEAU_HPP
 
-#include<SFML/System.hpp>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-
-#include "Element.hpp"
+#include "MurCassable.hpp"
+#include "MurVoid.hpp"
 
 class Plateau{
   private :
@@ -18,7 +15,6 @@ class Plateau{
 
 
     //Fonction private
-    void initPlateau();
 
   public :
     //Constructeur, Destructeur
@@ -28,12 +24,16 @@ class Plateau{
     void setMaxY(int my);
     void setMapType(int mt); // /!\ changer la maptype avant l'init
 
+
     void setElement( Element* ent);
     Element* getElement(int x, int y);
 
     int getMaxX() const;
     int getMaxY() const;
     int getMap()  const;
+
+    void initPlateau();
+    void renderPlateau(sf::RenderWindow* w);
 };
 
 #endif
