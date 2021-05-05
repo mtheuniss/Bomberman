@@ -8,7 +8,12 @@
 class Element{
   public :
     virtual void affichage ()=0;
-    virtual ~Element()=0;
+    virtual ~Element(){}
+
+    //Accesseurs
+    int getPosX (){return this->_pos.x;}
+    int getPosY (){return this->_pos.y;}
+
     sf::RectangleShape getEsthetique(){return this->_esthetique;}
   protected:
     sf::Vector2i _pos;

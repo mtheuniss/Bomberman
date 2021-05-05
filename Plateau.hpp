@@ -14,11 +14,10 @@ class Plateau{
     int _MAX_X; //Variable de taille max en pixel en colonnes
     int _MAX_Y; //Variable de taille max en pixel en lignes
 
-    std::array< std::array<Element,15>,10> _grid; //Grid pour stocker les elements
+    std::array< std::array<Element*,15>,10> _grid; //Grid pour stocker les elements
 
 
     //Fonction private
-
     void initPlateau();
 
   public :
@@ -29,7 +28,7 @@ class Plateau{
     void setMaxY(int my);
     void setMapType(int mt); // /!\ changer la maptype avant l'init
 
-    void setElement( Element ent);
+    void setElement( Element* ent);
 
     int getMaxX() const;
     int getMaxY() const;
