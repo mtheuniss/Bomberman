@@ -8,7 +8,6 @@ Plateau::Plateau(){
   _MAX_Y = 720;
 
   initPlateau();
-
 }
 
 //Accesseurs
@@ -28,6 +27,9 @@ void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
 void Plateau::setElement(Element* ent){
   this->_grid[ent->getPosX()][ent->getPosY()] = ent;
+}
+Element* Plateau::getElement(int x, int y){
+  return this->_grid[x][y];
 }
 
 //Fonction private

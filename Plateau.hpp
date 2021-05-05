@@ -29,6 +29,7 @@ class Plateau{
     void setMapType(int mt); // /!\ changer la maptype avant l'init
 
     void setElement( Element* ent);
+    Element* getElement(int x, int y);
 
     int getMaxX() const;
     int getMaxY() const;

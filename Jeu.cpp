@@ -1,11 +1,5 @@
 # include <iostream>
-#include<SFML/System.hpp>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-
 #include "Jeu.hpp"
-#include "Element.hpp"
-#include "MurCassable.hpp"
 
 //Constructeur
 Jeu::Jeu(){
@@ -40,6 +34,7 @@ void Jeu::initVariables(){
   this->_posEnt = sf::Vector2f(0,0); // On init en haut a gauche
   this-> _vitEnt = 5; // Vitesse
 
+  this->_grille.setElement(&(this->ent1));
 }
 void Jeu::initFenetre(){
   this-> _window = new sf::RenderWindow(this->_videoMode, "Bomberman", sf::Style::Close | sf::Style::Titlebar);
@@ -113,7 +108,7 @@ void Jeu::update(){
 void Jeu::render(){
   this->_window->clear(this->_couleurFond);//RGB+transparence
   //dessin des objets
-  this->_window->draw(this->ent1.getEsthetique()); // On place l'element sur le plateau
+  this->_window->draw(this->_grille.getElement(0,0)->getEsthetique()); // On place l'element sur le plateau
 
 
 

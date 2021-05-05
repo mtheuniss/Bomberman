@@ -18,7 +18,5 @@ class Element{
   protected:
     sf::Vector2i _pos;
     sf::RectangleShape _esthetique;
-
-
 };
 #endif

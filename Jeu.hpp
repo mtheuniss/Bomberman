@@ -7,6 +7,7 @@
 
 #include "Element.hpp"
 #include "MurCassable.hpp"
+#include "Plateau.hpp"
 
 class Jeu{
   private :
@@ -17,6 +18,7 @@ class Jeu{
 
     //sf::RectangleShape ent1;
     MurCassable ent1;
+    Plateau _grille;
 
 
     // Variable pour gestion d'event
