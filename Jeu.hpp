@@ -12,6 +12,8 @@ class Jeu{
 
     Plateau _grille;
 
+    Joueur j1;
+    Joueur j2;
 
     // Variable pour gestion d'event
     //int _spaceuse;  //incrément pour changer de couleur avec la barre d'espace

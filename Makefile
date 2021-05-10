@@ -5,13 +5,16 @@ EXEC=main
 
 all: $(EXEC)
 
-main: PowerUp.o MurVoid.o MurCassable.o MurDur.o Plateau.o Jeu.o  main.o
+main: PowerUp.o MurVoid.o MurCassable.o MurDur.o Plateau.o Jeu.o Joueur.o main.o
 	$(CC) -o $@ $^ $(LDFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 Jeu.o: Jeu.cpp Jeu.hpp Element.hpp Mur.hpp
-	$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
+		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-Plateau.o: Plateau.cpp Plateau.hpp Element.hpp Mur.hpp
+Joueur.o: Joueur.cpp Joueur.hpp  Element.hpp
+			$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
+
+Plateau.o: Plateau.cpp Plateau.hpp Element.hpp Mur.hpp MurCassable.o
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 MurCassable.o: MurCassable.cpp MurCassable.hpp Element.hpp Mur.hpp

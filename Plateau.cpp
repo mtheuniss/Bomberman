@@ -11,11 +11,16 @@ Plateau::Plateau(){
 //Destructeur
 Plateau::~Plateau(){
   std::cout<<"suppression des l'elements de la grille"<<std::endl;
-  for (int i =0; i<15; i++){
+
+ for (int i =0; i<15; i++){
     for (int j =0; j<10; j++){
-      delete this->getElement(i,j);
+      std::cout << "i ="<<i<<"  j =" << j << '\n';
+      delete this->_grid[i][j];
     }
   }
+
+
+
   std::cout<<"sortie du destructeur"<<std::endl;
 }
 
@@ -69,6 +74,21 @@ void Plateau::initPlateau(){
         }
       }
 
+      break;
+    case 2:
+        for (int i = 0; i < 15; i++) {
+          for (int j = 0; j < 10; j++) {
+            if ( i == j && j == 5) {
+              this->setElement(new MurVoid(i,j));
+
+              //this->setElement(new Joueur(i,j,1,1));
+              // std::cout << typeid(this->getElement(i,j)).name() << '\n';
+            }
+            else{
+              this->setElement(new MurVoid(i,j));
+            }
+          }
+        }
       break;
 
     default:

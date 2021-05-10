@@ -1,6 +1,7 @@
 #ifndef PLATEAU_HPP
 #define PLATEAU_HPP
 
+#include "Joueur.hpp"
 #include "MurCassable.hpp"
 #include "MurVoid.hpp"
 #include "MurDur.hpp"

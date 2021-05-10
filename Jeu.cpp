@@ -35,7 +35,7 @@ void Jeu::initVariables(){
   this-> _vitEnt = 5; // Vitesse
 
   // initialisation du plateau en fonction de la carte ici 1
-  this->_grille.setMapType(1); //modif du type de carte
+  this->_grille.setMapType(2); //modif du type de carte
   this->_grille.initPlateau(); // generation de la carte
   std::cout<<"sortie de initPlateau"<<std::endl;
 }
