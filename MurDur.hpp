@@ -9,7 +9,7 @@ class MurDur : public Mur {
     //Constructeur, destructeur
     MurDur();
     MurDur(int x, int y);
-    //virtual ~MurCassable();
+    virtual ~MurDur(){}
 
     //Accesseurs
     //PowerUp getPowerUp ();

@@ -13,10 +13,10 @@ Plateau::~Plateau(){
   std::cout<<"suppression des l'elements de la grille"<<std::endl;
   for (int i =0; i<15; i++){
     for (int j =0; j<10; j++){
-      std::cout<<"i="<<i<<"j="<<j<<std::endl;
-      delete _grid[i][j];
+      delete this->getElement(i,j);
     }
   }
+  std::cout<<"sortie du destructeur"<<std::endl;
 }
 
 //Accesseurs
@@ -74,7 +74,6 @@ void Plateau::initPlateau(){
     default:
       throw std::runtime_error("_MAP mal définie :(");
   }
-
 std::cout<<"sortie initPlateau ? "<<std::endl;
 }
 

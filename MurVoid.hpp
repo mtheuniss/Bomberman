@@ -9,14 +9,14 @@ class MurVoid : public Mur {
     //Constructeur, destructeur
     MurVoid();
     MurVoid(int x, int y);
-    //virtual ~MurCassable();
+    virtual ~MurVoid(){}
 
     //Accesseurs
     //PowerUp getPowerUp ();
 
     void affichage();
   protected :
-    //PowerUp _powerup;
+    
 
 };
 #endif

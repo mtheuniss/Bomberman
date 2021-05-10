@@ -10,8 +10,6 @@ class Jeu{
     sf::VideoMode _videoMode;
     sf::Event _ev;
 
-    //sf::RectangleShape ent1;
-    MurCassable ent1;
     Plateau _grille;
 
 

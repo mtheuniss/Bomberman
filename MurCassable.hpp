@@ -3,6 +3,7 @@
 
 #include "Element.hpp"
 #include "Mur.hpp"
+#include "PowerUp.hpp"
 
 class MurCassable : public Mur {
   public :
@@ -16,7 +17,7 @@ class MurCassable : public Mur {
 
     void affichage();
   protected :
-    //PowerUp _powerup;
-
+    PowerUp _powerup;
+    bool casse;
 };
 #endif

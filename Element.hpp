@@ -29,5 +29,6 @@ class Element{
   protected:
     sf::Vector2i _pos; //Position dans la grille != position du RectangleShape
     sf::RectangleShape _esthetique;
+    sf::Texture _texture;
 };
 #endif

@@ -1,19 +1,18 @@
 #ifndef POWERUP_HPP
 #define POWERUP_HPP
 
-#include<SFML/System.hpp>
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
+#include "Element.hpp"
 
-class PowerUp{
+class PowerUp : public Element{
   public :
   //constructeur
     PowerUp();
+    ~PowerUp(){}
 
   //méthodes
     void affichage();
     int getType() const;
-    void setType(int type);
+    //void setType(int type);
 
   protected :
     int _type;

@@ -3,7 +3,9 @@
 //Constructeur
 Jeu::Jeu(){
   this->initVariables();
+  std::cout<<"sortie de initVariables"<<std::endl;
   this->initFenetre();
+  std::cout<<"sortie de initFenetre"<<std::endl;
   this->initEntity();
   std::cout<<"fin du constructeur du jeu"<<std::endl;
 }
@@ -18,7 +20,7 @@ void Jeu::initEntity(){
 
   //this->ent1.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float
   //this->ent1.setFillColor(sf::Color::Cyan); //On peut direct mettre la couleur c'est pas mal
-  this->ent1.affichage();
+  //this->ent1.affichage();
 }
 
 // Fonctions private
