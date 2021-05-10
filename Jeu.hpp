@@ -16,7 +16,7 @@ class Jeu{
 
 
     // Variable pour gestion d'event
-    int _spaceuse;  //incrément pour changer de couleur avec la barre d'espace
+    //int _spaceuse;  //incrément pour changer de couleur avec la barre d'espace
     sf::Color _couleurFond; //Stockage de la couleur de fond du jeu
 
     sf::Vector2f _posEnt; //Position de la seul entité
@@ -31,7 +31,7 @@ class Jeu{
   public :
     //Constructeur, Destructeur
     Jeu();
-    virtual ~Jeu(){delete this->_window;}
+    virtual ~Jeu(){std::cout<<"supp _fenetre"<<std::endl;delete this->_window;}
 
     //Accesseurs
     const bool getIsRunning() const;

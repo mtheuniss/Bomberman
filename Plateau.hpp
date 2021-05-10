@@ -3,6 +3,8 @@
 
 #include "MurCassable.hpp"
 #include "MurVoid.hpp"
+#include "MurDur.hpp"
+#include "Mur.hpp"
 
 class Plateau{
   private :
@@ -19,6 +21,7 @@ class Plateau{
   public :
     //Constructeur, Destructeur
     Plateau();
+    ~ Plateau();
 
     void setMaxX(int mx);
     void setMaxY(int my);

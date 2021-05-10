@@ -2,8 +2,9 @@
 #define MURCASSABLE_HPP
 
 #include "Element.hpp"
+#include "Mur.hpp"
 
-class MurCassable : public Element {
+class MurCassable : public Mur {
   public :
     //Constructeur, destructeur
     MurCassable();

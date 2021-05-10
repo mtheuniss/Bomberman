@@ -5,6 +5,7 @@ Jeu::Jeu(){
   this->initVariables();
   this->initFenetre();
   this->initEntity();
+  std::cout<<"fin du constructeur du jeu"<<std::endl;
 }
 
 //Accesseurs
@@ -26,8 +27,6 @@ void Jeu::initVariables(){
   this->_videoMode.height =720 ;
   this->_videoMode.width = 1280;
 
-
-  this->_spaceuse = 0;
   this->_couleurFond = sf::Color::White; //blanc
 
   this->_posEnt = sf::Vector2f(0,0); // On init en haut a gauche
@@ -36,7 +35,7 @@ void Jeu::initVariables(){
   // initialisation du plateau en fonction de la carte ici 1
   this->_grille.setMapType(1); //modif du type de carte
   this->_grille.initPlateau(); // generation de la carte
-
+  std::cout<<"sortie de initPlateau"<<std::endl;
 }
 void Jeu::initFenetre(){
   this-> _window = new sf::RenderWindow(this->_videoMode, "Bomberman", sf::Style::Close | sf::Style::Titlebar);
@@ -51,32 +50,16 @@ void Jeu::updateEvents(){
   while(this->_window->pollEvent(this->_ev)) {
     switch (this->_ev.type) { //On regarde l'envent en cours
 
-
-
       case sf::Event::Closed: // Si c'est l fermeture on ferme
         this->_window->close();
         break;
 
-
       case sf::Event::KeyPressed: //Si c'est une pression clavier, on regarde la quelle
         switch (_ev.key.code){//On verif le code /!\ qu'un touche à la fois pas ouf mais ok pour jeux 2d
 
-          case sf::Keyboard::Space: // Si espace :
-          this->_spaceuse = (this->_spaceuse+1)%3; // On tourne parmis les 3 couleurs
-          switch(this->_spaceuse){
-            case 0:
-              this->_couleurFond = sf::Color::Blue;
-              break;
-            case 1:
-
-              this->_couleurFond = sf::Color::Green;
-              break;
-            case 2:
-
-              this->_couleurFond = sf::Color::Red;
-             break;
-          }
-          break;
+          case sf::Keyboard::Escape: // Si espace :
+            this->_window->close();
+            break;
 
 
           // On init les fleches pour déplacer
@@ -98,8 +81,6 @@ void Jeu::updateEvents(){
           break;
         }
       break;
-
-
     }
   }
 }
