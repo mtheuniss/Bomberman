@@ -12,8 +12,8 @@ class Jeu{
 
     Plateau _grille;
 
-    Joueur j1;
-    Joueur j2;
+    Joueur* _j1;
+    Joueur* _j2;
 
     // Variable pour gestion d'event
     //int _spaceuse;  //incrément pour changer de couleur avec la barre d'espace
@@ -27,6 +27,7 @@ class Jeu{
     void initVariables();
     void initFenetre();
     void initEntity(); // Pour séparer l'init des entitées et des fenêtres qui stock les entitées
+      void initJoueur();
 
   public :
     //Constructeur, Destructeur
@@ -40,6 +41,7 @@ class Jeu{
     void updateEvents();
     void update();
     void render();
+      void renderJoueurs();
 };
 
 #endif

@@ -40,7 +40,8 @@ void Plateau::setMaxY(int my){ this->_MAX_Y = my;}
 void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
 void Plateau::setElement(Element* ent){
-  this->_grid[ent->getPosX()][ent->getPosY()] = ent;
+  std::cout << ent->getGridPosX()<< ent->getGridPosY() << '\n';
+  this->_grid[ent->getGridPosX()][ent->getGridPosY()] = ent;
 }
 Element* Plateau::getElement(int x, int y){
   return this->_grid[x][y];
@@ -79,13 +80,13 @@ void Plateau::initPlateau(){
         for (int i = 0; i < 15; i++) {
           for (int j = 0; j < 10; j++) {
             if ( i == j && j == 5) {
-              this->setElement(new MurVoid(i,j));
+              this->setElement(new MurVoid(i*72,j*72));
 
               //this->setElement(new Joueur(i,j,1,1));
               // std::cout << typeid(this->getElement(i,j)).name() << '\n';
             }
             else{
-              this->setElement(new MurVoid(i,j));
+              this->setElement(new MurVoid(i*72,j*72));
             }
           }
         }

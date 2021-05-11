@@ -13,16 +13,19 @@ class Element{
     virtual ~Element(){}
 
     //Accesseurs
-    int getPosX (){return this->_pos.x;}
-    int getPosY (){return this->_pos.y;}
+    int getPosX (){return (this->_esthetique.getPosition().x);}
+    int getPosY (){return (this->_esthetique.getPosition().y);}
+
+    int getGridPosX(){return this->_pos.x;}
+    int getGridPosY(){return this->_pos.y;}
 
     void setPosX(int x){
-      this->_pos.x = x;
-      this->_esthetique.setPosition(sf::Vector2f(72.0*x,this->_esthetique.getPosition().y));
+      this->_esthetique.setPosition(sf::Vector2f(x,this->getPosY()));
+      this->_pos.x = (int) (this->getPosX())/72;
     }
     void setPosY(int y){
-      this->_pos.y = y;
-      this->_esthetique.setPosition(sf::Vector2f(this->_esthetique.getPosition().x,72.0*y));
+      this->_esthetique.setPosition(sf::Vector2f(this->getPosX(),y));
+      this->_pos.y = (int) (this->getPosY())/72;
     }
 
     sf::RectangleShape getEsthetique(){return this->_esthetique;}

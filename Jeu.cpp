@@ -15,9 +15,36 @@ const bool Jeu::getIsRunning() const{
   return this->_window->isOpen();
 }
 
+
+void Jeu::initJoueur(){
+
+
+
+
+  int randpos = rand() % 10;
+
+  switch (randpos) {
+    case 0:
+      this->_j1 = new Joueur(0,0,1,1);
+      this->_j2 = new Joueur(0,15,1,1);
+      break;
+
+    default :
+      this->_j1 = new Joueur(0,0,1,1);
+      this->_j2 = new Joueur(0,15,1,1);
+      std::cout << "pas fini" << '\n';
+      break;
+  }
+
+  this->_grille.setElement(this->_j1);
+  this->_grille.setElement(this->_j2);
+
+
+}
 //Fonction private
 void Jeu::initEntity(){
 
+  initJoueur();
   //this->ent1.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float
   //this->ent1.setFillColor(sf::Color::Cyan); //On peut direct mettre la couleur c'est pas mal
   //this->ent1.affichage();
@@ -65,20 +92,21 @@ void Jeu::updateEvents(){
 
 
           // On init les fleches pour déplacer
-          /*
+
          case sf::Keyboard::Left:
-            this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(- this->_vitEnt,0));  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            this->_j1->setPosX(this->_j1->getPosX()-this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
          case sf::Keyboard::Right:
-            this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(this->_vitEnt,0));
-             break;
+            this->_j1->setPosX(this->_j1->getPosX()+this->_vitEnt);
+            std::cout << this->_j1->getPosX() << '\n';
+            break;
          case sf::Keyboard::Up:
-            this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(0,- this->_vitEnt));
-             break;
+            this->_j1->setPosY(this->_j1->getPosY()-this->_vitEnt);
+            break;
           case sf::Keyboard::Down:
-            this->ent1.setPosition(this->ent1.getPosition()+sf::Vector2f(0, this->_vitEnt));
-             break;
-             */
+            this->_j1->setPosX(this->_j1->getPosX()+this->_vitEnt);
+            break;
+
 
           break;
         }
@@ -90,10 +118,19 @@ void Jeu::update(){
   this->updateEvents();
 }
 //visualisation du jeu (interface)
+
+void Jeu::renderJoueurs(){
+  this->_window->draw(this->_j1->getEsthetique()); // On place l'element sur le plateau
+  this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
+
+
+}
 void Jeu::render(){
   this->_window->clear(this->_couleurFond);//RGB+transparence
   //dessin des objets
   this->_grille.renderPlateau(this-> _window);
+
+  renderJoueurs();
 
   //affichage de la fenetre
   this->_window->display();

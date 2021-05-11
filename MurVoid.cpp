@@ -27,7 +27,7 @@ MurCassable::PowerUp getPowerUp (){
 */
 void MurVoid::affichage(){
   this->_esthetique.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float (carrés 72*72)
-  this->_esthetique.setFillColor(sf::Color(85, 212, 0, 255)); //On peut direct mettre la couleur c'est pas mal
+  this->_esthetique.setFillColor(sf::Color(85, 212, 0, 100)); //On peut direct mettre la couleur c'est pas mal
   this->_esthetique.setOutlineThickness(1);
   this->_esthetique.setOutlineColor(sf::Color(0, 128, 0));
   this->_esthetique.setTexture(&this->_texture);
