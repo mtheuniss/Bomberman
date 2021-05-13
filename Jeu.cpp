@@ -18,10 +18,8 @@ const bool Jeu::getIsRunning() const{
 
 void Jeu::initJoueur(){
 
-
-
-
-  int randpos = rand() % 10;
+/*
+ int randpos = rand() % 4 +1;
 
   switch (randpos) {
     case 0:
@@ -34,7 +32,13 @@ void Jeu::initJoueur(){
       this->_j2 = new Joueur(0,15,1,1);
       std::cout << "pas fini" << '\n';
       break;
-  }
+    }
+      */
+
+
+    this->_j1 = new Joueur(0,0,0,0);
+    // this->_j2 = new Joueur(10,15,0,0);
+
 
 
 
@@ -57,10 +61,10 @@ void Jeu::initVariables(){
   this->_couleurFond = sf::Color::White; //blanc
 
   this->_posEnt = sf::Vector2f(0,0); // On init en haut a gauche
-  this-> _vitEnt = 5; // Vitesse
+  this->_vitEnt = 5; // Vitesse
 
   // initialisation du plateau en fonction de la carte ici 1
-  this->_grille.setMapType(2); //modif du type de carte
+  this->_grille.setMapType(1); //modif du type de carte
   this->_grille.initPlateau(); // generation de la carte
   std::cout<<"sortie de initPlateau"<<std::endl;
 }
@@ -92,11 +96,10 @@ void Jeu::updateEvents(){
           // On init les fleches pour déplacer
 
          case sf::Keyboard::Left:
-            this->_j1->setPosX(this->_j1->getEsthetique().getPosition().x - this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            this->_j1->setPosinPixX(this->_j1->getPosOnGridX() - this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
          case sf::Keyboard::Right:
-            this->_j1->setPosX(this->_j1->getEsthetique().getPosition().x + this->_vitEnt);
-            std::cout << "pos in pixel " << this->_j1->getPosX() << "pos in grid : "  << this->_j1->getPosOnGridX() << '\n';
+            this->_j1->setPosinPixX(this->_j1->getPosOnGridX() + this->_vitEnt);
             break;
          case sf::Keyboard::Up:
             this->_j1->setPosY(this->_j1->getEsthetique().getPosition().y -this->_vitEnt);
@@ -118,6 +121,7 @@ void Jeu::update(){
 //visualisation du jeu (interface)
 
 void Jeu::renderJoueurs(){
+
   this->_window->draw(this->_j1->getEsthetique()); // On place l'element sur le plateau
   this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
 
@@ -126,9 +130,9 @@ void Jeu::renderJoueurs(){
 void Jeu::render(){
   this->_window->clear(this->_couleurFond);//RGB+transparence
   //dessin des objets
+  renderJoueurs();
   this->_grille.renderPlateau(this-> _window);
 
-  //  renderJoueurs();
 
   //affichage de la fenetre
   this->_window->display();

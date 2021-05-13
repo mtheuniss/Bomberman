@@ -40,7 +40,6 @@ void Plateau::setMaxY(int my){ this->_MAX_Y = my;}
 void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
 void Plateau::setElement(Element* ent){
-  std::cout << ent->getPosX()<< ent->getPosY() << '\n';
   this->_grid[ent->getPosX()][ent->getPosY()] = ent;
 }
 Element* Plateau::getElement(int x, int y){
