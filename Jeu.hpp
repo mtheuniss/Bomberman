@@ -16,8 +16,6 @@ class Jeu{
     Joueur* _j2;
 
     // Variable pour gestion d'event
-    //int _spaceuse;  //incrément pour changer de couleur avec la barre d'espace
-    sf::Color _couleurFond; //Stockage de la couleur de fond du jeu
 
     sf::Vector2f _posEnt; //Position de la seul entité
     int _vitEnt; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
@@ -41,7 +39,7 @@ class Jeu{
     void updateEvents();
     void update();
     void render();
-      void renderJoueurs();
+    void renderJoueurs();
 };
 
 #endif

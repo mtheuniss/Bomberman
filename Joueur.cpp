@@ -7,8 +7,8 @@ Joueur::Joueur(){
 }
 Joueur::Joueur(int x , int y , int num, int color){
 
-  this->_numplayer = num; //Numero du jouer ( si deux jouers 1 ou 2 )
-  this->_couleur = color; // Couleur du jouer
+  this->_numplayer = num; //Numero du jouer ( si deux joueur 1 ou 2 )
+  this->_couleur = color; // Couleur du joueur
 
   this->_pos.x = 72*x;
   this->_pos.y = 72*y;
@@ -17,20 +17,20 @@ Joueur::Joueur(int x , int y , int num, int color){
 
 }
 //------------------------------------------------------------------------------
-
-int Joueur::getPosX(){
+//Position dans la grille
+int Joueur::getPosX() const{
   return this->getEsthetique().getPosition().x;
 }
-int Joueur::getPosY(){
+int Joueur::getPosY()const{
   return this->getEsthetique().getPosition().y;
 }
 
 //------------------------------------------------------------------------------
-int Joueur::getPosOnGridX(){
+//Position dans la fenetre
+int Joueur::getPosOnGridX()const{
   return this->_pos.x;
 }
-
-int Joueur::getPosOnGridY(){
+int Joueur::getPosOnGridY()const{
   return this->_pos.y;
 }
 //------------------------------------------------------------------------------

@@ -15,16 +15,16 @@ class Joueur {
     Joueur(int x, int y, int num, int color);
 
 
-    int getPosX();
-    int getPosY();
-    int getPosOnGridX();
-    int getPosOnGridY();
+    int getPosX() const;
+    int getPosY() const;
+    int getPosOnGridX()const;
+    int getPosOnGridY()const;
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);
     void setPosX(int x);
     void setPosY(int y);
 
-    sf::RectangleShape getEsthetique(){return this->_esthetique;}
+    sf::RectangleShape getEsthetique() const {return this->_esthetique;}
 
     void affichage();
   protected :

@@ -58,8 +58,6 @@ void Jeu::initVariables(){
   this->_videoMode.height =720 ;
   this->_videoMode.width = 1280;
 
-  this->_couleurFond = sf::Color::White; //blanc
-
   this->_posEnt = sf::Vector2f(0,0); // On init en haut a gauche
   this->_vitEnt = 5; // Vitesse
 
@@ -108,8 +106,6 @@ void Jeu::updateEvents(){
           case sf::Keyboard::Down:
             this->_j1->setPosY(this->_j1->getPosY() + this->_vitEnt);
             break;
-
-
           break;
         }
       break;
@@ -129,7 +125,7 @@ void Jeu::renderJoueurs(){
 
 }
 void Jeu::render(){
-  this->_window->clear(this->_couleurFond);//RGB+transparence
+  this->_window->clear(sf::Color::White);
   //dessin des objets
   renderJoueurs();
   this->_grille.renderPlateau(this-> _window);
