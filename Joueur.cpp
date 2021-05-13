@@ -18,11 +18,25 @@ Joueur::Joueur(int x , int y , int num, int color){
   }
   this->_texture.setSmooth(true);//lissage de l'image
 }
-/*
-MurCassable::PowerUp getPowerUp (){
-  return this->_powerup;
+
+int Joueur::getPosOnGridX(){
+  int posgridx = round(this->getEsthetique().getPosition().x);
+  return posgridx;
 }
-*/
+
+int Joueur::getPosOnGridY(){
+  int posgridy = round(this->getEsthetique().getPosition().y);
+  return posgridy;
+}
+
+void Joueur::setPosinPixX(int x){
+  this->getEsthetique().setPosition(sf::Vector2f(x,this->getEsthetique().getPosition().y));
+  this->setPosX(round(x));
+}
+void Joueur::setPosinPixY(int y){
+  this->getEsthetique().setPosition(sf::Vector2f(this->getEsthetique().getPosition().x, y));
+  this->setPosX(round(y));
+}
 
 
 void Joueur::affichage(){

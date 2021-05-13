@@ -36,8 +36,6 @@ void Jeu::initJoueur(){
       break;
   }
 
-  this->_grille.setElement(this->_j1);
-  this->_grille.setElement(this->_j2);
 
 
 }
@@ -94,17 +92,17 @@ void Jeu::updateEvents(){
           // On init les fleches pour déplacer
 
          case sf::Keyboard::Left:
-            this->_j1->setPosX(this->_j1->getPosX()-this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            this->_j1->setPosX(this->_j1->getEsthetique().getPosition().x - this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
          case sf::Keyboard::Right:
-            this->_j1->setPosX(this->_j1->getPosX()+this->_vitEnt);
-            std::cout << this->_j1->getPosX() << '\n';
+            this->_j1->setPosX(this->_j1->getEsthetique().getPosition().x + this->_vitEnt);
+            std::cout << "pos in pixel " << this->_j1->getPosX() << "pos in grid : "  << this->_j1->getPosOnGridX() << '\n';
             break;
          case sf::Keyboard::Up:
-            this->_j1->setPosY(this->_j1->getPosY()-this->_vitEnt);
+            this->_j1->setPosY(this->_j1->getEsthetique().getPosition().y -this->_vitEnt);
             break;
           case sf::Keyboard::Down:
-            this->_j1->setPosX(this->_j1->getPosX()+this->_vitEnt);
+            this->_j1->setPosY(this->_j1->getEsthetique().getPosition().y + this->_vitEnt);
             break;
 
 
@@ -130,7 +128,7 @@ void Jeu::render(){
   //dessin des objets
   this->_grille.renderPlateau(this-> _window);
 
-  renderJoueurs();
+  //  renderJoueurs();
 
   //affichage de la fenetre
   this->_window->display();
