@@ -16,14 +16,22 @@ Joueur::Joueur(int x , int y , int num, int color){
   this->affichage();
 
 }
+//------------------------------------------------------------------------------
+
+int Joueur::getPosX(){
+  return this->getEsthetique().getPosition().x;
+}
+int Joueur::getPosY(){
+  return this->getEsthetique().getPosition().y;
+}
 
 //------------------------------------------------------------------------------
 int Joueur::getPosOnGridX(){
-  return round(this->getEsthetique().getPosition().x/72);
+  return this->_pos.x;
 }
 
 int Joueur::getPosOnGridY(){
-  return round(this->getEsthetique().getPosition().y/72);
+  return this->_pos.y;
 }
 //------------------------------------------------------------------------------
 
@@ -35,13 +43,14 @@ void Joueur::setPosOnGridY(int y){
 }
 
 void Joueur::setPosX(int x){
-  this->getEsthetique().setPosition(x,sf::Vector2f(this->getEsthetique().getPosition().y));
+  this->getEsthetique().setPosition(sf::Vector2f(x,this->getPosY()));
+  this->setPosOnGridX(x);
 }
 
-void Joueur::setPosinPixY(int y){
-  this->setPosX(round(y));
+void Joueur::setPosY(int y){
+  this->getEsthetique().setPosition(sf::Vector2f(this->getPosX(),y));
+  this->setPosOnGridX(y);
 }
-
 
 void Joueur::affichage(){
   switch (this->_couleur) {

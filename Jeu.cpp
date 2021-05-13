@@ -64,7 +64,7 @@ void Jeu::initVariables(){
   this->_vitEnt = 5; // Vitesse
 
   // initialisation du plateau en fonction de la carte ici 1
-  this->_grille.setMapType(1); //modif du type de carte
+  this->_grille.setMapType(2); //modif du type de carte
   this->_grille.initPlateau(); // generation de la carte
   std::cout<<"sortie de initPlateau"<<std::endl;
 }
@@ -96,16 +96,17 @@ void Jeu::updateEvents(){
           // On init les fleches pour déplacer
 
          case sf::Keyboard::Left:
-            this->_j1->setPosinPixX(this->_j1->getPosOnGridX() - this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            this->_j1->setPosX(this->_j1->getPosX() - this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
          case sf::Keyboard::Right:
-            this->_j1->setPosinPixX(this->_j1->getPosOnGridX() + this->_vitEnt);
+            std::cout << "this->_vitEnt" << this->_vitEnt << this->_j1->getPosX()<<'\n';
+            this->_j1->setPosX( this->_j1->getPosX() + this->_vitEnt);
             break;
          case sf::Keyboard::Up:
-            this->_j1->setPosY(this->_j1->getEsthetique().getPosition().y -this->_vitEnt);
+            this->_j1->setPosY(this->_j1->getPosY() - this->_vitEnt);
             break;
           case sf::Keyboard::Down:
-            this->_j1->setPosY(this->_j1->getEsthetique().getPosition().y + this->_vitEnt);
+            this->_j1->setPosY(this->_j1->getPosY() + this->_vitEnt);
             break;
 
 

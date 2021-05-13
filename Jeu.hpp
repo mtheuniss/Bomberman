@@ -20,7 +20,7 @@ class Jeu{
     sf::Color _couleurFond; //Stockage de la couleur de fond du jeu
 
     sf::Vector2f _posEnt; //Position de la seul entité
-    float _vitEnt; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
+    int _vitEnt; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
 
 
     // Fonctions privées (que pour l'initialisation)
