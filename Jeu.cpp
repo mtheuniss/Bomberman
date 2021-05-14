@@ -18,26 +18,8 @@ const bool Jeu::getIsRunning() const{
 
 void Jeu::initJoueur(){
 
-/*
- int randpos = rand() % 4 +1;
-
-  switch (randpos) {
-    case 0:
-      this->_j1 = new Joueur(0,0,1,1);
-      this->_j2 = new Joueur(0,15,1,1);
-      break;
-
-    default :
-      this->_j1 = new Joueur(0,0,1,1);
-      this->_j2 = new Joueur(0,15,1,1);
-      std::cout << "pas fini" << '\n';
-      break;
-    }
-      */
-
-
     this->_j1 = new Joueur(0,0,0,0);
-    // this->_j2 = new Joueur(10,15,0,0);
+    this->_j2 = new Joueur(10,15,0,0);
 
 
 
@@ -47,9 +29,6 @@ void Jeu::initJoueur(){
 void Jeu::initEntity(){
 
   initJoueur();
-  //this->ent1.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float
-  //this->ent1.setFillColor(sf::Color::Cyan); //On peut direct mettre la couleur c'est pas mal
-  //this->ent1.affichage();
 }
 
 // Fonctions private
@@ -57,9 +36,6 @@ void Jeu::initVariables(){
   this-> _window = nullptr;
   this->_videoMode.height =720 ;
   this->_videoMode.width = 1280;
-
-  this->_posEnt = sf::Vector2f(0,0); // On init en haut a gauche
-  this->_vitEnt = 5; // Vitesse
 
   // initialisation du plateau en fonction de la carte ici 1
   this->_grille.setMapType(1); //modif du type de carte
@@ -94,18 +70,18 @@ void Jeu::updateEvents(){
           // On init les fleches pour déplacer
 
          case sf::Keyboard::Left:
-            this->_j1->setPosX(this->_j1->getPosX() - this->_vitEnt);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            this->_j1->setPosX(this->_j1->getPosX() - this->_j1->getVit());  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
              break;
          case sf::Keyboard::Right:
-            std::cout << "this->_vitEnt" << this->_vitEnt << this->_j1->getPosX()<<'\n';
-            this->_j1->setPosX( this->_j1->getPosX() + this->_vitEnt);
+            this->_j1->setPosX( this->_j1->getPosX() + this->_j1->getVit());
             break;
          case sf::Keyboard::Up:
-            this->_j1->setPosY(this->_j1->getPosY() - this->_vitEnt);
+            this->_j1->setPosY(this->_j1->getPosY() - this->_j1->getVit());
             break;
           case sf::Keyboard::Down:
-            this->_j1->setPosY(this->_j1->getPosY() + this->_vitEnt);
+            this->_j1->setPosY(this->_j1->getPosY() + this->_j1->getVit());
             break;
+
           break;
         }
       break;
@@ -127,8 +103,8 @@ void Jeu::renderJoueurs(){
 void Jeu::render(){
   this->_window->clear(sf::Color::White);
   //dessin des objets
-  this->_grille.renderPlateau(this-> _window);
-  //renderJoueurs();
+  this->_grille.renderPlateau(this->_window);
+  renderJoueurs();
 
 
 

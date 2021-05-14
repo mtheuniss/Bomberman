@@ -19,6 +19,7 @@ class Joueur {
     int getPosY() const;
     int getPosOnGridX()const;
     int getPosOnGridY()const;
+    int getVit()const;
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);
     void setPosX(int x);
@@ -30,6 +31,7 @@ class Joueur {
   protected :
     int _numplayer;
     int _couleur;
+    int _vitesse; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
     sf::Vector2i _pos;
     sf::RectangleShape _esthetique;
     sf::Texture _texture;

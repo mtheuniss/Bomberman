@@ -6,7 +6,7 @@ int main()
 {
   //Création d'un objet jeu
   Jeu partieBomberman;
-
+  std::cout << "jeu construit" << '\n';
   //boucle de Jeu
   while(partieBomberman.getIsRunning()){
     //mise à jour de la partie

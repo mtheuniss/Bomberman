@@ -17,8 +17,7 @@ class Jeu{
 
     // Variable pour gestion d'event
 
-    sf::Vector2f _posEnt; //Position de la seul entité
-    int _vitEnt; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
+    // sf::Vector2f _posEnt; //Position de la seul entité
 
 
     // Fonctions privées (que pour l'initialisation)
@@ -36,10 +35,10 @@ class Jeu{
     const bool getIsRunning() const;
 
     //Fonctions
-    void updateEvents();
     void update();
+      void updateEvents();
     void render();
-    void renderJoueurs();
+      void renderJoueurs();
 };
 
 #endif

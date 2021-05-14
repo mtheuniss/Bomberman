@@ -15,9 +15,7 @@ Plateau::~Plateau(){
   std::cout<<"suppression des l'elements de la grille"<<std::endl;
 
  for (int i =0; i<10; i++){
-   std::cout << "taille de grid[i] : " <<  _grid[i].size()<< '\n';
-    for (int j =0; j<10; j++){
-      std::cout << "i ="<<i<<"  j =" << j << '\n';
+    for (int j =0; j<15; j++){
       delete this->_grid[j][i];
     }
   }
