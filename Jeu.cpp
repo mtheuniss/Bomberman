@@ -3,11 +3,8 @@
 //Constructeur
 Jeu::Jeu(){
   this->initVariables();
-  std::cout<<"sortie de initVariables"<<std::endl;
   this->initFenetre();
-  std::cout<<"sortie de initFenetre"<<std::endl;
   this->initEntity();
-  std::cout<<"fin du constructeur du jeu"<<std::endl;
 }
 
 //Accesseurs
@@ -17,13 +14,8 @@ const bool Jeu::getIsRunning() const{
 
 
 void Jeu::initJoueur(){
-
     this->_j1 = new Joueur(0,0,0,0);
-    this->_j2 = new Joueur(10,15,0,0);
-
-
-
-
+    this->_j2 = new Joueur(1080-30,720-30,1,0);
 }
 //Fonction private
 void Jeu::initEntity(){
@@ -51,7 +43,7 @@ void Jeu::initFenetre(){
 //Fonctions Public
 //mise à jour du jeu (logique du jeu)
 void Jeu::updateEvents(){
-
+  int nouvelle_pos = 0;
   while(this->_window->pollEvent(this->_ev)) {
     switch (this->_ev.type) { //On regarde l'envent en cours
 
@@ -66,21 +58,61 @@ void Jeu::updateEvents(){
             this->_window->close();
             break;
 
-
           // On init les fleches pour déplacer
-
-         case sf::Keyboard::Left:
-            this->_j1->setPosX(this->_j1->getPosX() - this->_j1->getVit());  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
-             break;
-         case sf::Keyboard::Right:
-            this->_j1->setPosX( this->_j1->getPosX() + this->_j1->getVit());
+          case sf::Keyboard::Left: //  <--
+            //on verifie que le point est dans une case que l'on peut franchir
+            nouvelle_pos = this->_j1->getPosX() - this->_j1->getVit();
+            if (_grille.getElement(round(nouvelle_pos/72), _j1->getPosOnGridY())->getFranchissable()
+                  && _grille.getElement(round(nouvelle_pos/72), round((_j1->getPosY()+30)/72))->getFranchissable())
+              this->_j1->setPosX(nouvelle_pos);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
             break;
-         case sf::Keyboard::Up:
-            this->_j1->setPosY(this->_j1->getPosY() - this->_j1->getVit());
+          case sf::Keyboard::Right: //  -->
+            nouvelle_pos = this->_j1->getPosX() + this->_j1->getVit() + 30;
+            if (_grille.getElement(round(nouvelle_pos/72), _j1->getPosOnGridY())->getFranchissable()
+                  && _grille.getElement(round(nouvelle_pos/72), round((_j1->getPosY()+30)/72))->getFranchissable())
+              this->_j1->setPosX(nouvelle_pos-30);
+            break;
+          case sf::Keyboard::Up:
+            nouvelle_pos = this->_j1->getPosY() - this->_j1->getVit();
+            if (_grille.getElement(_j1->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
+                  && _grille.getElement(round((_j1->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable())
+              this->_j1->setPosY(nouvelle_pos);
             break;
           case sf::Keyboard::Down:
-            this->_j1->setPosY(this->_j1->getPosY() + this->_j1->getVit());
+            nouvelle_pos = this->_j1->getPosY() + this->_j1->getVit() + 30;
+            if (_grille.getElement(_j1->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
+                  && _grille.getElement(round((_j1->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable())
+              this->_j1->setPosY(nouvelle_pos-30);
             break;
+
+
+            // On init les touches ZQSD pour déplacer le deuxième joueur
+            case sf::Keyboard::Q: //  <--
+              //on verifie que le point est dans une case que l'on peut franchir
+              nouvelle_pos = this->_j2->getPosX() - this->_j2->getVit();
+              if (_grille.getElement(round(nouvelle_pos/72), _j2->getPosOnGridY())->getFranchissable()
+                    && _grille.getElement(round(nouvelle_pos/72), round((_j2->getPosY()+30)/72))->getFranchissable())
+                this->_j2->setPosX(nouvelle_pos);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+              break;
+            case sf::Keyboard::D: //  -->
+              nouvelle_pos = this->_j2->getPosX() + this->_j2->getVit() + 30;
+              if (_grille.getElement(round(nouvelle_pos/72), _j2->getPosOnGridY())->getFranchissable()
+                    && _grille.getElement(round(nouvelle_pos/72), round((_j2->getPosY()+30)/72))->getFranchissable())
+                this->_j2->setPosX(nouvelle_pos-30);
+              break;
+            case sf::Keyboard::Z:
+              nouvelle_pos = this->_j2->getPosY() - this->_j2->getVit();
+              if (_grille.getElement(_j2->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
+                    && _grille.getElement(round((_j2->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable())
+                this->_j2->setPosY(nouvelle_pos);
+              break;
+            case sf::Keyboard::S:
+              nouvelle_pos = this->_j2->getPosY() + this->_j2->getVit() + 30;
+              if (_grille.getElement(_j2->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
+                    && _grille.getElement(round((_j2->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable())
+                this->_j2->setPosY(nouvelle_pos-30);
+              break;
+
 
           break;
         }

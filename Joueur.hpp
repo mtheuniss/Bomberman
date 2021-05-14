@@ -13,7 +13,7 @@ class Joueur {
     //Constructeur, destructeur
     Joueur();
     Joueur(int x, int y, int num, int color);
-
+    ~Joueur(){}
 
     int getPosX() const;
     int getPosY() const;

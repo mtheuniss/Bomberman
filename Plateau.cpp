@@ -37,10 +37,10 @@ void Plateau::setMaxX(int mx){ this->_MAX_X = mx;}
 void Plateau::setMaxY(int my){ this->_MAX_Y = my;}
 void Plateau::setMapType(int mt){this-> _MAP = mt;}
 
-void Plateau::setElement(Element* ent){
+void Plateau::setElement(Mur* ent){
   this->_grid[ent->getPosX()][ent->getPosY()] = ent;
 }
-Element* Plateau::getElement(int x, int y){
+Mur* Plateau::getElement(int x, int y){
   return this->_grid[x][y];
 }
 
@@ -63,10 +63,10 @@ void Plateau::initPlateau(){
             this->setElement( new MurVoid(i,j));
           else if ((i==1 || i==13) && (j!=4 && j!=5)){
             this->setElement( new MurDur(i,j));}
-          else if ((j==1 || j==8) && (i!=4 && i!=6 && i!=8 && i!=10))
-            this->setElement( new MurDur(i,j));
-          else if (i%2==1 && (j==3 || j==6))
-            this->setElement( new MurDur(i,j));
+          else if ((j==1 || j==8) && (i!=4 && i!=6 && i!=8 && i!=10)){
+            this->setElement( new MurDur(i,j));}
+          else if (i%2==1 && (j==3 || j==6)){
+            this->setElement( new MurDur(i,j));}
           else
             this->setElement( new MurCassable(i,j));
         }

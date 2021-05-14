@@ -24,21 +24,21 @@ class Jeu{
     void initVariables();
     void initFenetre();
     void initEntity(); // Pour séparer l'init des entitées et des fenêtres qui stock les entitées
-      void initJoueur();
+    void initJoueur();
 
   public :
     //Constructeur, Destructeur
     Jeu();
-    virtual ~Jeu(){std::cout<<"supp _fenetre"<<std::endl;delete this->_window;}
+    virtual ~Jeu(){delete this->_window;delete _j1; delete _j2; std::cout<<"supp _fenetre & joueurs"<<std::endl;}
 
     //Accesseurs
     const bool getIsRunning() const;
 
     //Fonctions
     void update();
-      void updateEvents();
+    void updateEvents();
     void render();
-      void renderJoueurs();
+    void renderJoueurs();
 };
 
 #endif
