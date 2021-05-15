@@ -20,23 +20,23 @@ Joueur::Joueur(int x , int y , int num, int color){
 }
 //------------------------------------------------------------------------------
 //Position dans la grille
-int Joueur::getPosX() const{
+const int& Joueur::getPosX() const{
   return _esthetique.getPosition().x;
 }
-int Joueur::getPosY()const{
+const int& Joueur::getPosY()const{
   return _esthetique.getPosition().y;
 }
 
 //------------------------------------------------------------------------------
 //Position dans la fenetre
-int Joueur::getPosOnGridX()const{
+const int& Joueur::getPosOnGridX()const{
   return this->_pos.x;
 }
-int Joueur::getPosOnGridY()const{
+const int& Joueur::getPosOnGridY()const{
   return this->_pos.y;
 }
 //------------------------------------------------------------------------------
-int Joueur::getVit()const{
+const int& Joueur::getVit()const{
   return this->_vitesse;
 }
 

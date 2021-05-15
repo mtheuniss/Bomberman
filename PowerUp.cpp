@@ -20,7 +20,7 @@ PowerUp::PowerUp(){
     this->_updown = false;
 }
 
-int PowerUp::getType() const{
+const int& PowerUp::getType() const{
   if (this->_updown)
     return this->_type;
   else

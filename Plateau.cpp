@@ -40,7 +40,8 @@ void Plateau::setMapType(int mt){this-> _MAP = mt;}
 void Plateau::setElement(Mur* ent){
   this->_grid[ent->getPosX()][ent->getPosY()] = ent;
 }
-Mur* Plateau::getElement(int x, int y){
+
+Mur* Plateau::getElement(int x, int y) const{
   return this->_grid[x][y];
 }
 

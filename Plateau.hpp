@@ -30,7 +30,7 @@ class Plateau{
 
 
     void setElement( Mur* ent);
-    Mur* getElement(int x, int y);
+    Mur* getElement(int x, int y) const;
 
     int getMaxX() const;
     int getMaxY() const;

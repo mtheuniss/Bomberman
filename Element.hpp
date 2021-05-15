@@ -13,8 +13,8 @@ class Element{
     virtual ~Element(){}
 
     //Accesseurs
-    int getPosX(){return this->_pos.x;}
-    int getPosY(){return this->_pos.y;}
+    const int& getPosX() const{return this->_pos.x;}
+    const int& getPosY() const{return this->_pos.y;}
 
     void setPosX(int x){
       this->_pos.x = x;

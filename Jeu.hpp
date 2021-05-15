@@ -32,7 +32,7 @@ class Jeu{
     virtual ~Jeu(){delete this->_window;delete _j1; delete _j2; std::cout<<"supp _fenetre & joueurs"<<std::endl;}
 
     //Accesseurs
-    const bool getIsRunning() const;
+    bool getIsRunning() const;
 
     //Fonctions
     void update();

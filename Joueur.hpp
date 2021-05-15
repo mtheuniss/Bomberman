@@ -15,11 +15,11 @@ class Joueur {
     Joueur(int x, int y, int num, int color);
     ~Joueur(){}
 
-    int getPosX() const;
-    int getPosY() const;
-    int getPosOnGridX()const;
-    int getPosOnGridY()const;
-    int getVit()const;
+    const int& getPosX() const;
+    const int& getPosY() const;
+    const int& getPosOnGridX()const;
+    const int& getPosOnGridY()const;
+    const int& getVit()const;
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);
     void setPosX(int x);

@@ -8,7 +8,7 @@ Jeu::Jeu(){
 }
 
 //Accesseurs
-const bool Jeu::getIsRunning() const{
+bool Jeu::getIsRunning() const{
   return this->_window->isOpen();
 }
 

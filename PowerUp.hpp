@@ -11,7 +11,7 @@ class PowerUp : public Element{
 
   //méthodes
     void affichage();
-    int getType() const;
+    const int& getType() const;
     //void setType(int type);
 
   protected :
