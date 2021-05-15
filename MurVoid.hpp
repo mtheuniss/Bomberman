@@ -16,7 +16,7 @@ class MurVoid : public Mur {
 
     void affichage();
   protected :
-    
+
 
 };
 #endif

@@ -15,24 +15,29 @@ Joueur::Joueur(int x , int y , int num, int color){
   this->setPosX(x); //On init avec une position dans la grille
   this->setPosY(y); // Mais on set les position en pixels
 
+  //gestion des bombes
+  _nbBombes = 5;
+  _typeBombe = Bombe();
+
   this->affichage();
 
 }
 //------------------------------------------------------------------------------
 //Position dans la grille
-const int& Joueur::getPosX() const{
+int Joueur::getPosX() const{
   return _esthetique.getPosition().x;
 }
-const int& Joueur::getPosY()const{
+int Joueur::getPosY()const{
   return _esthetique.getPosition().y;
 }
 
 //------------------------------------------------------------------------------
 //Position dans la fenetre
-const int& Joueur::getPosOnGridX()const{
+int Joueur::getPosOnGridX()const{
   return this->_pos.x;
 }
-const int& Joueur::getPosOnGridY()const{
+int Joueur::getPosOnGridY()const{
+  //on vérifie que c'est dans la GRILLE
   return this->_pos.y;
 }
 //------------------------------------------------------------------------------
@@ -43,10 +48,18 @@ const int& Joueur::getVit()const{
 //------------------------------------------------------------------------------
 
 void Joueur::setPosOnGridX(int x){
-  this->_pos.x = round(x/72);
+  if (round(x/72)<15){
+    std::cout<<"setPosOnGridX"<<std::endl;
+    this->_pos.x = round(x/72);
+    std::cout<<"sortie setPosOnGridX"<<std::endl;
+  }
 }
 void Joueur::setPosOnGridY(int y){
-  this->_pos.y = round(y/72);
+  if (round(y/72)){
+    std::cout<<"setPosOnGridY"<<std::endl;
+    this->_pos.y = round(y/72);
+    std::cout<<"sortie setPosOnGridY"<<std::endl;
+  }
 }
 
 void Joueur::setPosX(int x){
@@ -59,9 +72,12 @@ void Joueur::setPosX(int x){
 
 void Joueur::setPosY(int y){
   //on fait en sorte que le joueur reste dans le plateau
-  if (y>=0 && y<=(720-30)){
+  std::cout<<"y= "<<y<<std::endl;
+  if (y>=0 && y<(720-30)){
+    std::cout<<"y compatible"<<std::endl;
     _esthetique.setPosition(sf::Vector2f(this->getPosX(),y));
     this->setPosOnGridY(y);// division et arondi fait dans la fonction
+    std::cout<<"ICI"<<std::endl;
   }
 }
 

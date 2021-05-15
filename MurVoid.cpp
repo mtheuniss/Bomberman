@@ -1,6 +1,7 @@
 #include "MurVoid.hpp"
 
 //Constructeur
+
 MurVoid::MurVoid(){
   this->affichage();
   this->setPosX(0);

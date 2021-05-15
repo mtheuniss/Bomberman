@@ -15,7 +15,7 @@ bool Jeu::getIsRunning() const{
 
 void Jeu::initJoueur(){
     this->_j1 = new Joueur(0,0,0,0);
-    this->_j2 = new Joueur(1080-30,720-30,1,0);
+    this->_j2 = new Joueur(1080-30,720-31,1,0);
 }
 //Fonction private
 void Jeu::initEntity(){
@@ -54,8 +54,14 @@ void Jeu::updateEvents(){
       case sf::Event::KeyPressed: //Si c'est une pression clavier, on regarde la quelle
         switch (_ev.key.code){//On verif le code /!\ qu'un touche à la fois pas ouf mais ok pour jeux 2d
 
-          case sf::Keyboard::Escape: // Si espace :
+          case sf::Keyboard::Escape: // Si echap :
             this->_window->close();
+            break;
+
+          case sf::Keyboard::Space: // Si espace :
+            this->_j1->setNbBombes(_j1->getNbBombes()-1);
+            this->_j1->getTypeBombe().setPosX(this->_j1->getPosX());
+            this->_j1->getTypeBombe().setPosY(this->_j1->getPosY());
             break;
 
           // On init les fleches pour déplacer
@@ -108,9 +114,12 @@ void Jeu::updateEvents(){
               break;
             case sf::Keyboard::S:
               nouvelle_pos = this->_j2->getPosY() + this->_j2->getVit() + 30;
-              if (_grille.getElement(_j2->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
-                    && _grille.getElement(round((_j2->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable())
-                this->_j2->setPosY(nouvelle_pos-30);
+              std::cout<<"nouvelle_pos = "<<nouvelle_pos<<std::endl;
+              if (nouvelle_pos<720){
+                if (_grille.getElement(_j2->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
+                      && _grille.getElement(round((_j2->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable()){
+                  this->_j2->setPosY(nouvelle_pos-30);}
+                }
               break;
 
 
