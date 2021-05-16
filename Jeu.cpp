@@ -60,8 +60,9 @@ void Jeu::updateEvents(){
 
           case sf::Keyboard::Space: // Si espace :
             this->_j1->setNbBombes(_j1->getNbBombes()-1);
-            this->_j1->getTypeBombe().setPosX(this->_j1->getPosX());
-            this->_j1->getTypeBombe().setPosY(this->_j1->getPosY());
+            _j1->setPosBombe(this->_j1->getPosX(), this->_j1->getPosY());
+            std::cout << this->_j1->getPosX() << " posx bombe " << _j1->getTypeBombe().getPosX() << std::endl;
+            std::cout << this->_j1->getPosY()<< " posy bombe " << _j1->getTypeBombe().getPosY() << std::endl;
             break;
 
           // On init les fleches pour déplacer
@@ -114,7 +115,6 @@ void Jeu::updateEvents(){
               break;
             case sf::Keyboard::S:
               nouvelle_pos = this->_j2->getPosY() + this->_j2->getVit() + 30;
-              std::cout<<"nouvelle_pos = "<<nouvelle_pos<<std::endl;
               if (nouvelle_pos<720){
                 if (_grille.getElement(_j2->getPosOnGridX(), round(nouvelle_pos/72))->getFranchissable()
                       && _grille.getElement(round((_j2->getPosX()+30)/72), round(nouvelle_pos/72))->getFranchissable()){
@@ -122,10 +122,11 @@ void Jeu::updateEvents(){
                 }
               break;
 
-
-          break;
+            default :
+              break;
         }
-      break;
+        default :
+          break;
     }
   }
 }

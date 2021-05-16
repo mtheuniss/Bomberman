@@ -49,16 +49,12 @@ const int& Joueur::getVit()const{
 
 void Joueur::setPosOnGridX(int x){
   if (round(x/72)<15){
-    std::cout<<"setPosOnGridX"<<std::endl;
     this->_pos.x = round(x/72);
-    std::cout<<"sortie setPosOnGridX"<<std::endl;
   }
 }
 void Joueur::setPosOnGridY(int y){
   if (round(y/72)){
-    std::cout<<"setPosOnGridY"<<std::endl;
     this->_pos.y = round(y/72);
-    std::cout<<"sortie setPosOnGridY"<<std::endl;
   }
 }
 
@@ -72,12 +68,9 @@ void Joueur::setPosX(int x){
 
 void Joueur::setPosY(int y){
   //on fait en sorte que le joueur reste dans le plateau
-  std::cout<<"y= "<<y<<std::endl;
   if (y>=0 && y<(720-30)){
-    std::cout<<"y compatible"<<std::endl;
     _esthetique.setPosition(sf::Vector2f(this->getPosX(),y));
     this->setPosOnGridY(y);// division et arondi fait dans la fonction
-    std::cout<<"ICI"<<std::endl;
   }
 }
 

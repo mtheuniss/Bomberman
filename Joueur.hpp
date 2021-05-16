@@ -23,13 +23,14 @@ class Joueur {
     int getPosOnGridY()const;
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
-    Bombe getTypeBombe() const{return _typeBombe;}
+    Bombe getTypeBombe() {return _typeBombe;}
 
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);
     void setPosX(int x);
     void setPosY(int y);
     void setNbBombes(int nb) {_nbBombes = nb;}
+    void setPosBombe(int x, int y){_typeBombe.setPosX(x); _typeBombe.setPosY(y);}
 
     sf::RectangleShape getEsthetique() const {return this->_esthetique;}
 
