@@ -38,6 +38,25 @@ void Jeu::initFenetre(){
 
 
 }
+
+void Jeu::updateBombes(){
+  for (Bombe* b : _listeBombes){
+    if(b->imBoum() && !b->explose()){
+      std::cout << "boum" << '\n';
+      b->explose() = 1;
+
+      // ici faire sauter les murs
+    }
+  }
+}
+
+
+
+
+
+
+
+
 //Fonctions Public
 //mise à jour du jeu (logique du jeu)
 void Jeu::updateEvents(){
@@ -58,11 +77,10 @@ void Jeu::updateEvents(){
 
           case sf::Keyboard::Space: // Si espace :
             this->_j1->setNbBombes(_j1->getNbBombes()-1);
-            _j1->setPosBombe(this->_j1->getPosX(), this->_j1->getPosY());
-            std::cout << this->_j1->getPosX() << " posx bombe " << _j1->getTypeBombe().getPosX() << std::endl;
-            std::cout << this->_j1->getPosY()<< " posy bombe " << _j1->getTypeBombe().getPosY() << std::endl;
-            //on ajoute la bombe dans la liste pour l'affichage
-            _listeBombes.push_back(&_j1->getTypeBombe());
+            _j1->setPosBombe(this->_j1->getPosOnGridX(), this->_j1->getPosOnGridY());
+
+          //on ajoute la bombe dans la liste pour l'affichage
+            _listeBombes.push_back( new Bombe(_j1->getTypeBombe()));
             //_j1->getTypeBombe().affichage();
             break;
 
@@ -124,7 +142,8 @@ void Jeu::updateEvents(){
   }
 }
 void Jeu::update(){
-  this->updateEvents();
+  updateEvents();
+  updateBombes();
 }
 //visualisation du jeu (interface)
 
@@ -132,14 +151,19 @@ void Jeu::renderJoueurs(){
 
   this->_window->draw(this->_j1->getEsthetique()); // On place l'element sur le plateau
   this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
-
-
 }
+void Jeu::renderBombes(){
+  for ( Bombe* b : _listeBombes){
+    if (!b->explose()) this->_window->draw(b->getEsthetique()); // On place l'element sur le plateau
+  }
+}
+
 void Jeu::render(){
   this->_window->clear(sf::Color::White);
   //dessin des objets
   this->_grille.renderPlateau(this->_window);
   renderJoueurs();
+  renderBombes();
 
 
 

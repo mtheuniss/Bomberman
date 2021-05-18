@@ -45,5 +45,6 @@ class Joueur {
     int _nbBombes;
     Bombe _typeBombe;
 
+
 };
 #endif

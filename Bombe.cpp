@@ -6,7 +6,12 @@ Bombe::Bombe(){
   _explose = 0;
   this->affichage();
 }
-
+bool Bombe::imBoum(){
+  if (_clock.getElapsedTime() > sf::seconds(5)){
+    return 1;
+  } else
+    return 0;
+}
 void Bombe::affichage(){
   this->_esthetique.setSize(sf::Vector2f(30.f,30.f)); //.f -> float sans être float (carrés 72*72)
   this->_esthetique.setFillColor(sf::Color(255, 0, 0,255)); //On peut direct mettre la couleur c'est pas mal

@@ -33,11 +33,14 @@ class Bombe : public Element{
   //Autres fonctions
     void affichage();
     //void explose();
-
+    //Gestion du temps de vie de la bombe
+    bool imBoum();
 
   protected :
     int _rayon;
     int _explose; //0 pas explosé, 1 explose (pour l'affichage)
+
+    sf::Clock _clock;
 };
 
 

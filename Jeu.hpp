@@ -12,7 +12,7 @@ class Jeu{
     sf::Event _ev;
 
     Plateau _grille;
-    std::list<Element*> _listeBombes;
+    std::list<Bombe*> _listeBombes;
 
     Joueur* _j1;
     Joueur* _j2;
@@ -31,12 +31,14 @@ class Jeu{
   public :
     //Constructeur, Destructeur
     Jeu();
-    virtual ~Jeu(){delete this->_window;delete _j1; delete _j2;
-      for (std::list<Element*>::const_iterator it = _listeBombes.begin(); it!=_listeBombes.end(); ++it)
-      {
-        delete *it;
-      }
-      std::cout<<"supp _fenetre & joueurs"<<std::endl;}
+    virtual ~Jeu(){
+      delete this->_window;
+      delete _j1; delete _j2;
+      for(Bombe* child : _listeBombes) {
+        delete child;
+        }
+      std::cout<<"supp _fenetre & joueurs"<<std::endl;
+    }
 
     //Accesseurs
     bool getIsRunning() const;
@@ -47,9 +49,11 @@ class Jeu{
 
     //Fonctions
     void update();
-    void updateEvents();
+      void updateEvents();
+      void updateBombes();
     void render();
-    void renderJoueurs();
+      void renderJoueurs();
+      void renderBombes();
 };
 
 #endif
