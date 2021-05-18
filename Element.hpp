@@ -16,12 +16,12 @@ class Element{
     const int& getPosX() const{return this->_pos.x;}
     const int& getPosY() const{return this->_pos.y;}
 
-    void setPosX(int x){
+    void setPosX(const int& x){
       this->_pos.x = x;
       this->_esthetique.setPosition(sf::Vector2f(x*72,this->getEsthetique().getPosition().y));
     }
 
-    void setPosY(int y){
+    void setPosY(const int& y){
       this->_pos.y = y;
       this->_esthetique.setPosition(sf::Vector2f(this->getEsthetique().getPosition().x, y*72 ));
     }

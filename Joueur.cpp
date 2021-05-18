@@ -7,7 +7,6 @@ Joueur::Joueur(){
   this->_vitesse = 5;
 }
 Joueur::Joueur(int x , int y , int num, int color){
-
   this->_numplayer = num; //Numero du jouer ( si deux joueur 1 ou 2 )
   this->_couleur = color; // Couleur du joueur
   this->_vitesse = 5;
@@ -20,7 +19,6 @@ Joueur::Joueur(int x , int y , int num, int color){
   _typeBombe = Bombe();
 
   this->affichage();
-
 }
 //------------------------------------------------------------------------------
 //Position dans la grille
@@ -53,7 +51,7 @@ void Joueur::setPosOnGridX(int x){
   }
 }
 void Joueur::setPosOnGridY(int y){
-  if (round(y/72)){
+  if (round(y/72)<10){
     this->_pos.y = round(y/72);
   }
 }

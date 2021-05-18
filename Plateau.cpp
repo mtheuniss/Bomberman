@@ -6,6 +6,7 @@ Plateau::Plateau(){
   _MAP = 1;
   _MAX_X = 1080; //HD = 1280 taille cube = 72*72 -> 10*15 -> 200 pixels pour l'affichage des scores
   _MAX_Y = 720;
+  initPlateau();
   std::cout << "taille tableau" <<  _grid.size()<< '\n';
   std::cout << "taille tableau" <<  _grid[0].size()<< '\n';
 }
@@ -13,8 +14,7 @@ Plateau::Plateau(){
 //Destructeur
 Plateau::~Plateau(){
   std::cout<<"suppression des l'elements de la grille"<<std::endl;
-
- for (int i =0; i<10; i++){
+  for (int i =0; i<10; i++){
     for (int j =0; j<15; j++){
       delete this->_grid[j][i];
     }

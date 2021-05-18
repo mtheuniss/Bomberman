@@ -23,7 +23,7 @@ class Joueur {
     int getPosOnGridY()const;
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
-    Bombe getTypeBombe() {return _typeBombe;}
+    Bombe& getTypeBombe() {return _typeBombe;}
 
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);

@@ -18,11 +18,18 @@ class Plateau{
 
 
     //Fonction private
-
+    void initPlateau();
   public :
     //Constructeur, Destructeur
     Plateau();
     ~ Plateau();
+
+    //Accesseurs (const et non const)
+    const int& maxX() const {return _MAX_X;}
+    int& maxX() {return _MAX_X;}
+
+    const int& maxY() const {return _MAX_Y;}
+    int& maxY() {return _MAX_Y;}
 
     void setMaxX(int mx);
     void setMaxY(int my);
@@ -36,7 +43,6 @@ class Plateau{
     int getMaxY() const;
     int getMap()  const;
 
-    void initPlateau();
     void renderPlateau(sf::RenderWindow* w);
 };
 

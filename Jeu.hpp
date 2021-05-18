@@ -2,6 +2,7 @@
 #define JEU_HPP
 
 #include "Plateau.hpp"
+#include <list>
 
 class Jeu{
   private :
@@ -11,6 +12,7 @@ class Jeu{
     sf::Event _ev;
 
     Plateau _grille;
+    std::list<Element*> _listeBombes;
 
     Joueur* _j1;
     Joueur* _j2;
@@ -29,10 +31,19 @@ class Jeu{
   public :
     //Constructeur, Destructeur
     Jeu();
-    virtual ~Jeu(){delete this->_window;delete _j1; delete _j2; std::cout<<"supp _fenetre & joueurs"<<std::endl;}
+    virtual ~Jeu(){delete this->_window;delete _j1; delete _j2;
+      for (std::list<Element*>::const_iterator it = _listeBombes.begin(); it!=_listeBombes.end(); ++it)
+      {
+        delete *it;
+      }
+      std::cout<<"supp _fenetre & joueurs"<<std::endl;}
 
     //Accesseurs
     bool getIsRunning() const;
+        //x et y sont en pixels
+    bool estFranchissable(const int& x,const int& y) const{
+      return _grille.getElement(round(x/72), round(y/72))->getFranchissable();
+    }
 
     //Fonctions
     void update();
