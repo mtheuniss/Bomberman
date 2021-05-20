@@ -35,25 +35,39 @@ void Jeu::initVariables(){
 void Jeu::initFenetre(){
   this-> _window = new sf::RenderWindow(this->_videoMode, "Bomberman", sf::Style::Close | sf::Style::Titlebar);
   this->_window->setFramerateLimit(144);
-
-
 }
 
 void Jeu::updateBombes(){
-  for (Bombe* b : _listeBombes){
-    if(b->imBoum() && !b->explose()){
+  //Note : pour supprimer d'une liste, il nous faut un itérateur
+  //for (Bombe* b : _listeBombes){
+  for (std::list<Bombe*>::iterator b = _listeBombes.begin(); b!=_listeBombes.end(); ++b){
+    if((*b)->imBoum() && !(*b)->explose()){
       std::cout << "boum" << '\n';
-      b->explose() = 1;
+      (*b)->explose() = 1;
 
       // ici faire sauter les murs
+      //creation de la liste
+      std::list<sf::Vector2i> liste;
+      //on appelle la fonction
+      (*b)->degatsBombe(liste);//passage par référence
+      //on affiche la liste obtenue
+      std::cout << "debut de la liste" << '\n';
+      for (sf::Vector2i b : liste){
+        std::cout << "["<<b.x<< " ; "<< b.y<<"]" << '\n';
+      }
+      std::cout << "fin de la liste" << '\n';
+      // on update la grille
+      _grille.updateGrille(liste);
+      //on vide la liste
+      liste.clear();
+      //la bombe a explosé, elle ne sert plus à rien alors on la supprime des objets à afficher
+      delete (*b);
+      _listeBombes.erase(b);
+      b--;//on décrémente l'itérateur (segfault sinon)
+      std::cout << "supp de b" << '\n';
     }
   }
 }
-
-
-
-
-
 
 
 
@@ -61,6 +75,7 @@ void Jeu::updateBombes(){
 //mise à jour du jeu (logique du jeu)
 void Jeu::updateEvents(){
   int nouvelle_pos = 0;
+  Joueur* joueur = nullptr;
   while(this->_window->pollEvent(this->_ev)) {
     switch (this->_ev.type) { //On regarde l'envent en cours
 
@@ -75,12 +90,16 @@ void Jeu::updateEvents(){
             this->_window->close();
             break;
 
-          case sf::Keyboard::Space: // Si espace :
-            this->_j1->setNbBombes(_j1->getNbBombes()-1);
-            _j1->setPosBombe(this->_j1->getPosOnGridX(), this->_j1->getPosOnGridY());
+          case (sf::Keyboard::Space): case (sf::Keyboard::A): // Si espace :
+            if (_ev.key.code==sf::Keyboard::A){
+              joueur = _j2;}
+            else {
+              joueur = _j1;}
+            joueur->setNbBombes(joueur->getNbBombes()-1);
+            joueur->setPosBombe(joueur->getPosOnGridX(), joueur->getPosOnGridY());
 
           //on ajoute la bombe dans la liste pour l'affichage
-            _listeBombes.push_back( new Bombe(_j1->getTypeBombe()));
+            _listeBombes.push_back( new Bombe(joueur->getTypeBombe()));
             //_j1->getTypeBombe().affichage();
             break;
 
@@ -117,13 +136,15 @@ void Jeu::updateEvents(){
               break;
             case sf::Keyboard::D: //  -->
               nouvelle_pos = this->_j2->getPosX() + this->_j2->getVit() + 30;
-              if(estFranchissable(nouvelle_pos, _j2->getPosY())&&estFranchissable(nouvelle_pos, _j2->getPosY()+30))
-                this->_j2->setPosX(nouvelle_pos-30);
+              if(estFranchissable(nouvelle_pos, _j2->getPosY())&&estFranchissable(nouvelle_pos, _j2->getPosY()+30)){
+                std::cout << "nouvelle position D , x[" <<nouvelle_pos<<"]"<< '\n';
+                this->_j2->setPosX(nouvelle_pos-30);}
               break;
             case sf::Keyboard::Z:
               nouvelle_pos = this->_j2->getPosY() - this->_j2->getVit();
-              if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
-                this->_j2->setPosY(nouvelle_pos);
+              if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos)){
+                std::cout << "nouvelle position Z , y[" <<nouvelle_pos<<"]"<< '\n';
+                this->_j2->setPosY(nouvelle_pos);}
               break;
             case sf::Keyboard::S:
               nouvelle_pos = this->_j2->getPosY() + this->_j2->getVit() + 30;

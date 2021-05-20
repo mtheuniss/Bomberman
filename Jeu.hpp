@@ -35,6 +35,7 @@ class Jeu{
       delete this->_window;
       delete _j1; delete _j2;
       for(Bombe* child : _listeBombes) {
+        std::cout<<"supp _bombe"<<std::endl;
         delete child;
         }
       std::cout<<"supp _fenetre & joueurs"<<std::endl;

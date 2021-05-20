@@ -98,3 +98,15 @@ void Plateau::renderPlateau(sf::RenderWindow* w ){
       }
     }
   }
+
+  void Plateau::updateGrille(std::list<sf::Vector2i> liste){
+    //on parcours la liste.
+    //pour chaque coordonnées, si le mur est cassable alors on le casse
+    //casser = supprimer le pointeur de mur et nouveau pointeur MurVoid
+    for (sf::Vector2i coord : liste){
+      if (_grid[coord.x][coord.y]->getCassable() == 1){//on peut casser le mur
+        delete this->_grid[coord.x][coord.y];
+        this->setElement(new MurVoid(coord.x,coord.y));
+      }
+    }
+  }

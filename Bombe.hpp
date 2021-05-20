@@ -2,6 +2,7 @@
 #define BOMBE_HPP
 
 #include "Element.hpp"
+#include <list>
 
 class Bombe : public Element{
   public :
@@ -35,6 +36,7 @@ class Bombe : public Element{
     //void explose();
     //Gestion du temps de vie de la bombe
     bool imBoum();
+    void degatsBombe(std::list<sf::Vector2i>& listeDegats);
 
   protected :
     int _rayon;
