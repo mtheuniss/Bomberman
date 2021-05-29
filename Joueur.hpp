@@ -26,6 +26,7 @@ class Joueur {
     int getPosOnGridX()const;
     int getPosOnGridY()const;
     Animation* getAnimation(){return this->_animation;}
+    int getSensMarche(){return this-> _sensMarche;}
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
     Bombe& getTypeBombe() {return _typeBombe;}
@@ -37,6 +38,7 @@ class Joueur {
     void setAnimation(sf::Texture* texture, sf::Vector2u nbImages, float tmp){
       this->_animation = new Animation(texture,nbImages,tmp);
     }
+    void setSensMarche(int s){this->_sensMarche = s;}
     void setNbBombes(int nb) {_nbBombes = nb;}
     void setPosBombe(int x, int y){_typeBombe.setPosX(x); _typeBombe.setPosY(y);}
 
@@ -53,6 +55,7 @@ class Joueur {
     sf::RectangleShape* _esthetique;
     sf::Texture _texture;
     Animation* _animation;
+    int _sensMarche;
 
     int _nbBombes;
     Bombe _typeBombe;

@@ -5,6 +5,7 @@ Joueur::Joueur(){
   this->_numplayer = 0;
   this->_couleur = 0;
   this->_vitesse = 5;
+  this->_sensMarche =0;
 }
 Joueur::Joueur(int x , int y , int num, int color){
   this->_numplayer = num; //Numero du jouer ( si deux joueur 1 ou 2 )

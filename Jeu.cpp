@@ -116,21 +116,25 @@ void Jeu::updateEvents(){
           // On init les fleches pour déplacer le joueur 1
           case sf::Keyboard::Left: //  <--
             //on verifie que le point est dans une case que l'on peut franchir
+            this->_j1->setSensMarche(1);
             nouvelle_pos = this->_j1->getPosX() - this->_j1->getVit();
             if(estFranchissable(nouvelle_pos, _j1->getPosY()) && estFranchissable(nouvelle_pos, _j1->getPosY()+30))
               this->_j1->setPosX(nouvelle_pos);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
             break;
           case sf::Keyboard::Right: //  -->
+            this->_j1->setSensMarche(2);
             nouvelle_pos = this->_j1->getPosX() + this->_j1->getVit() + 30;
             if(estFranchissable(nouvelle_pos, _j1->getPosY())&&estFranchissable(nouvelle_pos, _j1->getPosY()+30))
               this->_j1->setPosX(nouvelle_pos-30);
             break;
           case sf::Keyboard::Up:
+            this->_j1->setSensMarche(3);
             nouvelle_pos = this->_j1->getPosY() - this->_j1->getVit();
             if (estFranchissable(_j1->getPosX(),nouvelle_pos)&&estFranchissable(_j1->getPosX()+30, nouvelle_pos))
               this->_j1->setPosY(nouvelle_pos);
             break;
           case sf::Keyboard::Down:
+            this->_j1->setSensMarche(0);
             nouvelle_pos = this->_j1->getPosY() + this->_j1->getVit() + 30;
             if (estFranchissable(_j1->getPosX(),nouvelle_pos)&&estFranchissable(_j1->getPosX()+30, nouvelle_pos))
               this->_j1->setPosY(nouvelle_pos-30);
@@ -179,7 +183,7 @@ void Jeu::update(){
 //visualisation du jeu (interface)
 
 void Jeu::renderJoueurs(){
-  this->_j1->getAnimation()->update(0,this->tmpIncrement);
+  this->_j1->getAnimation()->update(this->_j1->getSensMarche(),this->tmpIncrement);
   this->_j1->getEsthetique()->setTextureRect(this->_j1->getAnimation()->_RectSelect  );
   this->_window->draw(*(this->_j1->getEsthetique())); // On place l'element sur le plateau
   //this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
