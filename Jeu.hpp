@@ -1,6 +1,8 @@
 #ifndef JEU_HPP
 #define JEU_HPP
 
+
+#include "Animation.hpp"
 #include "Plateau.hpp"
 #include <list>
 
@@ -41,6 +43,7 @@ class Jeu{
       std::cout<<"supp _fenetre & joueurs"<<std::endl;
     }
 
+    sf::Clock clock;
     //Accesseurs
     bool getIsRunning() const;
         //x et y sont en pixels

@@ -15,7 +15,7 @@ MurVoid::MurVoid(int x , int y){
   this->setPosY(y);
   this->cassable = 0;
   this->franchissable = 1;
-  if (!this->_texture.loadFromFile("plaque_verte.png"))
+  if (!this->_texture.loadFromFile("Images/plaque_verte.png"))
   {
     std::cout<<"erreur lors de l'ouverture de l'image"<<std::endl;
   }

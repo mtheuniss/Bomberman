@@ -14,7 +14,7 @@ MurDur::MurDur(int x , int y){
   this->setPosY(y);
   this->cassable = 0;
   this->franchissable = 0;
-  if (!this->_texture.loadFromFile("mur_brique.png"))
+  if (!this->_texture.loadFromFile("Images/mur_brique.png"))
   {
     std::cout<<"erreur lors de l'ouverture de l'image"<<std::endl;
   }

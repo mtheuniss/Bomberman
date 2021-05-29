@@ -1,5 +1,13 @@
 #include "Jeu.hpp"
 
+
+
+
+
+
+
+
+
 //Constructeur
 Jeu::Jeu(){
   this->initVariables();
@@ -27,6 +35,8 @@ void Jeu::initVariables(){
   this-> _window = nullptr;
   this->_videoMode.height =720 ;
   this->_videoMode.width = 1280;
+
+
 
   // initialisation du plateau en fonction de la carte ici 1
   this->_grille.setMapType(1); //modif du type de carte
@@ -137,13 +147,13 @@ void Jeu::updateEvents(){
             case sf::Keyboard::D: //  -->
               nouvelle_pos = this->_j2->getPosX() + this->_j2->getVit() + 30;
               if(estFranchissable(nouvelle_pos, _j2->getPosY())&&estFranchissable(nouvelle_pos, _j2->getPosY()+30)){
-                std::cout << "nouvelle position D , x[" <<nouvelle_pos<<"]"<< '\n';
+                //std::cout << "nouvelle position D , x[" <<nouvelle_pos<<"]"<< '\n';
                 this->_j2->setPosX(nouvelle_pos-30);}
               break;
             case sf::Keyboard::Z:
               nouvelle_pos = this->_j2->getPosY() - this->_j2->getVit();
               if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos)){
-                std::cout << "nouvelle position Z , y[" <<nouvelle_pos<<"]"<< '\n';
+                //std::cout << "nouvelle position Z , y[" <<nouvelle_pos<<"]"<< '\n';
                 this->_j2->setPosY(nouvelle_pos);}
               break;
             case sf::Keyboard::S:
@@ -180,13 +190,34 @@ void Jeu::renderBombes(){
 }
 
 void Jeu::render(){
+
+
+  sf::RectangleShape pokemon;
+  pokemon.setSize(sf::Vector2f(72.f,72.f));
+
+  sf::Texture poke_texture;
+  poke_texture.loadFromFile("Images/sprite_pokemon.png");
+
+  pokemon.setTexture(&poke_texture);
+
+  Animation poke_animation(&poke_texture, sf::Vector2u(4,4),sf::seconds(0.3f));
+
+  sf::Time tmpIncrement = sf::seconds(0.0f);
+  
+
+
+
+
   this->_window->clear(sf::Color::White);
   //dessin des objets
   this->_grille.renderPlateau(this->_window);
   renderJoueurs();
   renderBombes();
 
-
+  tmpIncrement = sf::seconds(clock.restart().asSeconds());
+  poke_animation.update(0,tmpIncrement);
+  pokemon.setTextureRect(poke_animation._RectSelect);
+  this->_window->draw(pokemon);
 
   //affichage de la fenetre
   this->_window->display();
