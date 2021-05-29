@@ -11,6 +11,7 @@ Joueur::Joueur(int x , int y , int num, int color){
   this->_couleur = color; // Couleur du joueur
   this->_vitesse = 5;
 
+  this->_esthetique = new sf::RectangleShape();
   this->setPosX(x); //On init avec une position dans la grille
   this->setPosY(y); // Mais on set les position en pixels
 
@@ -23,10 +24,10 @@ Joueur::Joueur(int x , int y , int num, int color){
 //------------------------------------------------------------------------------
 //Position dans la grille
 int Joueur::getPosX() const{
-  return _esthetique.getPosition().x;
+  return _esthetique->getPosition().x;
 }
 int Joueur::getPosY()const{
-  return _esthetique.getPosition().y;
+  return _esthetique->getPosition().y;
 }
 
 //------------------------------------------------------------------------------
@@ -59,7 +60,7 @@ void Joueur::setPosOnGridY(int y){
 void Joueur::setPosX(int x){
   //on fait en sorte que le joueur reste dans le plateau
   if(x>=0 && x<=(1080-30)){
-    _esthetique.setPosition(sf::Vector2f(x,this->getPosY()));
+    _esthetique->setPosition(sf::Vector2f(x,this->getPosY()));
     this->setPosOnGridX(x); // division et arrondi fait dans la fonction
   }
 }
@@ -67,16 +68,46 @@ void Joueur::setPosX(int x){
 void Joueur::setPosY(int y){
   //on fait en sorte que le joueur reste dans le plateau
   if (y>=0 && y<(720-30)){
-    _esthetique.setPosition(sf::Vector2f(this->getPosX(),y));
+    _esthetique->setPosition(sf::Vector2f(this->getPosX(),y));
     this->setPosOnGridY(y);// division et arondi fait dans la fonction
   }
 }
 
+
+
+
+
+
 void Joueur::affichage(){
+
+  //-----------------------------------------------------------------
+
+  this->_esthetique->setSize(sf::Vector2f(72.f,72.f));
+  this->_esthetique->setTextureRect(sf::IntRect(0,0,64,64));
+  this->_texture.loadFromFile("Images/sprite_pokemon.png");
+
+  this->_esthetique->setTexture(&(this->_texture));
+
+  this->_animation = new Animation(&(this->_texture), sf::Vector2u(4,4),0.3f);
+
+
+
+//-----------------------------------------------------------------
+
+
+/*
+  swith important pour afficher plusieur jouer mais pour le moment on va juste tester avec un seul sprite
+
   switch (this->_couleur) {
     case 0:
-      this->_esthetique.setSize(sf::Vector2f(30.f,30.f)); //.f -> float sans être float (carrés 72*72)
-      this->_esthetique.setFillColor(sf::Color(0, 0, 0,255)); //On peut direct mettre la couleur c'est pas mal
+      this->_esthetique->setSize(sf::Vector2f(30.f,30.f)); //.f -> float sans être float (carrés 72*72)
+      this->_esthetique->setFillColor(sf::Color(0, 0, 0,255)); //On peut direct mettre la couleur c'est pas mal
       break;
 }
+
+*/
+
+
+
+
 }

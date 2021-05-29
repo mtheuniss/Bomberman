@@ -19,6 +19,7 @@ class Jeu{
     Joueur* _j1;
     Joueur* _j2;
 
+    float tmpIncrement = 0.0f;
     // Variable pour gestion d'event
 
     // sf::Vector2f _posEnt; //Position de la seul entité

@@ -179,9 +179,10 @@ void Jeu::update(){
 //visualisation du jeu (interface)
 
 void Jeu::renderJoueurs(){
-
-  this->_window->draw(this->_j1->getEsthetique()); // On place l'element sur le plateau
-  this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
+  this->_j1->getAnimation()->update(0,this->tmpIncrement);
+  this->_j1->getEsthetique()->setTextureRect(this->_j1->getAnimation()->_RectSelect  );
+  this->_window->draw(*(this->_j1->getEsthetique())); // On place l'element sur le plateau
+  //this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
 }
 void Jeu::renderBombes(){
   for ( Bombe* b : _listeBombes){
@@ -191,33 +192,15 @@ void Jeu::renderBombes(){
 
 void Jeu::render(){
 
-
-  sf::RectangleShape pokemon;
-  pokemon.setSize(sf::Vector2f(72.f,72.f));
-
-  sf::Texture poke_texture;
-  poke_texture.loadFromFile("Images/sprite_pokemon.png");
-
-  pokemon.setTexture(&poke_texture);
-
-  Animation poke_animation(&poke_texture, sf::Vector2u(4,4),sf::seconds(0.3f));
-
-  sf::Time tmpIncrement = sf::seconds(0.0f);
-  
-
-
-
-
+  this->tmpIncrement = clock.restart().asSeconds();
   this->_window->clear(sf::Color::White);
   //dessin des objets
   this->_grille.renderPlateau(this->_window);
   renderJoueurs();
   renderBombes();
 
-  tmpIncrement = sf::seconds(clock.restart().asSeconds());
-  poke_animation.update(0,tmpIncrement);
-  pokemon.setTextureRect(poke_animation._RectSelect);
-  this->_window->draw(pokemon);
+
+
 
   //affichage de la fenetre
   this->_window->display();

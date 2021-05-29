@@ -9,18 +9,23 @@
 #include<SFML/Window.hpp>
 
 #include "Bombe.hpp"
+#include "Animation.hpp"
 
 class Joueur {
   public :
     //Constructeur, destructeur
     Joueur();
     Joueur(int x, int y, int num, int color);
-    ~Joueur(){}
+    ~Joueur(){
+      delete this->_animation;
+      delete this->_esthetique;
+    }
 
     int getPosX() const;
     int getPosY() const;
     int getPosOnGridX()const;
     int getPosOnGridY()const;
+    Animation* getAnimation(){return this->_animation;}
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
     Bombe& getTypeBombe() {return _typeBombe;}
@@ -29,19 +34,26 @@ class Joueur {
     void setPosOnGridY(int y);
     void setPosX(int x);
     void setPosY(int y);
+    void setAnimation(sf::Texture* texture, sf::Vector2u nbImages, float tmp){
+      this->_animation = new Animation(texture,nbImages,tmp);
+    }
     void setNbBombes(int nb) {_nbBombes = nb;}
     void setPosBombe(int x, int y){_typeBombe.setPosX(x); _typeBombe.setPosY(y);}
 
-    sf::RectangleShape getEsthetique() const {return this->_esthetique;}
+    sf::RectangleShape* getEsthetique() const {return this->_esthetique;}
 
     void affichage();
+
   protected :
     int _numplayer;
     int _couleur;
     int _vitesse; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
     sf::Vector2i _pos;
-    sf::RectangleShape _esthetique;
+
+    sf::RectangleShape* _esthetique;
     sf::Texture _texture;
+    Animation* _animation;
+
     int _nbBombes;
     Bombe _typeBombe;
 
