@@ -107,9 +107,9 @@ void Jeu::updateEvents(){
               joueur = _j1;}
             joueur->setNbBombes(joueur->getNbBombes()-1);
             joueur->setPosBombe(joueur->getPosOnGridX(), joueur->getPosOnGridY());
+            _listeBombes.push_back( new Bombe(joueur->getTypeBombe()));
 
           //on ajoute la bombe dans la liste pour l'affichage
-            _listeBombes.push_back( new Bombe(joueur->getTypeBombe()));
             //_j1->getTypeBombe().affichage();
             break;
 

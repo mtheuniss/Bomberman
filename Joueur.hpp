@@ -29,7 +29,7 @@ class Joueur {
     int getSensMarche(){return this-> _sensMarche;}
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
-    Bombe& getTypeBombe() {return _typeBombe;}
+    const Bombe& getTypeBombe() const {return _typeBombe;}
 
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);

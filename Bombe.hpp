@@ -11,15 +11,17 @@ class Bombe : public Element{
     //Bombe(int x, int y);
     ~Bombe(){}
     //constructeur par copie
-    Bombe(const Bombe& b){*this = b;}
+    Bombe(const Bombe& b){
+      *this = b;
+    }
 
     //opérateur d'assignement =
     Bombe& operator=(const Bombe& b){
       _rayon = b._rayon;
       _explose = b._explose;
-      _pos = b._pos;
-      _esthetique = b._esthetique;
-      _texture = b._texture;
+      this->affichage();
+      this->setPosX(b.getPosX());
+      this->setPosY(b.getPosY());
       return *this;
     }
 
