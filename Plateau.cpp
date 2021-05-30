@@ -94,7 +94,7 @@ std::cout<<"sortie initPlateau ? "<<std::endl;
 void Plateau::renderPlateau(sf::RenderWindow* w ){
   for (size_t i = 0; i < 15; i++) {
     for (size_t j = 0; j < 10; j++) {
-        w->draw(this->getElement(i,j)->getEsthetique()); // On place l'element sur le plateau
+        w->draw(* this->getElement(i,j)->getEsthetique()); // On place l'element sur le plateau
       }
     }
   }

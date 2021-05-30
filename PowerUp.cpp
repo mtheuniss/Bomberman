@@ -1,6 +1,7 @@
 #include "PowerUp.hpp"
 
 PowerUp::PowerUp(){
+  this->_esthetique = new sf::RectangleShape();
   /*le type du powerup est choisit de façon aléatoire lors de la construction
   Il faut faire en sorte qu'il y ait plus de chance d'avoir un bon PowerUp qu'un
   mauvais PowerUP
@@ -28,8 +29,8 @@ int PowerUp::getType() const{
 }
 
 void PowerUp::affichage(){
-  this->_esthetique.setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float (carrés 72*72)
-  this->_esthetique.setFillColor(sf::Color(205, 133, 63,255)); //On peut direct mettre la couleur c'est pas mal
-  this->_esthetique.setOutlineThickness(1);
-  this->_esthetique.setOutlineColor(sf::Color(170, 68, 0));
+  this->_esthetique->setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float (carrés 72*72)
+  this->_esthetique->setFillColor(sf::Color(205, 133, 63,255)); //On peut direct mettre la couleur c'est pas mal
+  this->_esthetique->setOutlineThickness(1);
+  this->_esthetique->setOutlineColor(sf::Color(170, 68, 0));
 }
