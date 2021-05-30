@@ -44,5 +44,6 @@ void Bombe::affichage(){
   this->_texture.loadFromFile("Images/sprite_bombes.png");
   this->_esthetique->setTexture(&(this->_texture));
 
+  this->_animation = new Animation(&(this->_texture), sf::Vector2u(3,5),0.3f);
 
 }

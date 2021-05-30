@@ -190,7 +190,12 @@ void Jeu::renderJoueurs(){
 }
 void Jeu::renderBombes(){
   for ( Bombe* b : _listeBombes){
-    if (!b->explose()) this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
+    if (!b->explose()){
+      b->getAnimation()->update(2,this->tmpIncrement);
+      b->getEsthetique()->setTextureRect(b->getAnimation()->_RectSelect  );
+
+      this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
+    }
   }
 }
 
