@@ -1,13 +1,6 @@
 #include "Jeu.hpp"
 
 
-
-
-
-
-
-
-
 //Constructeur
 Jeu::Jeu(){
   this->initVariables();
@@ -26,7 +19,6 @@ void Jeu::initJoueur(){
 }
 //Fonction private
 void Jeu::initEntity(){
-
   initJoueur();
 }
 
