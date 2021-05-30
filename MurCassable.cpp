@@ -2,6 +2,7 @@
 
 //Constructeur
 MurCassable::MurCassable(){
+  this->affichage();
   this->_powerup = PowerUp();
   this->cassable = 1;
   this->franchissable = 0;
@@ -9,11 +10,12 @@ MurCassable::MurCassable(){
 }
 MurCassable::MurCassable(int x , int y){
   this->affichage();
-  this->setPosX(x);
-  this->setPosY(y);
+  this->_powerup = PowerUp();
   this->cassable = 1;
   this->franchissable = 0;
-  this->casse = 0;
+  this->casse = 0; //pas cassé lors de sa construction
+  this->setPosX(x);
+  this->setPosY(y);
 }
 /*
 MurCassable::PowerUp getPowerUp (){
