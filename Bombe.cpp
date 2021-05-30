@@ -1,7 +1,6 @@
 #include "Bombe.hpp"
 
 Bombe::Bombe(){
-  this->_esthetique = new sf::RectangleShape();
   _pos.x = 0; _pos.y = 0;
   _rayon = 2;
   _explose = 0;
@@ -39,7 +38,7 @@ void Bombe::degatsBombe(std::list<sf::Vector2i>& listeDegats){
 }
 
 void Bombe::affichage(){
-
+  this->_esthetique = new sf::RectangleShape();
   this->_esthetique->setSize(sf::Vector2f(72.f,72.f));
   this->_esthetique->setTextureRect(sf::IntRect(0,0,18,18));
   this->_texture.loadFromFile("Images/sprite_bombes.png");
