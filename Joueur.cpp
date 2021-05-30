@@ -86,7 +86,7 @@ void Joueur::affichage(){
   this->_esthetique->setSize(sf::Vector2f(72.f,72.f));
   this->_esthetique->setTextureRect(sf::IntRect(0,0,64,64));
   this->_texture.loadFromFile("Images/sprite_pokemon.png");
-
+  this->_esthetique->setOrigin(32,32);
   this->_esthetique->setTexture(&(this->_texture));
 
   this->_animation = new Animation(&(this->_texture), sf::Vector2u(4,4),0.3f);
