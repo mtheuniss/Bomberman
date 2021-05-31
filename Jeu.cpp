@@ -185,7 +185,7 @@ void Jeu::renderBombes(){
     if (!b->explose()){
       b->getAnimation()->update(2,this->tmpIncrement);
       b->getEsthetique()->setTextureRect(b->getAnimation()->_RectSelect  );
-
+      
       this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
     }
   }

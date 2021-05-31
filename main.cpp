@@ -1,23 +1,24 @@
 # include <iostream>
 
 #include "Jeu.hpp"
+#include "EcranAccueil.hpp"
 
 int main()
 {
   //Création d'un objet de la classe ecranAccueil
-  EcranAccueil acceuil;
+  EcranAccueil accueil;
   int perso1 = 0;
   int perso2 = 0;
   //Boucle de l'écran de l'écran d'acceuil
 
-  while(partieBomberman.getIsRunning()){
+  while(accueil.getIsRunning()){
     //mise à jour de la fenetre
     accueil.update();
     //mise à jour des graphiques
     accueil.render();
     //mise à jour des personnages
-    perso1 = getNperso1();
-    perso2 = getNperso2();
+    perso1 = accueil.getNperso1();
+    perso2 = accueil.getNperso2();
   }
 
   //Création d'un objet jeu si les 2 peronnages choisi sont valides
