@@ -1,4 +1,5 @@
 # include <iostream>
+#include <SFML/Audio.hpp>
 
 #include "Jeu.hpp"
 #include "EcranAccueil.hpp"
@@ -25,7 +26,13 @@ int main()
   //si ce n'est pas le cas alors c'est que l'utilisateur ne veut plus jouer, il a fermé la fenetre
   if (perso1!=0 && perso2!=0){
     Jeu partieBomberman;
-    std::cout << "jeu construit" << '\n';
+    //on charge le son
+    sf::SoundBuffer buffer;
+    if (!buffer.loadFromFile("Sons/voxel-revolution.wav"))
+        return -1;
+    sf::Sound sound;
+    sound.setBuffer(buffer);
+    sound.play();
 
     //boucle de Jeu
     //tant que la fenetre n'est pas fermée
