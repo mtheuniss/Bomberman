@@ -12,6 +12,8 @@ class Jeu{
     sf::RenderWindow* _window;
     sf::VideoMode _videoMode;
     sf::Event _ev;
+    sf::RectangleShape _barreEtatJoueur;
+    sf::Texture _imageBarreEtat;
 
     Plateau _grille;
     std::list<Bombe*> _listeBombes;
@@ -20,16 +22,13 @@ class Jeu{
     Joueur* _j2;
 
     float tmpIncrement = 0.0f;
-    // Variable pour gestion d'event
-
-    // sf::Vector2f _posEnt; //Position de la seul entité
-
 
     // Fonctions privées (que pour l'initialisation)
     void initVariables();
     void initFenetre();
     void initEntity(); // Pour séparer l'init des entitées et des fenêtres qui stock les entitées
     void initJoueur();
+    void initBarreEtatJoueur();
 
   public :
     //Constructeur, Destructeur
@@ -59,6 +58,7 @@ class Jeu{
     void render();
       void renderJoueurs();
       void renderBombes();
+      void renderBarreEtat();
 };
 
 #endif

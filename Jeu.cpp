@@ -6,20 +6,35 @@ Jeu::Jeu(){
   this->initVariables();
   this->initFenetre();
   this->initEntity();
+  this->initBarreEtatJoueur();
 }
 
 //Accesseurs
 bool Jeu::getIsRunning() const{
   return this->_window->isOpen();
 }
-
+//fonction private
 void Jeu::initJoueur(){
     this->_j1 = new Joueur(0,0,0,0);
     this->_j2 = new Joueur(1080-30,720-31,1,0);
 }
+
+//fonction private
+void Jeu::initBarreEtatJoueur(){
+  //initialisation du rectangle
+  //la taille :
+  this->_barreEtatJoueur.setSize(sf::Vector2f(200.f,720.f));
+  //la position
+  this->_barreEtatJoueur.setPosition(sf::Vector2f(1080,0));
+  //la texture
+  this->_imageBarreEtat.loadFromFile("Images/affichage_info_jeu.png");
+  this->_barreEtatJoueur.setTexture(&(this->_imageBarreEtat));
+}
+
 //Fonction private
 void Jeu::initEntity(){
   initJoueur();
+  initBarreEtatJoueur();
 }
 
 // Fonctions private
@@ -98,9 +113,11 @@ void Jeu::updateEvents(){
               joueur = _j2;}
             else {
               joueur = _j1;}
-            joueur->setNbBombes(joueur->getNbBombes()-1);
-            joueur->setPosBombe(joueur->getPosOnGridX(), joueur->getPosOnGridY());
-            _listeBombes.push_back( new Bombe(joueur->getTypeBombe()));
+            if (joueur->getNbBombes()>0){
+              joueur->setNbBombes(joueur->getNbBombes()-1);
+              joueur->setPosBombe(joueur->getPosOnGridX(), joueur->getPosOnGridY());
+              _listeBombes.push_back( new Bombe(joueur->getTypeBombe()));
+            }
 
           //on ajoute la bombe dans la liste pour l'affichage
             //_j1->getTypeBombe().affichage();
@@ -216,6 +233,40 @@ void Jeu::renderBombes(){
   }
 }
 
+void Jeu::renderBarreEtat(){
+  this->_window->draw(_barreEtatJoueur);
+  //on écrit les nb de vies et nb de bombes
+  sf::Font font;
+  if (!font.loadFromFile("Polices/FogtwoNo5.ttf"))
+  {
+    std::cerr << "la police ne se charge pas" << std::endl;
+  }
+  sf::Text VieJ1;
+  sf::Text VieJ2;
+  sf::Text BombeJ1;
+  sf::Text BombeJ2;
+  // choix de la police à utiliser
+  VieJ1.setFont(font);
+  VieJ2.setFont(font);
+  BombeJ1.setFont(font);
+  BombeJ2.setFont(font);
+  // choix de la chaîne de caractères à afficher
+  VieJ1.setString(std::to_string(_j1->nbVies()));
+  BombeJ1.setString(std::to_string(_j1->getNbBombes()));
+  // choix de la taille des caractères
+  VieJ1.setCharacterSize(30); // exprimée en pixels, pas en points !
+  BombeJ1.setCharacterSize(30);
+  // choix de la couleur du texte
+  VieJ1.setColor(sf::Color::Yellow);
+  BombeJ1.setColor(sf::Color::Yellow);
+  // position du texte
+  VieJ1.setPosition(sf::Vector2f(1080+102,225));
+  BombeJ1.setPosition(sf::Vector2f(1080+102,300));
+  //affichage
+  this->_window->draw(VieJ1);
+  this->_window->draw(BombeJ1);
+}
+
 void Jeu::render(){
   //affichage change si un joueur à perdu
   //Si la partie n'est pas finie
@@ -226,11 +277,13 @@ void Jeu::render(){
     this->_grille.renderPlateau(this->_window);
     renderJoueurs();
     renderBombes();
+    renderBarreEtat();
   }
   else{
     //dessin des objets
     this->_grille.renderPlateau(this->_window);
     renderJoueurs();
+    renderBarreEtat();
     //ajouter un texte qui donne le resultat
   }
 
