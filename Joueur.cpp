@@ -6,6 +6,7 @@ Joueur::Joueur(){
   this->_couleur = 0;
   this->_vitesse = 5;
   this->_sensMarche =0;
+  this->_nbVies = 3; //chaque joueur commence la partie avec 3 vies
 }
 Joueur::Joueur(int x , int y , int num, int color){
   this->_numplayer = num; //Numero du jouer ( si deux joueur 1 ou 2 )
@@ -19,6 +20,8 @@ Joueur::Joueur(int x , int y , int num, int color){
   //gestion des bombes
   _nbBombes = 5;
   _typeBombe = Bombe();
+
+  this->_nbVies = 3; //chaque joueur commence la partie avec 3 vies
 
   this->affichage();
 }
@@ -75,7 +78,16 @@ void Joueur::setPosY(int y){
 }
 
 
-
+void Joueur::estTouche(std::list<sf::Vector2i> liste){
+  //on parcours la liste : si une des cases détruite par la bombe est celle du joueur, il perd une vie
+  for (sf::Vector2i coord : liste){
+    if (coord.x == _pos.x && coord.y == _pos.y){
+      _nbVies --;
+      std::cout<<"nbVies = "<< _nbVies<<std::endl;
+      break; //on sort car le joueur n'est que dans une seule case
+    }
+  }
+}
 
 
 

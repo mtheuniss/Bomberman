@@ -7,6 +7,7 @@
 #include<SFML/System.hpp>
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
+#include <list>
 
 #include "Bombe.hpp"
 #include "Animation.hpp"
@@ -30,6 +31,10 @@ class Joueur {
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
     const Bombe& getTypeBombe() const {return _typeBombe;}
+    //accesseurs _nbVies (const et non const)
+    const int& nbVies() const{return _nbVies;}
+    int& nbVies() {return _nbVies;}
+
 
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);
@@ -39,8 +44,10 @@ class Joueur {
       this->_animation = new Animation(texture,nbImages,tmp);
     }
     void setSensMarche(int s){this->_sensMarche = s;}
+
     void setNbBombes(int nb) {_nbBombes = nb;}
     void setPosBombe(int x, int y){_typeBombe.setPosX(x); _typeBombe.setPosY(y);}
+    void estTouche(std::list<sf::Vector2i> liste);
 
     sf::RectangleShape* getEsthetique() const {return this->_esthetique;}
 
@@ -50,7 +57,8 @@ class Joueur {
     int _numplayer;
     int _couleur;
     int _vitesse; // vitesse de déplacement de l'entité /!\ si on augmemente trop ca ne sera plus continue
-    sf::Vector2i _pos;
+    sf::Vector2i _pos; //position dans la grille
+    int _nbVies; //nombre de vies du jeu au cours de la partie
 
     sf::RectangleShape* _esthetique;
     sf::Texture _texture;

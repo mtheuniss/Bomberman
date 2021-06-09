@@ -28,10 +28,10 @@ int main()
     std::cout << "jeu construit" << '\n';
 
     //boucle de Jeu
+    //tant que la fenetre n'est pas fermée
     while(partieBomberman.getIsRunning()){
       //mise à jour de la partie
       partieBomberman.update();
-
       //mise à jour des graphiques
       partieBomberman.render();
     }
