@@ -9,6 +9,7 @@ private:
   sf::Vector2u _nombreImages; //aka cb d'image au total ex : 3 types 5 image par type
   sf::Vector2u _imageActuelle; // ou on ce trouve dans notre cycle d'animation
 
+  int _bouclage;
   float _tmpTotal; //Le temps du cycle donc le nombre de temps par animation fois le nombre d'image dans chaque Animation
   float _tmpInter; // Le temps avant de passer a l'autre image
 

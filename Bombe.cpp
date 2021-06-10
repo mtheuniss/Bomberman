@@ -43,7 +43,7 @@ void Bombe::affichage(){
   this->_esthetique->setTextureRect(sf::IntRect(0,0,18,18));
   this->_texture.loadFromFile("Images/sprite_bombes.png");
   this->_esthetique->setTexture(&(this->_texture));
-
+  this->_esthetique->setOrigin(6,6);
   this->_animation = new Animation(&(this->_texture), sf::Vector2u(3,5),0.3f);
 
 }
