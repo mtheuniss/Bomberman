@@ -63,6 +63,7 @@ class Jeu{
     void update();
       void updateEvents();
       void updateBombes();
+      void updatePowerUp();
     void render();
       void renderJoueurs();
       void renderBombes();

@@ -15,7 +15,7 @@ class PowerUpViePlus : public PowerUp {
     virtual ~ PowerUpViePlus(){}
     //méthodes à redefinir
     void affichage();
-    void powerUpAttrape(Joueur* j);
+    int powerUpAttrape(Joueur* j);
 };
 
 #endif

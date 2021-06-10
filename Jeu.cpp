@@ -203,11 +203,27 @@ void Jeu::updateEvents(){
     }
   }
 }
+
+void Jeu::updatePowerUp(){
+
+  for (std::list<PowerUp*>::iterator p = _listePowerUp.begin(); p!=_listePowerUp.end(); ++p){
+    if ((*p)->powerUpAttrape(this->_j1) || (*p)->powerUpAttrape(this->_j2)){
+      _listePowerUp.erase(p);
+      //delete (*p);
+      //p--;//on décrémente l'itérateur (segfault sinon)
+    }
+  }
+
+
+
+}
+
 void Jeu::update(){
   //mise à jour si le partie n'est pas finie
   if ((_j1->nbVies()!=0) && (_j2->nbVies()!=0 )){
     updateEvents();
     updateBombes();
+    updatePowerUp();
   }
   //si la partie est finie, on peut seulement fermer la fenetre(+extension rejouer?)
   else{

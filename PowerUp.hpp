@@ -13,7 +13,7 @@ class PowerUp : public Element{
 
   //méthodes
     virtual void affichage() = 0;
-    virtual void powerUpAttrape(Joueur* j) = 0;
+    virtual int powerUpAttrape(Joueur* j) = 0;
 
 
 };
