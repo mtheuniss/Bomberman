@@ -16,7 +16,7 @@ class MurCassable : public Mur {
 
     void affichage();
   protected :
-    PowerUp _powerup;
-    bool casse;
+    //PowerUp _powerup;
+    //bool casse;
 };
 #endif

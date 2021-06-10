@@ -65,17 +65,20 @@ void Jeu::updateBombes(){
       std::list<sf::Vector2i> liste;
       //on appelle la fonction qui met les cases dans la liste
       (*b)->degatsBombe(liste);//passage de la liste par référence
-      //on affiche la liste obtenue
-      std::cout << "debut de la liste" << '\n';
+      //on regarde aussi si la bombe a explosé sur un des joueurs (= mise à jour du nb de vies)
+      this->_j1->estTouche(liste);
+      this->_j2->estTouche(liste);
+      // on update la grille (destruction des murs cassables)
+      _grille.updateGrille(liste);
+      // A la sortie de updateGrille, il ne reste plus que les coordonées des murs cassés
+      // on s'en sert pour la création des powerups
+      // verification de la liste renvoyée
+      std::cout << "debut de la liste après modif" << '\n';
       for (sf::Vector2i b : liste){
         std::cout << "["<<b.x<< " ; "<< b.y<<"]" << '\n';
       }
       std::cout << "fin de la liste" << '\n';
-      // on update la grille (destruction des murs cassables)
-      _grille.updateGrille(liste);
-      //on regarde aussi si la bombe a explosé sur un des joueurs (= mise à jour du nb de vies)
-      this->_j1->estTouche(liste);
-      this->_j2->estTouche(liste);
+      //création des powerups ICI
       //on vide la liste
       liste.clear();
       //la bombe a explosé, elle ne sert plus à rien alors on la supprime des objets à afficher

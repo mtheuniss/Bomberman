@@ -17,6 +17,7 @@ class Jeu{
 
     Plateau _grille;
     std::list<Bombe*> _listeBombes;
+    std::list<PowerUp*> _listePowerUp;
 
     Joueur* _j1;
     Joueur* _j2;
@@ -39,7 +40,11 @@ class Jeu{
       for(Bombe* child : _listeBombes) {
         std::cout<<"supp _bombe"<<std::endl;
         delete child;
-        }
+      }
+      for(PowerUp* child : _listePowerUp) {
+        std::cout<<"supp _powerUp"<<std::endl;
+        delete child;
+      }
       std::cout<<"supp _fenetre & joueurs"<<std::endl;
     }
 

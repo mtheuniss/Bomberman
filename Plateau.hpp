@@ -44,7 +44,7 @@ class Plateau{
     int getMap()  const;
 
     void renderPlateau(sf::RenderWindow* w);
-    void updateGrille(std::list<sf::Vector2i> liste);
+    void updateGrille(std::list<sf::Vector2i>& liste);
 };
 
 #endif

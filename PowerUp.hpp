@@ -2,20 +2,19 @@
 #define POWERUP_HPP
 
 #include "Element.hpp"
+#include "Joueur.hpp"
+//PowerUP, c'est une interface
 
 class PowerUp : public Element{
   public :
   //constructeur
-    PowerUp();
-    ~PowerUp(){}
+    //PowerUp();
+    //~PowerUp(){}
 
   //méthodes
-    void affichage();
-    int getType() const;
-    //void setType(int type);
+    virtual void affichage() = 0;
+    virtual void powerUpAttrape(Joueur* j) = 0;
 
-  protected :
-    int _type;
-    bool _updown;
+
 };
 #endif
