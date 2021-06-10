@@ -5,6 +5,7 @@
 #include "Animation.hpp"
 #include "Plateau.hpp"
 #include "PowerUpViePlus.hpp"
+#include "PowerUpBombePlus.hpp"
 #include <list>
 
 class Jeu{

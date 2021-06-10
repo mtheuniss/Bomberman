@@ -57,7 +57,7 @@ void Jeu::initFenetre(){
 void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
   //on parcours la liste des murs cassés et on met des powerup
   for (sf::Vector2i coord : liste){
-    _listePowerUp.push_back( new PowerUpViePlus(coord));
+    _listePowerUp.push_back( new PowerUpBombePlus(coord));
   }
 }
 

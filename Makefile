@@ -5,13 +5,13 @@ EXEC=main
 
 all: $(EXEC)
 
-main: EcranAccueil.o Bombe.o PowerUpViePlus.o MurVoid.o MurCassable.o MurDur.o Plateau.o Animation.o Jeu.o Joueur.o main.o
+main: EcranAccueil.o Bombe.o PowerUpBombePlus.o PowerUpViePlus.o MurVoid.o MurCassable.o MurDur.o Plateau.o Animation.o Jeu.o Joueur.o main.o
 		$(CC) -o $@ $^ $(LDFLAGS) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 EcranAccueil.o : EcranAccueil.cpp EcranAccueil.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-Jeu.o: Jeu.cpp Jeu.hpp Element.hpp Mur.hpp PowerUpViePlus.hpp
+Jeu.o: Jeu.cpp Jeu.hpp Element.hpp Mur.hpp PowerUpViePlus.hpp PowerUpBombePlus.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 Joueur.o: Joueur.cpp Joueur.hpp  Element.hpp Animation.o
@@ -30,6 +30,9 @@ MurVoid.o: MurVoid.cpp MurVoid.hpp Element.hpp Mur.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 PowerUpViePlus.o: PowerUpViePlus.cpp PowerUpViePlus.hpp PowerUp.hpp Element.hpp Joueur.hpp
+		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
+
+PowerUpBombePlus.o: PowerUpBombePlus.cpp PowerUpBombePlus.hpp PowerUp.hpp Element.hpp Joueur.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 Bombe.o: Bombe.cpp Bombe.hpp Element.hpp
