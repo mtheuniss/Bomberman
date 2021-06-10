@@ -16,7 +16,7 @@ bool Jeu::getIsRunning() const{
 //fonction private
 void Jeu::initJoueur(){
     this->_j1 = new Joueur(0,0,0,0);
-    this->_j2 = new Joueur(1080-30,720-31,1,0);
+    this->_j2 = new Joueur(1080-72,720-72,1,0);
 }
 
 //fonction private
@@ -52,6 +52,15 @@ void Jeu::initFenetre(){
   this->_window->setFramerateLimit(144);
 }
 
+//Création d'un powerUp qui est mis dans la liste
+//tirage aléatoire du type de powerUp
+void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
+  //on parcours la liste des murs cassés et on met des powerup
+  for (sf::Vector2i coord : liste){
+    _listePowerUp.push_back( new PowerUpViePlus(coord));
+  }
+}
+
 void Jeu::updateBombes(){
   //Note : pour supprimer d'une liste, il nous faut un itérateur
   //for (Bombe* b : _listeBombes){
@@ -72,6 +81,7 @@ void Jeu::updateBombes(){
       _grille.updateGrille(liste);
       // A la sortie de updateGrille, il ne reste plus que les coordonées des murs cassés
       // on s'en sert pour la création des powerups
+      nouveauPowerUp(liste);
       // verification de la liste renvoyée
       std::cout << "debut de la liste après modif" << '\n';
       for (sf::Vector2i b : liste){
@@ -156,29 +166,33 @@ void Jeu::updateEvents(){
 
             // On init les touches ZQSD pour déplacer le deuxième joueur
             case sf::Keyboard::Q: //  <--
-              //on verifie que le point est dans une case que l'on peut franchir
+              this->_j2->setSensMarche(1);
               nouvelle_pos = this->_j2->getPosX() - this->_j2->getVit();
               if(estFranchissable(nouvelle_pos, _j2->getPosY()) && estFranchissable(nouvelle_pos, _j2->getPosY()+30))
                 this->_j2->setPosX(nouvelle_pos);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
               break;
             case sf::Keyboard::D: //  -->
-              nouvelle_pos = this->_j2->getPosX() + this->_j2->getVit() + 30;
-              if(estFranchissable(nouvelle_pos, _j2->getPosY())&&estFranchissable(nouvelle_pos, _j2->getPosY()+30)){
-                //std::cout << "nouvelle position D , x[" <<nouvelle_pos<<"]"<< '\n';
-                this->_j2->setPosX(nouvelle_pos-30);}
+              this->_j2->setSensMarche(2);
+              nouvelle_pos = this->_j2->getPosX() + this->_j2->getVit();
+              std::cout << "nouvelle_pos = " << nouvelle_pos << '\n';
+              std::cout << "condition 1 D " <<estFranchissable(nouvelle_pos, _j2->getPosY())<< '\n';
+              std::cout << "condition 2 D "<<estFranchissable(nouvelle_pos, _j2->getPosY()+30) << '\n';
+              if(estFranchissable(nouvelle_pos, _j2->getPosY())&&estFranchissable(nouvelle_pos, _j2->getPosY()+30))
+                this->_j2->setPosX(nouvelle_pos);
               break;
             case sf::Keyboard::Z:
+              std::cout << "debut Z" << std::endl;
+              this->_j2->setSensMarche(3);
+              std::cout << "après setSensMarche" << std::endl;
               nouvelle_pos = this->_j2->getPosY() - this->_j2->getVit();
-              if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos)){
-                //std::cout << "nouvelle position Z , y[" <<nouvelle_pos<<"]"<< '\n';
-                this->_j2->setPosY(nouvelle_pos);}
+              if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
+                this->_j2->setPosY(nouvelle_pos);
               break;
             case sf::Keyboard::S:
+              this->_j2->setSensMarche(0);
               nouvelle_pos = this->_j2->getPosY() + this->_j2->getVit() + 30;
-              if (nouvelle_pos<720){
-                if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
-                  this->_j2->setPosY(nouvelle_pos-30);
-                }
+              if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
+                this->_j2->setPosY(nouvelle_pos-30);
               break;
 
             default :
@@ -223,8 +237,13 @@ void Jeu::renderJoueurs(){
   this->_j1->getAnimation()->update(this->_j1->getSensMarche(),this->tmpIncrement);
   this->_j1->getEsthetique()->setTextureRect(this->_j1->getAnimation()->_RectSelect  );
   this->_window->draw(*(this->_j1->getEsthetique())); // On place l'element sur le plateau
-  //this->_window->draw(this->_j2->getEsthetique()); // On place l'element sur le plateau
+
+  this->_j2->getAnimation()->update(this->_j2->getSensMarche(),this->tmpIncrement);
+  this->_j2->getEsthetique()->setTextureRect(this->_j2->getAnimation()->_RectSelect  );
+  this->_window->draw(*(this->_j2->getEsthetique())); // On place l'element sur le plateau
 }
+
+
 void Jeu::renderBombes(){
   for ( Bombe* b : _listeBombes){
     if (!b->explose()){
@@ -233,6 +252,12 @@ void Jeu::renderBombes(){
 
       this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
     }
+  }
+}
+
+void Jeu::renderPowerUp(){
+  for ( PowerUp* b : _listePowerUp){
+    this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
   }
 }
 
@@ -256,18 +281,29 @@ void Jeu::renderBarreEtat(){
   // choix de la chaîne de caractères à afficher
   VieJ1.setString(std::to_string(_j1->nbVies()));
   BombeJ1.setString(std::to_string(_j1->getNbBombes()));
+  VieJ2.setString(std::to_string(_j2->nbVies()));
+  BombeJ2.setString(std::to_string(_j2->getNbBombes()));
   // choix de la taille des caractères
   VieJ1.setCharacterSize(30); // exprimée en pixels, pas en points !
   BombeJ1.setCharacterSize(30);
+  VieJ2.setCharacterSize(30); // exprimée en pixels, pas en points !
+  BombeJ2.setCharacterSize(30);
   // choix de la couleur du texte
   VieJ1.setColor(sf::Color::Yellow);
   BombeJ1.setColor(sf::Color::Yellow);
+  VieJ2.setColor(sf::Color::Yellow);
+  BombeJ2.setColor(sf::Color::Yellow);
   // position du texte
   VieJ1.setPosition(sf::Vector2f(1080+102,225));
   BombeJ1.setPosition(sf::Vector2f(1080+102,300));
+  VieJ2.setPosition(sf::Vector2f(1080+102,400));
+  BombeJ2.setPosition(sf::Vector2f(1080+102,450));
   //affichage
   this->_window->draw(VieJ1);
   this->_window->draw(BombeJ1);
+  this->_window->draw(VieJ2);
+  this->_window->draw(BombeJ2);
+
 }
 
 void Jeu::render(){
@@ -280,6 +316,7 @@ void Jeu::render(){
     this->_grille.renderPlateau(this->_window);
     renderJoueurs();
     renderBombes();
+    renderPowerUp();
     renderBarreEtat();
   }
   else{

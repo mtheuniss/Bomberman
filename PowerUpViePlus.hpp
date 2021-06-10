@@ -7,14 +7,15 @@
 //Ce powerUp ajoute une vie au joueur que le récupère
 
 class PowerUpViePlus : public PowerUp {
-  //Constructeurs
-  PowerUpViePlus();
-  PowerUpViePlus(int x, int y);
-  //Desctructeur
-  virtual ~ PowerUpViePlus(){}
-  //méthodes à redefinir
-  void affichage();
-  void powerUpAttrape(Joueur* j);
+  public :
+    //Constructeurs
+    PowerUpViePlus();
+    PowerUpViePlus(sf::Vector2i position);
+    //Desctructeur
+    virtual ~ PowerUpViePlus(){}
+    //méthodes à redefinir
+    void affichage();
+    void powerUpAttrape(Joueur* j);
 };
 
 #endif

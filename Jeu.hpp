@@ -4,6 +4,7 @@
 
 #include "Animation.hpp"
 #include "Plateau.hpp"
+#include "PowerUpViePlus.hpp"
 #include <list>
 
 class Jeu{
@@ -30,6 +31,8 @@ class Jeu{
     void initEntity(); // Pour séparer l'init des entitées et des fenêtres qui stock les entitées
     void initJoueur();
     void initBarreEtatJoueur();
+
+    void nouveauPowerUp(std::list<sf::Vector2i> liste);
 
   public :
     //Constructeur, Destructeur
@@ -63,6 +66,7 @@ class Jeu{
     void render();
       void renderJoueurs();
       void renderBombes();
+      void renderPowerUp();
       void renderBarreEtat();
 };
 

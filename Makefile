@@ -11,7 +11,7 @@ main: EcranAccueil.o Bombe.o PowerUpViePlus.o MurVoid.o MurCassable.o MurDur.o P
 EcranAccueil.o : EcranAccueil.cpp EcranAccueil.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-Jeu.o: Jeu.cpp Jeu.hpp Element.hpp Mur.hpp
+Jeu.o: Jeu.cpp Jeu.hpp Element.hpp Mur.hpp PowerUpViePlus.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 Joueur.o: Joueur.cpp Joueur.hpp  Element.hpp Animation.o

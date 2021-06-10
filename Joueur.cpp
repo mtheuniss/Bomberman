@@ -97,7 +97,12 @@ void Joueur::affichage(){
 
   this->_esthetique->setSize(sf::Vector2f(72.f,72.f));
   this->_esthetique->setTextureRect(sf::IntRect(0,0,64,64));
-  this->_texture.loadFromFile("Images/sprite_pokemon.png");
+  switch (  this->_couleur ) {
+    case 0 :
+    this->_texture.loadFromFile("Images/sprite_pokemon.png");
+    break;
+
+  }
   this->_esthetique->setOrigin(32,32);
   this->_esthetique->setTexture(&(this->_texture));
 
@@ -106,21 +111,6 @@ void Joueur::affichage(){
 
 
 //-----------------------------------------------------------------
-
-
-/*
-  swith important pour afficher plusieur jouer mais pour le moment on va juste tester avec un seul sprite
-
-  switch (this->_couleur) {
-    case 0:
-      this->_esthetique->setSize(sf::Vector2f(30.f,30.f)); //.f -> float sans être float (carrés 72*72)
-      this->_esthetique->setFillColor(sf::Color(0, 0, 0,255)); //On peut direct mettre la couleur c'est pas mal
-      break;
-}
-
-*/
-
-
 
 
 }

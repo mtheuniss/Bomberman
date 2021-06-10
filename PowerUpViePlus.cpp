@@ -6,10 +6,10 @@ PowerUpViePlus::PowerUpViePlus(){
   this->affichage();
 }
 
-PowerUpViePlus::PowerUpViePlus(int x, int y){
+PowerUpViePlus::PowerUpViePlus(sf::Vector2i position){
   this->affichage();
-  this->setPosX(x);
-  this->setPosY(y);
+  this->setPosX(position.x);
+  this->setPosY(position.y);
 }
 
 
@@ -18,9 +18,7 @@ PowerUpViePlus::PowerUpViePlus(int x, int y){
 void PowerUpViePlus::affichage(){
   this->_esthetique = new sf::RectangleShape();
   this->_esthetique->setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float (carrés 72*72)
-  this->_esthetique->setFillColor(sf::Color(205, 133, 63,255)); //On peut direct mettre la couleur c'est pas mal
-  this->_esthetique->setOutlineThickness(1);
-  this->_esthetique->setOutlineColor(sf::Color(170, 68, 0));
+  this->_esthetique->setFillColor(sf::Color(0, 0, 0,255)); //On peut direct mettre la couleur c'est pas mal
 }
 
 void PowerUpViePlus::powerUpAttrape(Joueur* j){
