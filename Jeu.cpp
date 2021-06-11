@@ -98,6 +98,13 @@ void Jeu::updateBombes(){
     this->_j2->setNbBombes(1);
   }
 
+  if(this->_j1->getBombe()-> rayon() >= 5){
+    std::cout << "type change" << '\n';
+    this->_j1 -> getBombe() -> type() = 3;
+  }
+  if(this->_j2->getBombe()-> rayon() >= 5){
+    this->_j2-> getBombe() -> type() = 3;
+  }
 
   for (std::list<Bombe*>::iterator b = _listeBombes.begin(); b!=_listeBombes.end(); ++b){
     if((*b)->imBoum() && !(*b)->explose()){
@@ -319,7 +326,8 @@ void Jeu::renderJoueurs(){
 void Jeu::renderBombes(){
   for ( Bombe* b : _listeBombes){
     if (!b->explose()){
-      b->getAnimation()->update(0,this->tmpIncrement);
+      std::cout << "type bombe : "<< b->type() << '\n';
+      b->getAnimation()->update(b->type(),this->tmpIncrement);
       b->getEsthetique()->setTextureRect(b->getAnimation()->_RectSelect  );
 
       this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau

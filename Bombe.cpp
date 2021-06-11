@@ -4,6 +4,7 @@ Bombe::Bombe(){
   _pos.x = 0; _pos.y = 0;
   _rayon = 2;
   _explose = 0;
+  _type = 0;
   this->affichage();
 
 }
