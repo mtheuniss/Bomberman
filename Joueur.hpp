@@ -38,6 +38,11 @@ class Joueur {
     const int& getJoueurColor() const{return _couleur;}
     int& getJoueurColor() {return _couleur;}
 
+    const int& getVitesse() const{return _vitesse;}
+    int& getVitesse() {return _vitesse;}
+
+
+
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);
     void setPosX(int x);
@@ -46,6 +51,9 @@ class Joueur {
       this->_animation = new Animation(texture,nbImages,tmp);
     }
     void setSensMarche(int s){this->_sensMarche = s;}
+
+    void setVitesse(int v){this->_vitesse = v;}
+
 
     void setNbBombes(int nb) {_nbBombes = nb;}
     void setPosBombe(int x, int y){_typeBombe.setPosX(x); _typeBombe.setPosY(y);}
