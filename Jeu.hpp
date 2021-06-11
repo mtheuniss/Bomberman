@@ -4,9 +4,11 @@
 
 #include "Animation.hpp"
 #include "Plateau.hpp"
+
 #include "PowerUpViePlus.hpp"
 #include "PowerUpBombePlus.hpp"
 #include "PowerUpVitessePlus.hpp"
+#include "PowerUpFirePlus.hpp"
 
 #include <list>
 

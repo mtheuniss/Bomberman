@@ -72,13 +72,17 @@ void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
   for (sf::Vector2i coord : liste){
     switch (type) {
       case 1:
-        _listePowerUp.push_back( new PowerUpViePlus(coord));
+        _listePowerUp.push_back( new PowerUpBombePlus(coord));
         break;
       case 2:
-        _listePowerUp.push_back( new PowerUpBombePlus(coord));
+        _listePowerUp.push_back( new PowerUpFirePlus(coord));
         break;
       case 3:
         _listePowerUp.push_back( new PowerUpVitessePlus(coord));
+        break;
+      case 4:
+        _listePowerUp.push_back( new PowerUpViePlus(coord));
+
         break;
       default :
         break;
@@ -89,6 +93,12 @@ void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
 void Jeu::updateBombes(){
   //Note : pour supprimer d'une liste, il nous faut un itérateur
   //for (Bombe* b : _listeBombes){
+  if(this->_j1->getNbBombes() == 0 && this->_j2->getNbBombes() == 0 ){
+    this->_j1->setNbBombes(1);
+    this->_j2->setNbBombes(1);
+  }
+
+
   for (std::list<Bombe*>::iterator b = _listeBombes.begin(); b!=_listeBombes.end(); ++b){
     if((*b)->imBoum() && !(*b)->explose()){
       std::cout << "boum" << '\n';

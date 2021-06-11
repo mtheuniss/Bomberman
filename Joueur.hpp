@@ -31,6 +31,8 @@ class Joueur {
     int getNbBombes() const{return _nbBombes;}
     const int& getVit()const;
     const Bombe& getTypeBombe() const {return _typeBombe;}
+    Bombe* getBombe() {return &_typeBombe;}
+
     //accesseurs _nbVies (const et non const)
     const int& nbVies() const{return _nbVies;}
     int& nbVies() {return _nbVies;}

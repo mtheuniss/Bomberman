@@ -5,7 +5,7 @@ EXEC=main
 
 all: $(EXEC)
 
-main: EcranAccueil.o Bombe.o PowerUpBombePlus.o PowerUpViePlus.o PowerUpVitessePlus.o MurVoid.o MurCassable.o MurDur.o Plateau.o Animation.o Jeu.o Joueur.o main.o
+main: EcranAccueil.o Bombe.o PowerUpFirePlus.o PowerUpBombePlus.o PowerUpViePlus.o PowerUpVitessePlus.o MurVoid.o MurCassable.o MurDur.o Plateau.o Animation.o Jeu.o Joueur.o main.o
 		$(CC) -o $@ $^ $(LDFLAGS) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 EcranAccueil.o : EcranAccueil.cpp EcranAccueil.hpp
@@ -33,6 +33,9 @@ PowerUpViePlus.o: PowerUpViePlus.cpp PowerUpViePlus.hpp PowerUp.hpp Element.hpp 
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 PowerUpBombePlus.o: PowerUpBombePlus.cpp PowerUpBombePlus.hpp PowerUp.hpp Element.hpp Joueur.hpp
+		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
+
+PowerUpFirePlus.o: PowerUpFirePlus.cpp PowerUpFirePlus.hpp PowerUp.hpp Element.hpp Joueur.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 PowerUpVitessePlus.o: PowerUpVitessePlus.cpp PowerUpVitessePlus.hpp PowerUp.hpp Element.hpp Joueur.hpp
