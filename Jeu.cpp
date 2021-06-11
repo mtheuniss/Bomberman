@@ -6,8 +6,19 @@ Jeu::Jeu(){
   this->initVariables();
   this->initFenetre();
   this->initEntity();
+  // this->initBarreEtatJoueur();
+}
+
+Jeu::Jeu(Joueur* j1 , Joueur* j2){
+  this->initVariables();
+  this->initFenetre();
+  this->_j1 = j1;
+  this->_j2 = j2;
   this->initBarreEtatJoueur();
 }
+
+
+
 
 //Accesseurs
 bool Jeu::getIsRunning() const{
@@ -32,6 +43,7 @@ void Jeu::initBarreEtatJoueur(){
 }
 
 //Fonction private
+
 void Jeu::initEntity(){
   initJoueur();
   initBarreEtatJoueur();

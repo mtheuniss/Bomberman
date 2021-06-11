@@ -38,6 +38,7 @@ class Jeu{
   public :
     //Constructeur, Destructeur
     Jeu();
+    Jeu(Joueur* j1 , Joueur* j2);
     virtual ~Jeu(){
       delete this->_window;
       delete _j1; delete _j2;

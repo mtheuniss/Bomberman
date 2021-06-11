@@ -98,9 +98,22 @@ void Joueur::affichage(){
   this->_esthetique->setSize(sf::Vector2f(72.f,72.f));
   this->_esthetique->setTextureRect(sf::IntRect(0,0,64,64));
   switch (  this->_couleur ) {
-    case 0 :
-    this->_texture.loadFromFile("Images/sprite_pokemon.png");
+    case 1 :
+    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_blanc.png");
     break;
+    case 2 :
+    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_rose.png");
+    break;
+    case 3 :
+    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_jaune.png");
+    break;
+    case 4 :
+    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_vert.png");
+    break;
+    default :
+    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon.png");
+    break;
+
 
   }
   this->_esthetique->setOrigin(32,32);
