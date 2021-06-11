@@ -19,7 +19,6 @@ Jeu::Jeu(Joueur* j1 , Joueur* j2){
 
 
 
-
 //Accesseurs
 bool Jeu::getIsRunning() const{
   return this->_window->isOpen();
@@ -231,17 +230,43 @@ void Jeu::updatePowerUp(){
       p--;//on décrémente l'itérateur (segfault sinon)
     }
   }
+}
+
+void Jeu::updateIA(){
+  int nouvelle_pos;
+  this->_j2->setSensMarche(3);
+  nouvelle_pos = this->_j2->getPosY() - this->_j2->getVit();
+  if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
+    this->_j2->setPosY(nouvelle_pos);
+  else{
+    if (this->_j2->getNbBombes()>0){
+      this->_j2->setNbBombes(this->_j2->getNbBombes()-1);
+      this->_j2->setPosBombe(this->_j2->getPosOnGridX(), this->_j2->getPosOnGridY());
+      _listeBombes.push_back( new Bombe(this->_j2->getTypeBombe()));
+
+      this->_j2->setSensMarche(0);
+      nouvelle_pos = this->_j2->getPosY() + this->_j2->getVit() + 30;
+      if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
+        this->_j2->setPosY(nouvelle_pos-30);
+    }
+
+  }
 
 
 
 }
 
+
+
+
 void Jeu::update(){
   //mise à jour si le partie n'est pas finie
   if ((_j1->nbVies()!=0) && (_j2->nbVies()!=0 )){
     updateEvents();
+    if(!this->_j2->getJoueurColor()) updateIA();
     updateBombes();
     updatePowerUp();
+
   }
   //si la partie est finie, on peut seulement fermer la fenetre(+extension rejouer?)
   else{

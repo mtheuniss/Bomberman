@@ -24,11 +24,9 @@ int main()
 
   //Création d'un objet jeu si les 2 peronnages choisi sont valides
   //si ce n'est pas le cas alors c'est que l'utilisateur ne veut plus jouer, il a fermé la fenetre
-  if (perso1!=0 && perso2!=0){
-    std::cout << "accueil"<< accueil.getNperso1() << '\n';
-    std::cout << "accueil"<< accueil.getNperso2() << '\n';
+  if (perso1!=0 || perso2!=0){
 
-    Jeu partieBomberman = Jeu( new Joueur(0,0,0,perso1-1), new Joueur(1080-72,720-72,1,perso2-1));
+    Jeu partieBomberman = Jeu( new Joueur(0,0,0,perso1), new Joueur(1080-72,720-72,1,perso2));
     //on charge le son
     sf::SoundBuffer buffer;
     if (!buffer.loadFromFile("Sons/voxel-revolution.wav"))

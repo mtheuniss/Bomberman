@@ -64,6 +64,7 @@ class Jeu{
     //Fonctions
     void update();
       void updateEvents();
+      void updateIA();
       void updateBombes();
       void updatePowerUp();
     void render();

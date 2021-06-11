@@ -35,6 +35,8 @@ class Joueur {
     const int& nbVies() const{return _nbVies;}
     int& nbVies() {return _nbVies;}
 
+    const int& getJoueurColor() const{return _couleur;}
+    int& getJoueurColor() {return _couleur;}
 
     void setPosOnGridX(int x);
     void setPosOnGridY(int y);

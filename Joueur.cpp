@@ -99,16 +99,16 @@ void Joueur::affichage(){
   this->_esthetique->setTextureRect(sf::IntRect(0,0,64,64));
   switch (  this->_couleur ) {
     case 1 :
-    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_blanc.png");
-    break;
-    case 2 :
     this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_rose.png");
     break;
-    case 3 :
+    case 2 :
     this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_jaune.png");
     break;
-    case 4 :
+    case 3 :
     this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_vert.png");
+    break;
+    case 4 :
+    this->_texture.loadFromFile("Images/Joueur/sprite_pokemon_blanc.png");
     break;
     default :
     this->_texture.loadFromFile("Images/Joueur/sprite_pokemon.png");
