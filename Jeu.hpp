@@ -70,6 +70,7 @@ class Jeu{
       void renderBombes();
       void renderPowerUp();
       void renderBarreEtat();
+      void renderFinJeu();
 };
 
 #endif

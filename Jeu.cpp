@@ -174,16 +174,11 @@ void Jeu::updateEvents(){
             case sf::Keyboard::D: //  -->
               this->_j2->setSensMarche(2);
               nouvelle_pos = this->_j2->getPosX() + this->_j2->getVit();
-              std::cout << "nouvelle_pos = " << nouvelle_pos << '\n';
-              std::cout << "condition 1 D " <<estFranchissable(nouvelle_pos, _j2->getPosY())<< '\n';
-              std::cout << "condition 2 D "<<estFranchissable(nouvelle_pos, _j2->getPosY()+30) << '\n';
               if(estFranchissable(nouvelle_pos, _j2->getPosY())&&estFranchissable(nouvelle_pos, _j2->getPosY()+30))
                 this->_j2->setPosX(nouvelle_pos);
               break;
             case sf::Keyboard::Z:
-              std::cout << "debut Z" << std::endl;
               this->_j2->setSensMarche(3);
-              std::cout << "après setSensMarche" << std::endl;
               nouvelle_pos = this->_j2->getPosY() - this->_j2->getVit();
               if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
                 this->_j2->setPosY(nouvelle_pos);
@@ -209,8 +204,8 @@ void Jeu::updatePowerUp(){
   for (std::list<PowerUp*>::iterator p = _listePowerUp.begin(); p!=_listePowerUp.end(); ++p){
     if ((*p)->powerUpAttrape(this->_j1) || (*p)->powerUpAttrape(this->_j2)){
       _listePowerUp.erase(p);
-      //delete (*p);
-      //p--;//on décrémente l'itérateur (segfault sinon)
+      delete (*p);
+      p--;//on décrémente l'itérateur (segfault sinon)
     }
   }
 
@@ -319,7 +314,32 @@ void Jeu::renderBarreEtat(){
   this->_window->draw(BombeJ1);
   this->_window->draw(VieJ2);
   this->_window->draw(BombeJ2);
+}
 
+//affichage du gagnant
+void Jeu::renderFinJeu(){
+  //texte de résultat
+  sf::Font font;
+  if (!font.loadFromFile("Polices/FogtwoNo5.ttf"))
+  {
+    std::cerr << "la police ne se charge pas" << std::endl;
+  }
+  sf::Text resultat;
+  // choix de la police à utiliser
+  resultat.setFont(font);
+  // choix de la taille des caractères
+  resultat.setCharacterSize(100);
+  // choix de la couleur du texte
+  resultat.setColor(sf::Color::Yellow);
+  // position du texte
+  resultat.setPosition(sf::Vector2f(340,60));
+  //texte à écrire
+  if (_j1->nbVies()==0)
+    resultat.setString("Victoire! \nBravo Joueur 2");
+  else
+    resultat.setString("Victoire! \nBravo Joueur 1");
+  //affichage
+  this->_window->draw(resultat);
 }
 
 void Jeu::render(){
@@ -340,7 +360,8 @@ void Jeu::render(){
     this->_grille.renderPlateau(this->_window);
     renderJoueurs();
     renderBarreEtat();
-    //ajouter un texte qui donne le resultat
+    //on affiche à l'écran le joueur qui a gagné
+    renderFinJeu();
   }
 
   //affichage de la fenetre
