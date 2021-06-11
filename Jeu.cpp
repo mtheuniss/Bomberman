@@ -56,8 +56,19 @@ void Jeu::initFenetre(){
 //tirage aléatoire du type de powerUp
 void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
   //on parcours la liste des murs cassés et on met des powerup
+  //création de powerup grace à une fonction aléatoire
+  int type = ((int) rand()%(3)) + 1;
   for (sf::Vector2i coord : liste){
-    _listePowerUp.push_back( new PowerUpBombePlus(coord));
+    switch (type) {
+      case 1:
+        _listePowerUp.push_back( new PowerUpViePlus(coord));
+        break;
+      case 2:
+        _listePowerUp.push_back( new PowerUpBombePlus(coord));
+        break;
+      case 3: //pas de chance, pas de powerup
+        break;
+    }
   }
 }
 
