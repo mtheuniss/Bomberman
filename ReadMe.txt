@@ -29,3 +29,4 @@ Note : Le programme ne fonctionne pas sur l'ordinateur de Pierre : le programme 
 Nous avons travaillé en groupe en utilisant git et atom lorsque nous codions à deux. Nous avons la moitié du temps travaillé l’un après l’autre en se relayant ce qui fait nous avons tous les deux participé à chaque grande partie du programme.
 Mathilde a dessiné les grandes lignes de l’interface graphique que Pierre a rendu compréhensible à l’utilisateur par l’ajout d’images et d’animation. Pierre a codé les tests unitaires et Mathilde les destructeurs.
 Le reste du jeu a été codé par les deux membres de l’équipe.
+L'uml relatif au projet ce trouve dans /Docx/UML_Projet_MathildePierre.
