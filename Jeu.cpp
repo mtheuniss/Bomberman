@@ -6,7 +6,6 @@ Jeu::Jeu(){
   this->initVariables();
   this->initFenetre();
   this->initEntity();
-  // this->initBarreEtatJoueur();
 }
 
 Jeu::Jeu(Joueur* j1 , Joueur* j2){
@@ -53,11 +52,8 @@ void Jeu::initVariables(){
   this-> _window = nullptr;
   this->_videoMode.height =720 ;
   this->_videoMode.width = 1280;
-
-  // initialisation du plateau en fonction de la carte ici 1
-  this->_grille.setMapType(1); //modif du type de carte
-  std::cout<<"sortie de initPlateau"<<std::endl;
 }
+
 void Jeu::initFenetre(){
   this-> _window = new sf::RenderWindow(this->_videoMode, "Bomberman", sf::Style::Close | sf::Style::Titlebar);
   this->_window->setFramerateLimit(144);
@@ -68,8 +64,8 @@ void Jeu::initFenetre(){
 void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
   //on parcours la liste des murs cassés et on met des powerup
   //création de powerup grace à une fonction aléatoire
-  int type = ((int) rand()%(5)) + 1;
   for (sf::Vector2i coord : liste){
+    int type = ((int) rand()%(5)) + 1;
     switch (type) {
       case 1:
         _listePowerUp.push_back( new PowerUpBombePlus(coord));
@@ -82,7 +78,6 @@ void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
         break;
       case 4:
         _listePowerUp.push_back( new PowerUpViePlus(coord));
-
         break;
       default :
         break;
@@ -107,9 +102,7 @@ void Jeu::updateBombes(){
   }
 
   for (std::list<Bombe*>::iterator b = _listeBombes.begin(); b!=_listeBombes.end(); ++b){
-    if((*b)->imBoum() && !(*b)->explose()){
-      std::cout << "boum" << '\n';
-      (*b)->explose() = 1;
+    if((*b)->imBoum() ){
 
       // ici faire sauter les murs
       //creation de la liste qui contient les cases de la grille touchées par l'explosion
@@ -120,18 +113,10 @@ void Jeu::updateBombes(){
       this->_j1->estTouche(liste);
       this->_j2->estTouche(liste);
       // on update la grille (destruction des murs cassables)
-      std::cout << "avant update grille" << '\n';
       _grille.updateGrille(liste);
-      std::cout << "après update grille" << '\n';
       // A la sortie de updateGrille, il ne reste plus que les coordonées des murs cassés
       // on s'en sert pour la création des powerups
       nouveauPowerUp(liste);
-      // verification de la liste renvoyée
-      std::cout << "debut de la liste après modif" << '\n';
-      for (sf::Vector2i b : liste){
-        std::cout << "["<<b.x<< " ; "<< b.y<<"]" << '\n';
-      }
-      std::cout << "fin de la liste" << '\n';
       //création des powerups ICI
       //on vide la liste
       liste.clear();
@@ -139,7 +124,6 @@ void Jeu::updateBombes(){
       delete (*b);
       _listeBombes.erase(b);
       b--;//on décrémente l'itérateur (segfault sinon)
-      std::cout << "supp de b" << '\n';
     }
   }
 }
@@ -175,9 +159,6 @@ void Jeu::updateEvents(){
               joueur->setPosBombe(joueur->getPosOnGridX(), joueur->getPosOnGridY());
               _listeBombes.push_back( new Bombe(joueur->getTypeBombe()));
             }
-
-          //on ajoute la bombe dans la liste pour l'affichage
-            //_j1->getTypeBombe().affichage();
             break;
 
           // On init les fleches pour déplacer le joueur 1
@@ -271,11 +252,7 @@ void Jeu::updateIA(){
       if (estFranchissable(_j2->getPosX(),nouvelle_pos)&&estFranchissable(_j2->getPosX()+30, nouvelle_pos))
         this->_j2->setPosY(nouvelle_pos-30);
     }
-
   }
-
-
-
 }
 
 
@@ -327,12 +304,9 @@ void Jeu::renderJoueurs(){
 
 void Jeu::renderBombes(){
   for ( Bombe* b : _listeBombes){
-    if (!b->explose()){
-      b->getAnimation()->update(b->type(),this->tmpIncrement);
-      b->getEsthetique()->setTextureRect(b->getAnimation()->_RectSelect  );
-
-      this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
-    }
+    b->getAnimation()->update(b->type(),this->tmpIncrement);
+    b->getEsthetique()->setTextureRect(b->getAnimation()->_RectSelect  );
+    this->_window->draw(*b->getEsthetique()); // On place l'element sur le plateau
   }
 }
 
@@ -377,8 +351,8 @@ void Jeu::renderBarreEtat(){
   // position du texte
   VieJ1.setPosition(sf::Vector2f(1080+102,225));
   BombeJ1.setPosition(sf::Vector2f(1080+102,300));
-  VieJ2.setPosition(sf::Vector2f(1080+102,400));
-  BombeJ2.setPosition(sf::Vector2f(1080+102,450));
+  VieJ2.setPosition(sf::Vector2f(1080+102,580));
+  BombeJ2.setPosition(sf::Vector2f(1080+102,580+75));
   //affichage
   this->_window->draw(VieJ1);
   this->_window->draw(BombeJ1);

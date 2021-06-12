@@ -4,7 +4,7 @@
 #include "Element.hpp"
 #include "PowerUp.hpp"
 
-//Ce powerUp ajoute une vie au joueur que le récupère
+//Ce powerUp augmente la vitesse du joueur que le récupère
 
 class PowerUpVitessePlus : public PowerUp {
   public :
@@ -15,7 +15,7 @@ class PowerUpVitessePlus : public PowerUp {
     virtual ~ PowerUpVitessePlus(){}
     //méthodes à redefinir
     void affichage();
-    int powerUpAttrape(Joueur* j);
+    bool powerUpAttrape(Joueur* j);
 };
 
 #endif

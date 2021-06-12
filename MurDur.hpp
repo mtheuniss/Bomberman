@@ -11,11 +11,8 @@ class MurDur : public Mur {
     MurDur(int x, int y);
     virtual ~MurDur(){}
 
-    //Accesseurs
-    //PowerUp getPowerUp ();
 
     void affichage();
-  protected :
 
 };
 #endif

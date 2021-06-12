@@ -25,11 +25,11 @@ void PowerUpBombePlus::affichage(){
 
 }
 
-int PowerUpBombePlus::powerUpAttrape(Joueur* j){
-  //on incrémente de 1 le nombre de vie du joueur passé en argument
+bool PowerUpBombePlus::powerUpAttrape(Joueur* j){
+  //on incrémente de 1 le nombre de bombes du joueur passé en argument
   if(j->getPosOnGridX()==this->getPosX() && j->getPosOnGridY() == this->getPosY() ){
-    j->setNbBombes(j->getNbBombes()+1);
-    return 1;
+    j->setNbBombes(j->getNbBombes()+1); //ajout d'une bombe
+    return true;
   }
-  return 0;
+  return false;
 }

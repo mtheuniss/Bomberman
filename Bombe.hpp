@@ -8,8 +8,10 @@ class Bombe : public Element{
   public :
   //Constructeur et destructeur
     Bombe();
-    //Bombe(int x, int y);
-    ~Bombe(){}
+    ~Bombe(){
+      delete this->_esthetique;
+      delete this->_animation;
+    }
     //constructeur par copie
     Bombe(const Bombe& b){
       *this = b;
@@ -18,7 +20,6 @@ class Bombe : public Element{
     //opérateur d'assignement =
     Bombe& operator=(const Bombe& b){
       _rayon = b._rayon;
-      _explose = b._explose;
       _type = b._type;
       this->affichage();
       this->setPosX(b.getPosX());
@@ -28,25 +29,30 @@ class Bombe : public Element{
 
   //Accesseurs const et non const
     const int& rayon() const{return _rayon;}
-    const int& explose() const{return _explose;}
     const int& type() const{return _type;}
     int& rayon() {return _rayon;}
-    int& explose() {return _explose;}
     int& type() {return _type;}
 
-    //void setRayon(int r){_rayon = r;}
-    //void setExplose(){_explose = 1;}
-
   //Autres fonctions
+  /**
+	 * fonction redéfinie par toutes les methodes dérivées d'Element
+	 */
     void affichage();
-    //void explose();
-    //Gestion du temps de vie de la bombe
+
+    /**
+	 * Gestion de l'explosion de la bombe : elle explose au bout de 3 secondes
+	 */
     bool imBoum();
+
+    /**
+	 * A partir de la position de la bombe (attribut _pos), la fonction remplie la liste passée par référence
+   * en inscrivant les coordonnées de toutes les cases POTENTIELLEMENT touchées par l'explosion
+	 */
     void degatsBombe(std::list<sf::Vector2i>& listeDegats);
 
   protected :
-    int _rayon;
-    int _explose; //0 pas explosé, 1 explose (pour l'affichage)
+    //les attributs
+    int _rayon; //le rayon d'explosion de la bombe (variable selon les powerup)
     int _type;
 
     sf::Clock _clock;

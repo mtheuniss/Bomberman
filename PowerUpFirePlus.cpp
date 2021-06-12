@@ -25,11 +25,11 @@ void PowerUpFirePlus::affichage(){
 
 }
 
-int PowerUpFirePlus::powerUpAttrape(Joueur* j){
-  //on incrémente de 1 le nombre de vie du joueur passé en argument
+bool PowerUpFirePlus::powerUpAttrape(Joueur* j){
+  //on incrémente de 1 le rayon de la bombe
   if(j->getPosOnGridX()==this->getPosX() && j->getPosOnGridY() == this->getPosY() ){
     j->getBombe()->rayon()++;
-    return 1;
+    return true;
   }
-  return 0;
+  return false;
 }

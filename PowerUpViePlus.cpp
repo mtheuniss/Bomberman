@@ -25,11 +25,11 @@ void PowerUpViePlus::affichage(){
 
 }
 
-int PowerUpViePlus::powerUpAttrape(Joueur* j){
+bool PowerUpViePlus::powerUpAttrape(Joueur* j){
   //on incrémente de 1 le nombre de vie du joueur passé en argument
   if(j->getPosOnGridX()==this->getPosX() && j->getPosOnGridY() == this->getPosY() ){
     j->nbVies()++;
-    return 1;
+    return true;
   }
-  return 0;
+  return false;
 }

@@ -12,11 +12,7 @@ MurVoid::MurVoid(int x , int y){
   this->setPosX(x);
   this->setPosY(y);
 }
-/*
-MurCassable::PowerUp getPowerUp (){
-  return this->_powerup;
-}
-*/
+
 void MurVoid::affichage(){
   this->_esthetique = new sf::RectangleShape();
   this->_esthetique->setSize(sf::Vector2f(72.f,72.f)); //.f -> float sans être float (carrés 72*72)

@@ -11,9 +11,6 @@ class MurVoid : public Mur {
     MurVoid(int x, int y);
     virtual ~MurVoid(){}
 
-    //Accesseurs
-    //PowerUp getPowerUp ();
-
     void affichage();
   protected :
 

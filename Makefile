@@ -5,7 +5,7 @@ EXEC=main
 
 all: $(EXEC)
 
-main: EcranAccueil.o Bombe.o PowerUpFirePlus.o PowerUpBombePlus.o PowerUpViePlus.o PowerUpVitessePlus.o MurVoid.o MurCassable.o MurDur.o Plateau.o Animation.o Jeu.o Joueur.o main.o
+main: EcranAccueil.o Bombe.o PowerUpBombePlus.o PowerUpFirePlus.o PowerUpViePlus.o PowerUpVitessePlus.o MurVoid.o MurCassable.o MurDur.o Plateau.o Animation.o Jeu.o Joueur.o main.o
 		$(CC) -o $@ $^ $(LDFLAGS) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 EcranAccueil.o : EcranAccueil.cpp EcranAccueil.hpp

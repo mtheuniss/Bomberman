@@ -25,11 +25,11 @@ void PowerUpVitessePlus::affichage(){
 
 }
 
-int PowerUpVitessePlus::powerUpAttrape(Joueur* j){
-  //on incrémente de 1 le nombre de vie du joueur passé en argument
+bool PowerUpVitessePlus::powerUpAttrape(Joueur* j){
+  //on augmente la vitesse du joueur passé en argument si les 2 sont sur la même case
   if(j->getPosOnGridX()==this->getPosX() && j->getPosOnGridY() == this->getPosY() ){
     j->setVitesse(j->getVitesse()+1);
-    return 1;
+    return true;
   }
-  return 0;
+  return false;
 }

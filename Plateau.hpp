@@ -5,45 +5,39 @@
 #include "MurCassable.hpp"
 #include "MurVoid.hpp"
 #include "MurDur.hpp"
-#include "Mur.hpp"
 
 class Plateau{
   private :
-    //Variables
-    int _MAP; //Variable pour changer de generation de map
-    int _MAX_X; //Variable de taille max en pixel en colonnes
-    int _MAX_Y; //Variable de taille max en pixel en lignes
-
-    std::array< std::array<Mur*,10>,15> _grid; //Grid pour stocker les elements
+    //Attributs
+    std::array< std::array<Mur*,10>,15> _grid; //Grid pour stocker les murs
 
 
     //Fonction private
+    /**
+	 * Création du plateau de jeu : remplissage de _grid avec les 3 types de murs
+	 */
     void initPlateau();
+
   public :
     //Constructeur, Destructeur
     Plateau();
     ~ Plateau();
 
-    //Accesseurs (const et non const)
-    const int& maxX() const {return _MAX_X;}
-    int& maxX() {return _MAX_X;}
-
-    const int& maxY() const {return _MAX_Y;}
-    int& maxY() {return _MAX_Y;}
-
-    void setMaxX(int mx);
-    void setMaxY(int my);
-    void setMapType(int mt); // /!\ changer la maptype avant l'init
-
-
+    //Accesseurs aux éléments de la grille
     void setElement( Mur* ent);
     Mur* getElement(int x, int y) const;
 
-    int getMaxX() const;
-    int getMaxY() const;
-    int getMap()  const;
-
+    /**
+    	 * Affichage du plateau dans la fenetre de jeu prise en argument par parcours de la grille
+       * Il s'agit de l'arrière plan du jeu
+    	 */
     void renderPlateau(sf::RenderWindow* w);
+
+    /**
+       * mise à jour de la grille lorsqu'une bombe explose : casser les murs cassables touchés par l'explosion des bombes
+       *  argument = liste : liste des coordonnées des cases de la _grid possiblement touchés par la bombe
+       *  la liste est passée par référence : à la sortie de la fonction : il ne restent que coordonnées des murs qui ont été réellement cassés
+	 */
     void updateGrille(std::list<sf::Vector2i>& liste);
 };
 

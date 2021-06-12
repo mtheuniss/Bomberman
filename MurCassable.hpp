@@ -9,14 +9,7 @@ class MurCassable : public Mur {
     //Constructeur, destructeur
     MurCassable();
     MurCassable(int x, int y);
-    //virtual ~MurCassable();
-
-    //Accesseurs
-    //PowerUp getPowerUp ();
 
     void affichage();
-  protected :
-    //PowerUp _powerup;
-    //bool casse;
 };
 #endif
