@@ -52,17 +52,14 @@ main.o: main.cpp Jeu.hpp
 
 
 # Tests :
-#test : tests_catch
 
-#tests_catch: Joueur_tests.o Joueur.o
-# 	$(CC) -o tests_catch Joueur_tests.o Joueur.o
+test : tests_catch
 
-# tests_catch_point.o: tests_catch_point.cpp point.hpp catch.hpp
-# 	$(CPP) -c tests_catch_point.cpp
+tests_catch: Joueur_tests.o Joueur.o Animation.o Bombe.o Element.hpp
+	$(CC) -o $@ $^ $(LDFLAGS) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-# tests_catch_rectangle.o: tests_catch_rectangle.cpp rectangle.hpp catch.hpp
-# 	$(CPP) -c tests_catch_rectangle.cpp
-
+Joueur_tests.o: Joueur_tests.cpp Joueur.hpp catch.hpp
+		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 
 
@@ -70,4 +67,4 @@ main.o: main.cpp Jeu.hpp
 
 
 clean:
-	rm -rf *.o $(EXEC)
+	rm -rf *.o $(EXEC) tests_catch
