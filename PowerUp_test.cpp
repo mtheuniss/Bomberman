@@ -70,8 +70,7 @@ TEST_CASE( "PowerUpVitessePlus", "[PowerUpVitessePlus]" ) {
 TEST_CASE( "PowerUpViePlus", "[PowerUpViePlus]" ) {
 
   Joueur j = Joueur(0,0,0,0);
-
-
+  
   SECTION( "powerUpAttrape oui" ) {
     PowerUpViePlus p_up = PowerUpViePlus(sf::Vector2i(0,0));
     p_up.powerUpAttrape(&j);
