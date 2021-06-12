@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <help_text>
+// Uncomment the following line to change the fontsize and font:
+// fontsize=14
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>476</x>
+      <y>400</y>
+      <w>156</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Plateau
+--
+- _grid : std::array&lt; std::array&lt;Mur*,10&gt;,15&gt; 
+--
+- initPlateau() : void
++ renderPlateau(sf::RenderWindow* w) : void
++ updateGrille(std::list&lt;sf::Vector2i&gt;&amp; liste) : void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>664</x>
+      <y>372</y>
+      <w>108</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>Joueur
+--
+# _numplayer : int
+# _couleur : int
+# _vitesse : int
+# _pos : sf::Vector2i 
+# _nbVies: int
+# _esthetique : sf::RectangleShape*
+# _texture : sf::Texture
+# _animation : Animation* 
+# _sensMarche : int
+# _nbBombes : int
+# _typeBombe : Bombe
+--
++ affichage() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>544</x>
+      <y>96</y>
+      <w>196</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>Jeu
+--
+- _window : sf::RenderWindow*
+- _videoMode : sf::VideoMode
+- _ev : sf::Event
+- _barreEtatJoueur : sf::RectangleShape
+- _imageBarreEtat :  sf::Texture 
+- tmpIncrement : float
+- _listeBombes : std::list&lt;Bombe*&gt;
+- _listePowerUp : std::list&lt;PowerUp*&gt;
+- _j1 : Joueur
+- _j2 : Joueur
+- _grid : Plateau
+- clock : sf::Clock 
+
+
+--
+- initVariables() : void
+ - initFenetre() : void
+ - initEntity() : void
+ - initJoueur() : void
+ - initBarreEtatJoueur() : void
+- nouveauPowerUp(std::list&lt;sf::Vector2i&gt; liste) : void
+
++ getIsRunning() const : bool 
++ estFranchissable(const int&amp; x,const int&amp; y) const : bool
+
++ update() : void
+ + updateEvents() : void
+ + updateIA() : void
+ + updateBombes() : void
+ + updatePowerUp() : void
+
++ render() : void
+ + renderJoueurs() : void
+ + renderBombes() : void
+ + renderPowerUp() : void
+ + renderBarreEtat() : void
+ + renderFinJeu() : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>596</x>
+      <y>664</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Powerup
+--
+/+ affichage()/
+/+ powerUpAttrape(Joueur* j) : bool/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>528</y>
+      <w>92</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/Element/
+--
+# _pos : sf::Vector2i 
+# _esthetique : sf::RectangleShape*
+# _texture : sf::Texture
+--
+/+ affichage()/
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>712</x>
+      <y>664</y>
+      <w>172</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>Bombe
+--
+# _rayon : int
+# _type : int 
+
+# _animation : Animation* ;
+# _clock : sf::Clock
+--
++ affichage() : void
++ imBoum() : bool
++ degatsBombe(std::list&lt;sf::Vector2i&gt;&amp; listeDegats) : void
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>664</y>
+      <w>84</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>/Mur/
+--
+# franchissable : bool
+# cassable : bool
+--
+/+ affichage()/
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>572</x>
+      <y>436</y>
+      <w>72</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>344</y>
+      <w>152</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>636</x>
+      <y>344</y>
+      <w>100</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>632</x>
+      <y>604</y>
+      <w>12</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>632</y>
+      <w>256</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;620.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>636</y>
+      <w>12</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>632</x>
+      <y>636</y>
+      <w>12</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>748</x>
+      <y>636</y>
+      <w>12</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>632</x>
+      <y>460</y>
+      <w>60</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>744</y>
+      <w>84</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Mur dur
+--
++ affichage()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>776</y>
+      <w>84</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Mur void
+--
++ affichage()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>716</y>
+      <w>84</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Mur cassable 
+--
++ affichage()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>716</y>
+      <w>104</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>PowerupBombePlus
+--
++ affichage()
++ powerUpAttrape(Joueur* j) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>720</y>
+      <w>12</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>716</y>
+      <w>28</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>748</y>
+      <w>28</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>780</y>
+      <w>28</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>628</x>
+      <y>716</y>
+      <w>20</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>636</x>
+      <y>772</y>
+      <w>12</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>696</y>
+      <w>44</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;90.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>636</x>
+      <y>688</y>
+      <w>12</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>752</y>
+      <w>104</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>PowerupFirePlus
+--
++ affichage()
++ powerUpAttrape(Joueur* j) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>628</x>
+      <y>752</y>
+      <w>20</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>788</y>
+      <w>104</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>PowerupVitessePlus
+--
++ affichage()
++ powerUpAttrape(Joueur* j) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>628</x>
+      <y>788</y>
+      <w>20</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>528</x>
+      <y>824</y>
+      <w>104</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>PowerupViePlus
+--
++ affichage()
++ powerUpAttrape(Joueur* j) : bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>628</x>
+      <y>824</y>
+      <w>20</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>504</y>
+      <w>172</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>Animation
+--
+- _nombreImages : sf::Vector2u
+- _imageActuelle : sf::Vector2u 
+- _bouclage : int
+- _tmpTota : float 
+- _tmpInter : float 
+--
++ update(int startImage, float tmpIncrement) : void
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>460</y>
+      <w>124</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;290.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>796</x>
+      <y>568</y>
+      <w>76</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;240.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>764</x>
+      <y>96</y>
+      <w>124</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>EcranAccueil
+--
+# _window : sf::RenderWindow* 
+# _videoMode : sf::VideoMode 
+# _ev : sf::Event 
+# _nperso1 : int 
+# _nperso2 : int 
+# _boutonperson1 : sf::RectangleShape
+# _textureB1 : sf::Texture
+# _boutonperson2 : sf::RectangleShape
+# _textureB2 : sf::Texture
+# _boutonperson3 : sf::RectangleShape
+# _textureB3 : sf::Texture
+# _boutonperson4 : sf::RectangleShape
+# _textureB4 : sf::Texture
+# _jouer : sf::RectangleShape
+# _textureJouer : sf::Texture
+--
++ getIsRunning() const : bool 
++ initbouton() : void
++ void update() : void
++ void render() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
