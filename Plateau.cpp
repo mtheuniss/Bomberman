@@ -66,7 +66,6 @@ void Plateau::renderPlateau(sf::RenderWindow* w ){
     liste.erase(liste.begin());
     // variables stop : pour stopper la propagation d'une explosion dans une direction lorsque qu'il y a un murDur qui s'interpose
     bool stop_gauche = false, stop_droite = false, stop_haut = false, stop_bas = false;
-
     //parcours de la liste
     for (std::list<sf::Vector2i>::iterator coord = liste.begin(); coord!=liste.end(); ++coord){
 

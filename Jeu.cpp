@@ -121,9 +121,7 @@ void Jeu::updateBombes(){
       //on vide la liste
       liste.clear();
       //la bombe a explosé, elle ne sert plus à rien alors on la supprime des objets à afficher
-      std::cout << "avant " << '\n';
       delete (*b);
-      std::cout << "apres " << '\n';
       _listeBombes.erase(b);
       b--;//on décrémente l'itérateur (segfault sinon)
     }
@@ -168,26 +166,33 @@ void Jeu::updateEvents(){
             //on verifie que le point est dans une case que l'on peut franchir
             this->_j1->setSensMarche(1);
             nouvelle_pos = this->_j1->getPosX() - this->_j1->getVit();
-            if(estFranchissable(nouvelle_pos, _j1->getPosY()) && estFranchissable(nouvelle_pos, _j1->getPosY()+30))
-              this->_j1->setPosX(nouvelle_pos);  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            if(nouvelle_pos<1080){
+              if(estFranchissable(nouvelle_pos, _j1->getPosY()) && estFranchissable(nouvelle_pos, _j1->getPosY()+30)){
+                std::cout << "pos x" << nouvelle_pos<< '\n';
+                this->_j1->setPosX(nouvelle_pos);
+              }  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
+            }
             break;
           case sf::Keyboard::Right: //  -->
             this->_j1->setSensMarche(2);
             nouvelle_pos = this->_j1->getPosX() + this->_j1->getVit() + 30;
-            if(estFranchissable(nouvelle_pos, _j1->getPosY())&&estFranchissable(nouvelle_pos, _j1->getPosY()+30))
-              this->_j1->setPosX(nouvelle_pos-30);
+            if(nouvelle_pos<1080){
+              if(estFranchissable(nouvelle_pos, _j1->getPosY())&&estFranchissable(nouvelle_pos, _j1->getPosY()+30)){
+                this->_j1->setPosX(nouvelle_pos-30);
+              }
+            }
             break;
           case sf::Keyboard::Up:
             this->_j1->setSensMarche(3);
             nouvelle_pos = this->_j1->getPosY() - this->_j1->getVit();
-            if (estFranchissable(_j1->getPosX(),nouvelle_pos)&&estFranchissable(_j1->getPosX()+30, nouvelle_pos))
-              this->_j1->setPosY(nouvelle_pos);
+            if (estFranchissable(_j1->getPosX(),nouvelle_pos)&&estFranchissable(_j1->getPosX()+30, nouvelle_pos)){
+              this->_j1->setPosY(nouvelle_pos);}
             break;
           case sf::Keyboard::Down:
             this->_j1->setSensMarche(0);
             nouvelle_pos = this->_j1->getPosY() + this->_j1->getVit() + 30;
-            if (estFranchissable(_j1->getPosX(),nouvelle_pos)&&estFranchissable(_j1->getPosX()+30, nouvelle_pos))
-              this->_j1->setPosY(nouvelle_pos-30);
+            if (estFranchissable(_j1->getPosX(),nouvelle_pos)&&estFranchissable(_j1->getPosX()+30, nouvelle_pos)){
+              this->_j1->setPosY(nouvelle_pos-30);}
             break;
 
 
@@ -227,21 +232,18 @@ void Jeu::updateEvents(){
 }
 
 void Jeu::updatePowerUp(){
-  int compteur = 0;
   for (std::list<PowerUp*>::iterator p = _listePowerUp.begin(); p!=_listePowerUp.end(); ++p){
-    std::cout << "compteur ="<<compteur << '\n';
     if ((*p)->powerUpAttrape(this->_j1) || (*p)->powerUpAttrape(this->_j2)){
-      std::cout << "entree dans le if" << '\n';
-      _listePowerUp.erase(p);
-      std::cout << "après erase" << '\n';
+      if (*p == _listePowerUp.back()){
+        delete (*p);
+        _listePowerUp.erase(p);
+        break;
+      }
       delete (*p);
-      std::cout << "après delete" << '\n';
+      _listePowerUp.erase(p);
       p--;//on décrémente l'itérateur (segfault sinon)
-      std::cout << "après p--" << '\n';
     }
-    compteur ++;
   }
-  std::cout << "sortie de updatePowerUp" << '\n';
 }
 
 void Jeu::updateIA(){
