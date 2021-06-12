@@ -26,7 +26,7 @@ Joueur::Joueur(int x , int y , int num, int color){
   this->affichage();
 }
 //------------------------------------------------------------------------------
-//Position dans la grille
+//Position en pixels
 int Joueur::getPosX() const{
   return _esthetique->getPosition().x;
 }
@@ -35,7 +35,7 @@ int Joueur::getPosY()const{
 }
 
 //------------------------------------------------------------------------------
-//Position dans la fenetre
+//Position dans la grille
 int Joueur::getPosOnGridX()const{
   return this->_pos.x;
 }

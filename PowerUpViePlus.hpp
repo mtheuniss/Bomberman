@@ -12,7 +12,7 @@ class PowerUpViePlus : public PowerUp {
     PowerUpViePlus();
     PowerUpViePlus(sf::Vector2i position);
     //Desctructeur
-    virtual ~ PowerUpViePlus(){}
+    //virtual ~ PowerUpViePlus(){}
     //méthodes à redefinir
     void affichage();
     bool powerUpAttrape(Joueur* j);

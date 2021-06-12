@@ -12,7 +12,7 @@ class PowerUpBombePlus : public PowerUp {
     PowerUpBombePlus();
     PowerUpBombePlus(sf::Vector2i position);
     //Desctructeur
-    virtual ~ PowerUpBombePlus(){}
+    //virtual ~ PowerUpBombePlus(){}
     //méthodes à redefinir
     void affichage();
     bool powerUpAttrape(Joueur* j);

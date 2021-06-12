@@ -53,16 +53,16 @@ main.o: main.cpp Jeu.hpp
 
 # Tests :
 
-test : tests_catch
+test : tests_catch  #commande make ..
 
-tests_catch: Joueur_tests.o Joueur.o Animation.o Bombe.o Element.hpp
+tests_catch: Joueur_tests.o Joueur.o PowerUp_tests.o Animation.o Bombe.o PowerUpBombePlus.o PowerUpFirePlus.o PowerUpVitessePlus.o PowerUpViePlus.o
 	$(CC) -o $@ $^ $(LDFLAGS) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 Joueur_tests.o: Joueur_tests.cpp Joueur.hpp catch.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-
-
+PowerUp_tests.o: PowerUp_test.cpp Joueur.hpp PowerUpBombePlus.hpp PowerUpFirePlus.hpp PowerUpVitessePlus.hpp PowerUpViePlus.hpp Element.hpp Bombe.hpp catch.hpp
+		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
 
 

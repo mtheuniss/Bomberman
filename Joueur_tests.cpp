@@ -9,23 +9,44 @@ TEST_CASE( "Positionnement Joueur", "[Joueur]" ) {
   Joueur j = Joueur(0,0,0,0);
 
   SECTION( "setPosOnGridX" ) {
-
-      j.setPosOnGridX(1);
-
-      REQUIRE(j.getPosX() == 72);
-      REQUIRE(j.getPosOnGridX() == 1);  // équivalent REQUIRE(!(p1 == p2)); -- voir https://github.com/catchorg/Catch2/blob/master/docs/assertions.md#natural-expressions
-  }
-/*
-  SECTION( "operator!=" ) {
-      REQUIRE_FALSE(p1 != p1bis);
-      REQUIRE(p1 != p2);  // équivalent REQUIRE(!(p1 == p2));
+    j.setPosOnGridX(144);
+    REQUIRE(j.getPosOnGridX() == 2);
   }
 
-  SECTION( "distance" ) {
-      // Comparaisons de float avec tolérance en utilisant Approx
-      // Voir https://github.com/catchorg/Catch2/blob/master/docs/assertions.md#floating-point-comparisons pour plus d'infos et/ou plus de contrôle sur la tolérance
-      REQUIRE(p1.dist(p2) == Approx(std::sqrt(5.)));
-      REQUIRE(p1.dist(p1bis) == Approx(std::sqrt(0.)));
+  SECTION( "setPosX" ) {
+
+      j.setPosX(1152);
+      REQUIRE_FALSE(j.getPosX() == 16);
+      REQUIRE(j.getPosOnGridX() == 0);
+
+      j.setPosX(-1);
+      REQUIRE_FALSE(j.getPosX() == -1);
+      REQUIRE(j.getPosOnGridX() == 0);
+
+      j.setPosX(144);
+      REQUIRE(j.getPosX() == 144);
+      REQUIRE(j.getPosOnGridX() == 2);
+
   }
-*/
+
+}
+
+TEST_CASE( "Vie Joueur", "[Joueur]" ) {
+
+  Joueur j = Joueur(0,0,0,0);
+  std::list<sf::Vector2i> l;
+
+
+  SECTION( "estTouche oui " ) {
+    sf::Vector2i coord = sf::Vector2i(0,0);
+    l.push_back(coord);
+    j.estTouche(l);
+    REQUIRE(j.nbVies() == 2);
+  }
+  SECTION( "estTouche" ) {
+    sf::Vector2i coord = sf::Vector2i(1,0);
+    l.push_back(coord);
+    j.estTouche(l);
+    REQUIRE_FALSE(j.nbVies() == 2);
+  }
 }

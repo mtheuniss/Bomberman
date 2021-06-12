@@ -68,13 +68,13 @@ void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
     int type = ((int) rand()%(5)) + 1;
     switch (type) {
       case 1:
-        _listePowerUp.push_back( new PowerUpBombePlus(coord));
+        _listePowerUp.push_back( new PowerUpVitessePlus(coord));
         break;
       case 2:
         _listePowerUp.push_back( new PowerUpFirePlus(coord));
         break;
       case 3:
-        _listePowerUp.push_back( new PowerUpVitessePlus(coord));
+        _listePowerUp.push_back( new PowerUpBombePlus(coord));
         break;
       case 4:
         _listePowerUp.push_back( new PowerUpViePlus(coord));
@@ -227,14 +227,21 @@ void Jeu::updateEvents(){
 }
 
 void Jeu::updatePowerUp(){
-
+  int compteur = 0;
   for (std::list<PowerUp*>::iterator p = _listePowerUp.begin(); p!=_listePowerUp.end(); ++p){
+    std::cout << "compteur ="<<compteur << '\n';
     if ((*p)->powerUpAttrape(this->_j1) || (*p)->powerUpAttrape(this->_j2)){
+      std::cout << "entree dans le if" << '\n';
       _listePowerUp.erase(p);
+      std::cout << "après erase" << '\n';
       delete (*p);
+      std::cout << "après delete" << '\n';
       p--;//on décrémente l'itérateur (segfault sinon)
+      std::cout << "après p--" << '\n';
     }
+    compteur ++;
   }
+  std::cout << "sortie de updatePowerUp" << '\n';
 }
 
 void Jeu::updateIA(){

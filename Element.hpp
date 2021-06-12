@@ -12,6 +12,7 @@ class Element{
     virtual void affichage ()=0;
     virtual ~Element(){
       delete this->_esthetique;
+      std::cout << "delete _esthetique" << '\n';
     }
 
     //Accesseurs
