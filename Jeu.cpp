@@ -121,7 +121,9 @@ void Jeu::updateBombes(){
       //on vide la liste
       liste.clear();
       //la bombe a explosé, elle ne sert plus à rien alors on la supprime des objets à afficher
+      std::cout << "avant " << '\n';
       delete (*b);
+      std::cout << "apres " << '\n';
       _listeBombes.erase(b);
       b--;//on décrémente l'itérateur (segfault sinon)
     }

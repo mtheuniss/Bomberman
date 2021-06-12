@@ -14,9 +14,6 @@ Animation::Animation(sf::Texture* texAAnime, sf::Vector2u nbImages, float tmpPIm
   this->_bouclage = 1;
 }
 
-Animation::~Animation(){
-
-}
 void Animation::update(int startImage, float tmpIncrement){
 
   this->_imageActuelle.y = startImage; // On place l'animation sur une position specifique

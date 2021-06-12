@@ -8,8 +8,8 @@ class Bombe : public Element{
   public :
   //Constructeur et destructeur
     Bombe();
-    ~Bombe(){
-      delete this->_esthetique;
+    virtual ~Bombe(){
+      std::cout << "destructeur bombe" << '\n';
       delete this->_animation;
     }
     //constructeur par copie
@@ -50,11 +50,17 @@ class Bombe : public Element{
 	 */
     void degatsBombe(std::list<sf::Vector2i>& listeDegats);
 
+    void setAnimation(sf::Texture* texture, sf::Vector2u nbImages, float tmp){
+      this->_animation = new Animation(texture,nbImages,tmp);
+    }
+    Animation* getAnimation(){return this->_animation;}
+
   protected :
     //les attributs
     int _rayon; //le rayon d'explosion de la bombe (variable selon les powerup)
     int _type;
 
+    Animation* _animation;
     sf::Clock _clock;
 };
 

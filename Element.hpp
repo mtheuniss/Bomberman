@@ -11,8 +11,7 @@ class Element{
   public :
     virtual void affichage ()=0;
     virtual ~Element(){
-      //delete this->_esthetique;
-      //delete this->_animation;
+      delete this->_esthetique;
     }
 
     //Accesseurs
@@ -29,16 +28,10 @@ class Element{
       this->_esthetique->setPosition(sf::Vector2f(this->getEsthetique()->getPosition().x, y*72 ));
     }
 
-    void setAnimation(sf::Texture* texture, sf::Vector2u nbImages, float tmp){
-      this->_animation = new Animation(texture,nbImages,tmp);
-    }
-    Animation* getAnimation(){return this->_animation;}
-
     sf::RectangleShape* getEsthetique(){return this->_esthetique;}
   protected:
     sf::Vector2i _pos; //Position dans la grille != position du RectangleShape
     sf::RectangleShape* _esthetique;
     sf::Texture _texture;
-    Animation* _animation;
 };
 #endif

@@ -50,5 +50,24 @@ Animation.o: Animation.cpp Animation.hpp
 main.o: main.cpp Jeu.hpp
 		$(CC) -o $@ -c $< $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
+
+# Tests :
+#test : tests_catch
+
+#tests_catch: Joueur_tests.o Joueur.o
+# 	$(CC) -o tests_catch Joueur_tests.o Joueur.o
+
+# tests_catch_point.o: tests_catch_point.cpp point.hpp catch.hpp
+# 	$(CPP) -c tests_catch_point.cpp
+
+# tests_catch_rectangle.o: tests_catch_rectangle.cpp rectangle.hpp catch.hpp
+# 	$(CPP) -c tests_catch_rectangle.cpp
+
+
+
+
+
+
+
 clean:
 	rm -rf *.o $(EXEC)

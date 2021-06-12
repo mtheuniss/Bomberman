@@ -18,8 +18,10 @@ class Joueur {
     Joueur();
     Joueur(int x, int y, int num, int color);
     ~Joueur(){
+      std::cout << "debut destructeur joueur" << '\n';
       delete this->_animation;
       delete this->_esthetique;
+      std::cout << "fin destructeur joueur" << '\n';
     }
 
     int getPosX() const;

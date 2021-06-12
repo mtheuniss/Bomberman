@@ -9,7 +9,8 @@
 class PowerUp : public Element{
   public :
   virtual ~PowerUp(){
-    delete this->_esthetique;
+    std::cout << "destructeur powerup" << '\n';
+    //delete this->_esthetique;
   }
 
   //méthodes virtuelles à redéfinir

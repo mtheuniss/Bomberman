@@ -16,13 +16,10 @@ private:
 public:
   Animation();
   Animation (sf::Texture* texAAnime, sf::Vector2u nbImages, float tmpPAmage);
-  virtual ~Animation ();
+  ~Animation (){std::cout << "destructeur animation" << '\n';};
 
   sf::IntRect _RectSelect; // ou on ce trouve dans la texture global avec toute les images d'animation
   void update(int startImage, float tmpIncrement);
-
-
-
 
 };
 

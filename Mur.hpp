@@ -7,11 +7,6 @@
 
 class Mur : public Element {
   public :
-    //Constructeur, destructeur
-    virtual ~Mur(){
-      delete this->_esthetique;
-    }
-
     //Accesseurs const : en lecture seule
     const bool& getCassable() const {return this->cassable;}
     const bool& getFranchissable()const {return this->franchissable;}
