@@ -9,7 +9,6 @@ class Bombe : public Element{
   //Constructeur et destructeur
     Bombe();
     virtual ~Bombe(){
-      std::cout << "destructeur bombe" << '\n';
       delete this->_animation;
     }
     //constructeur par copie

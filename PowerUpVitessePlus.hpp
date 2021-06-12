@@ -11,8 +11,7 @@ class PowerUpVitessePlus : public PowerUp {
     //Constructeurs
     PowerUpVitessePlus();
     PowerUpVitessePlus(sf::Vector2i position);
-    //Destructeur
-    //virtual ~ PowerUpVitessePlus(){}
+
     //méthodes à redefinir
     void affichage();
     bool powerUpAttrape(Joueur* j);

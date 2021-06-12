@@ -8,9 +8,7 @@
 
 class PowerUp : public Element{
   public :
-  virtual ~PowerUp(){
-    std::cout << "destructeur powerup" << '\n';
-  }
+  virtual ~PowerUp(){}
 
   //méthodes virtuelles à redéfinir
     virtual void affichage() = 0;

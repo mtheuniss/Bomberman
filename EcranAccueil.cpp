@@ -104,37 +104,31 @@ void EcranAccueil::update(){
       case sf::Event::MouseButtonPressed :
         x0 = _ev.mouseButton.x;
         y0 = _ev.mouseButton.y;
-        std::cout<<"["<<x0<<" ; "<<y0<<"]"<<std::endl;
         //à chaque bouton est associée une zone dans la fenetre
         //cliquer dans la zone = cliquer sur le bouton
         //bouton cliqué => mise à jour des perso, désactivé la cliquabilité, griser la  (ajout gris en + de l'image)
         //personnage1 cliqué?
         if (x0>=56 && x0<=306 && y0>=96 && y0<=456){
-          std::cout<<"perso 1"<<std::endl;
           if (_nperso1 == 0) _nperso1 = 1;
           else if (_nperso2 == 0 && _nperso1 != 1) _nperso2 = 1;
         }
         //personnage2 cliqué?
         if (x0>=362 && x0<=612 && y0>=96 && y0<=456){
-          std::cout<<"perso 2"<<std::endl;
           if (_nperso1 == 0) _nperso1 = 2;
           else if (_nperso2 == 0 && _nperso1 != 2) _nperso2 = 2;
         }
         //personnage3 cliqué?
         if (x0>=668 && x0<=918 && y0>=96 && y0<=456){
-          std::cout<<"perso 3"<<std::endl;
           if (_nperso1 == 0) _nperso1 = 3;
           else if (_nperso2 == 0 &&_nperso1 != 3) _nperso2 = 3;
         }
         //personnage4 cliqué?
         if (x0>=974 && x0<=1224 && y0>=96 && y0<=456){
-          std::cout<<"perso 4"<<std::endl;
           if (_nperso1 == 0) _nperso1 = 4;
           else if (_nperso2 == 0 && _nperso1 != 4) _nperso2 = 4;
         }
         //play cliqué, si oui, on vérifie que les 2 personnages sont choisis pour lancer le jeu
         if (x0>=540 && x0<=740 && y0>=520 && y0<=720){
-          std::cout<<"jouer!!"<<std::endl;
           this->_window->close();
         }
       //gestion des boutons : clic gauche = changer le dernier joueur sélectionné

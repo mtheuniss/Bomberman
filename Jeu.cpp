@@ -168,7 +168,6 @@ void Jeu::updateEvents(){
             nouvelle_pos = this->_j1->getPosX() - this->_j1->getVit();
             if(nouvelle_pos<1080){
               if(estFranchissable(nouvelle_pos, _j1->getPosY()) && estFranchissable(nouvelle_pos, _j1->getPosY()+30)){
-                std::cout << "pos x" << nouvelle_pos<< '\n';
                 this->_j1->setPosX(nouvelle_pos);
               }  // Le repère image est déplacer on fait attention à mettre les vitesse dans le bon sens
             }

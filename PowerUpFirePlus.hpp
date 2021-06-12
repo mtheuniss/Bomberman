@@ -11,8 +11,7 @@ class PowerUpFirePlus : public PowerUp {
     //Constructeurs
     PowerUpFirePlus();
     PowerUpFirePlus(sf::Vector2i position);
-    //Destructeur
-    //virtual ~ PowerUpFirePlus(){}
+
     //méthodes à redefinir
     void affichage();
     bool powerUpAttrape(Joueur* j);

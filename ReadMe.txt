@@ -26,6 +26,8 @@ Ajouter un nouveau type de PowerUps est donc très simple : seule la méthode de
 Les bombes et PowerUp à afficher sont stockés dans des listes std::list pour permettre une suppression d'un élément en o(1) quelque soit sa position dans la liste.
 
 Note : Le programme ne fonctionne pas sur l'ordinateur de Pierre : le programme se termine à cause d’une segmentation fault dès qu'une bombe explose. Nous n'avons pas compris d'où cela provenait.
+L'erreur se situe au niveau de l'iteror dans la boucle for de la fonction updateGrille de la classe Plateau.
+
 Nous avons travaillé en groupe en utilisant git et atom lorsque nous codions à deux. Nous avons la moitié du temps travaillé l’un après l’autre en se relayant ce qui fait nous avons tous les deux participé à chaque grande partie du programme.
 Mathilde a dessiné les grandes lignes de l’interface graphique que Pierre a rendu compréhensible à l’utilisateur par l’ajout d’images et d’animation. Pierre a codé les tests unitaires et Mathilde les destructeurs.
 Le reste du jeu a été codé par les deux membres de l’équipe.

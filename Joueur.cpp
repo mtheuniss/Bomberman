@@ -83,7 +83,6 @@ void Joueur::estTouche(std::list<sf::Vector2i> liste){
   for (sf::Vector2i coord : liste){
     if (coord.x == _pos.x && coord.y == _pos.y){
       _nbVies --;
-      std::cout<<"nbVies = "<< _nbVies<<std::endl;
       break; //on sort car le joueur n'est que dans une seule case
     }
   }
