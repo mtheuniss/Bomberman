@@ -103,6 +103,57 @@ void Plateau::renderPlateau(sf::RenderWindow* w ){
     //on parcours la liste.
     //pour chaque coordonnées, si le mur est cassable alors on le casse
     //casser = supprimer le pointeur de mur et nouveau pointeur MurVoid
+    //premier élément de la liste = point d'impact : ne nous interresse pas
+    sf::Vector2i pt_impact = liste.front();
+    liste.erase(liste.begin());
+    std::cout << "liste des coordonnées" << '\n';
+    for (std::list<sf::Vector2i>::iterator coord = liste.begin(); coord!=liste.end(); ++coord){
+      std::cout << "coord = ["<<(*coord).x<<" ; "<<(*coord).y<<"]"<< '\n';
+    }
+    bool stop_gauche = false, stop_droite = false, stop_haut = false, stop_bas = false;
+    for (std::list<sf::Vector2i>::iterator coord = liste.begin(); coord!=liste.end(); ++coord){
+      std::cout << "coord = ["<<(*coord).x<<" ; "<<(*coord).y<<"]"<< '\n';
+      if(_grid[(*coord).x][(*coord).y]->getCassable() == 0 && _grid[(*coord).x][(*coord).y]->getFranchissable() == 1){ //cas pas de mur
+        //on le supprime de la liste, il ne nous interresse pas
+        std::cout << "murVoid" << '\n';
+        liste.erase(coord);
+        coord--;
+      }
+      //si c'est un mur dur : on ne supprime pas les murs cassables qui suivent, mise à jour des variables stop
+      else if (_grid[(*coord).x][(*coord).y]->getCassable() == 0 && _grid[(*coord).x][(*coord).y]->getFranchissable() == 0){
+        std::cout << "murDur" << '\n';
+        if (pt_impact.y == (*coord).y){//droite ou gauche
+          if (pt_impact.x < (*coord).x)//droite
+            stop_droite = true;
+          else //gauche
+            stop_gauche = true;
+        }
+        else {//haut ou bas
+          if (pt_impact.y > (*coord).y)//haut
+            stop_haut = true;
+          else //bas
+            stop_bas = true;
+        }
+        //on le supprime de la liste, il ne nous interresse pas
+        liste.erase(coord);
+        coord--;
+      }
+      //si c'est un mur cassable, on verifie qu'il n'est pas protégé par un mur dur
+      else {
+        std::cout << "murCassable" << '\n';
+        if ((pt_impact.x>(*coord).x &&stop_gauche)||(pt_impact.y>(*coord).y&&stop_haut)||(pt_impact.x<(*coord).x &&stop_droite)||(pt_impact.y<(*coord).y&&stop_bas)){
+          //le mur est protégé
+          std::cout << "mais protégé" << '\n';
+          liste.erase(coord);
+          coord--;
+        }
+        else{
+          delete this->_grid[(*coord).x][(*coord).y];
+          this->setElement(new MurVoid((*coord).x,(*coord).y));
+        }
+      }
+    }
+    /*
     for (std::list<sf::Vector2i>::iterator coord = liste.begin(); coord!=liste.end(); ++coord){
       if (_grid[(*coord).x][(*coord).y]->getCassable() == 1){//on peut casser le mur
         delete this->_grid[(*coord).x][(*coord).y];
@@ -113,5 +164,5 @@ void Plateau::renderPlateau(sf::RenderWindow* w ){
         liste.erase(coord);
         coord--;
       }
-    }
+    }*/
   }

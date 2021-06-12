@@ -93,13 +93,13 @@ void Jeu::nouveauPowerUp(std::list<sf::Vector2i> liste){
 void Jeu::updateBombes(){
   //Note : pour supprimer d'une liste, il nous faut un itérateur
   //for (Bombe* b : _listeBombes){
+  //si aucun des joueurs n'a de bombe, on leur en rajoute 1 à chacun
   if(this->_j1->getNbBombes() == 0 && this->_j2->getNbBombes() == 0 ){
     this->_j1->setNbBombes(1);
     this->_j2->setNbBombes(1);
   }
 
   if(this->_j1->getBombe()-> rayon() >= 5){
-    std::cout << "type change" << '\n';
     this->_j1 -> getBombe() -> type() = 3;
   }
   if(this->_j2->getBombe()-> rayon() >= 5){
@@ -120,7 +120,9 @@ void Jeu::updateBombes(){
       this->_j1->estTouche(liste);
       this->_j2->estTouche(liste);
       // on update la grille (destruction des murs cassables)
+      std::cout << "avant update grille" << '\n';
       _grille.updateGrille(liste);
+      std::cout << "après update grille" << '\n';
       // A la sortie de updateGrille, il ne reste plus que les coordonées des murs cassés
       // on s'en sert pour la création des powerups
       nouveauPowerUp(liste);
@@ -326,7 +328,6 @@ void Jeu::renderJoueurs(){
 void Jeu::renderBombes(){
   for ( Bombe* b : _listeBombes){
     if (!b->explose()){
-      std::cout << "type bombe : "<< b->type() << '\n';
       b->getAnimation()->update(b->type(),this->tmpIncrement);
       b->getEsthetique()->setTextureRect(b->getAnimation()->_RectSelect  );
 
